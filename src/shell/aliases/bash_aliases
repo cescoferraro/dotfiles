@@ -1,0 +1,39 @@
+#!/bin/bash
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias cd..="cd .."
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias :q="exit"
+alias c="clear"
+alias ch="history -c && > ~/.bash_history"
+alias e="vim --"
+alias g="git"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ll="ls -l"
+alias m="man"
+alias map="xargs -n1"
+alias n="npm"
+alias q="exit"
+alias rm="rm -rf --"
+alias k="kubectl"
+alias d="docker"
+alias gh="cd $HOME/go/src/github.com/cescoferraro"
+alias bb="cd $HOME/go/src/bitbucket.org/cescoferraro"
+alias docker-format="docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f"
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+alias di="docker run -t -i -P"
+alias dd="docker run -d -P"
+alias dl='docker ps --format "table {{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dc="docker ps -aq | xargs --no-run-if-empty docker rm -f"
+alias jj="docker run -t -i -P openjdk:8 java"
+alias gg="docker run -t -i -P golang:1.8 go"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Load OS specific aliases.
+
+. "aliases/$OS/bash_aliases"

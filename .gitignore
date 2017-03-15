@@ -1,0 +1,19 @@
+# Automatically normalize line endings for all text-based files.
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+
+* text=auto
+
+
+# swap
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+.idea
+
+src/vim/vim/plugins/vim-devicons/doc/tags
