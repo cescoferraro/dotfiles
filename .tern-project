@@ -2,6 +2,7 @@
     "libs": [
         "browser",
         "lodash",
+        "debug",
         "react"
             ],
         "plugins": {

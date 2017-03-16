@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	color.BgBlue("O Cesco é foda!")
 	color.Cyan("Prints text in cyan.")
 	log.Println("dsfmsldkf")
 }

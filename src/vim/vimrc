@@ -541,6 +541,7 @@ silent! colorscheme solarized  " Use custom color scheme.
 " Use a different mapleader (default is "\").
 
 let mapleader = ","
+<<<<<<< HEAD
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -737,3 +738,67 @@ set statusline+=\ (%P)\        " Percent through file
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+=======
+set nocompatible
+set number
+set runtimepath+=~/.vim/plugins/Vundle.vim
+set path+=**
+set wildmenu
+
+syntax enable 
+
+filetype plugin on
+
+call vundle#begin("~/.vim/plugins")
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'fatih/vim-go'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'bronson/vim-crosshairs'
+    Plugin 'marijnh/tern_for_vim'
+    Plugin 'vim-airline/vim-airline-themes'
+    Plugin 'ryanoasis/vim-devicons'
+    Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
+call vundle#end()
+
+" Vim-airline"
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='molokai'
+
+"vim-devicons"
+set encoding=utf8
+let g:airline_powerline_fonts = 1
+let g:webdevicons_enable = 1
+
+" NERDTree"
+nmap <leader>e :NERDTree<cr>
+let g:NERDTreeTabsOpen = 1
+let g:NERDTreeShowHidden=1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" NERDTreeTabs"
+map <Leader>; <plug>NERDTreeTabsToggle<CR>
+map <Leader>. <plug>NERDTreeFocusToggle<CR>
+
+
+" Tern	
+let g:tern_show_argument_hints='on_hold'
+let g:tern_map_keys=1
+
+
+
+
+" CrossHair
+set cursorline    " enable the horizontal line
+set cursorcolumn  " enable the vertical line
+
+
+
+
+>>>>>>> f09db74352fd (whatever)

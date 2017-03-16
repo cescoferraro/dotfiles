@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/cescoferraro/dotfiles/issues"
   },
-  "homepage": "https://github.com/cescoferraro/dotfiles#readme"
+  "homepage": "https://github.com/cescoferraro/dotfiles#readme",
+  "devDependencies": {
+    "react": "^15.4.2"
+  }
 }
