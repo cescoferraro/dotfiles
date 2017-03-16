@@ -1,0 +1,10 @@
+{
+    "libs": [
+        "browser",
+        "lodash",
+        "react"
+            ],
+        "plugins": {
+          "node": {}
+       }
+}
