@@ -744,7 +744,7 @@ set number
 set runtimepath+=~/.vim/plugins/Vundle.vim
 set path+=**
 set wildmenu
-
+set noswapfile
 syntax enable 
 
 filetype plugin on
