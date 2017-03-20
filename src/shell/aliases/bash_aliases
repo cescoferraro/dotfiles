@@ -31,6 +31,8 @@ alias dl='docker ps --format "table {{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Port
 alias dc="docker ps -aq | xargs --no-run-if-empty docker rm -f"
 alias jj="docker run -t -i -P openjdk:8 java"
 alias gg="docker run -t -i -P golang:1.8 go"
+alias emacs="emacs -nw"
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

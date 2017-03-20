@@ -8,6 +8,12 @@
 
 (require 'evil-leader)
 
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key "e" 'find-file)
+
+
+
 (require 'evil)
 (evil-mode 1)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
@@ -34,19 +40,10 @@
 
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
     ("f5ad3af69f2b6b7c547208b8708d4fa7928b5697ca0845633d1d67c2d145952a" "b9b1a8d2ec1d5c17700e1a09256f33c2520b26f49980ed9e217e444c381279a9" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(custom-set-faces)
 
 
 (require 'spaceline-config)
@@ -74,21 +71,21 @@
 (setenv "GOPATH" "/home/cescoferraro/go")
 
 (add-to-list 'exec-path "/home/cescoferraro/go/bin")
-(add-hook 'before-save-hook 'gofmt-before-save)
 
 
-(defun ac-for-go ()
-  (ac-mode 1))
-(add-hook 'go-mode-hook 'ac-for-go)
+(defun my-go-mode-hook ()
+  ; Call Gofmt before saving                                                    
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ; Customize compile command to run go build
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet")) 
+ )
+(add-hook 'go-mode-hook 'my-go-mode-hook)
 
+(defun auto-complete-for-go ()
+  (auto-complete-mode 1))
+(add-hook 'go-mode-hook 'auto-complete-for-go)
 
-(require 'auto-complete-config)
-(ac-config-default)
-(defun ac-common-setup ()
-  (setq ac-sources (append ac-sources '(ac-source-gtags ac-source-semantic ac-source-semantic-raw))))
-
-((symbol . ac-symbol)
- (file . ac-file)
- (valid-file . ac-valid-file)
- (c-dot . ac-c-dot)
-  (c-dot-ref . ac-c-dot-ref))
+(with-eval-after-load 'go-mode
+   (require 'go-autocomplete))
