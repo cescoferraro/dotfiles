@@ -17,3 +17,9 @@ tags
 .idea
 
 src/vim/vim/plugins/vim-devicons/doc/tags
+src/emacs.d/.cask/
+src/emacs.d/meghanada/
+src/emacs.d/smex-items
+src/emacs.d/ac-comphist.dat
+*#
+*#*

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/fatih/color"
 	"log"
+
+	"github.com/fatih/color"
 )
 
 func main() {
-	color.BgBlue("O Cesco é foda!")
 	color.Cyan("Prints text in cyan.")
 	log.Println("dsfmsldkf")
 }
