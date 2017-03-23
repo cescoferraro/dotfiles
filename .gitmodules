@@ -1,0 +1,3 @@
+[submodule "src/vim/vim/plugins/vim-crosshairs"]
+	path = src/vim/vim/plugins/vim-crosshairs
+	url = https://github.com/bronson/vim-crosshairs.git

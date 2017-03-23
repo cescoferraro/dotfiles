@@ -63,5 +63,6 @@
 (depends-on "tide")
 (depends-on "typescript")
 (depends-on "use-package")
+(depends-on "vimrc-mode")
 (depends-on "web-mode")
 (depends-on "yasnippet")
