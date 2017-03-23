@@ -1,34 +1,75 @@
-
-
+(require 'all-the-icons)
 (require 'golden-ratio)
+(require 'meghanada)
+(require 'evil)
+(require 'evil-magit)
 (require 'evil-leader)
+(require 'tide)
+(require 'helm-projectile)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
+(golden-ratio-mode 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
-(evil-leader/set-key "e" 'find-file)
 
-(evil-leader/set-key 
+
+(evil-define-key 'visual evil-surround-mode-map "S" 'evil-substitute)
+(evil-define-key 'visual evil-surround-mode-map "s" 'evil-surround-region)
+
+;; global shortcuts
+(evil-leader/set-key "e" 'find-file)
+(evil-leader/set-key "f" 'helm-projectile)
+(evil-leader/set-key "r" 'save-buffer)
+(evil-leader/set-key "q" 'kill-emacs)
+(evil-leader/set-key "G" 'magit-status)
+(evil-leader/set-key "w" 'delete-window)
+(evil-leader/set-key "b" 'helm-projectile-switch-to-buffer)
+(evil-leader/set-key (kbd "/")
+( lambda ()
+    (interactive)
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+    )
+
+;;global shortcuts functions
+(evil-leader/set-key
  (kbd ".")
  (lambda ()
    (interactive)
       (ace-window "")))
 
 
-(evil-leader/set-key "s" 'save-buffer)
-(evil-leader/set-key "q" 'delete-window)
-(require 'meghanada)
+
+;; quick jump to files!
+(evil-leader/set-key
+ (kbd "o")
+ (lambda ()
+   (interactive)
+      (find-file "~/.bash.local")))
+
+
+(evil-leader/set-key
+ (kbd "i")
+ (lambda ()
+   (interactive)
+      (find-file "~/.emacs.d/init.el")))
+
+
+
+
+
+
+;; golang shorcuts
 (evil-leader/set-key-for-mode 'go-mode
   "j" 'godef-jump-other-window
-  "J" 'godef-jump
- )
-(require 'tide)
-(evil-leader/set-key-for-mode 'tide
-  "j" 'ace-window
-  "J" 'ace-window
+  "g" 'godef-jump
  )
 
 
-(golden-ratio-mode 1)
-(evil-leader/set-key-for-mode 'java-mode "r"
+
+;; java shotcuts
+(evil-leader/set-key-for-mode 'java-mode "c"
   (lambda ()
     (interactive)
     (meghanada-run-task "run")
@@ -38,6 +79,17 @@
   )
 
 
+(evil-leader/set-key-for-mode 'java-mode "t"
+  (lambda ()
+    (interactive)
+    (meghanada-run-task "test")
+    (ace-window "")
+    (golden-ratio)
+    )
+  )
+
+
+;; typescript shortcuts
 (evil-leader/set-key-for-mode 'web-mode
   "j"  (lambda ()
     (interactive)
@@ -49,8 +101,11 @@
     )
 )
 
-(golden-ratio-mode 1)
-(evil-leader/set-key "m"
+
+
+
+;; emacs variable
+(evil-leader/set-key "M"
   (lambda ()
     (interactive)
     (message "%s" major-mode)
@@ -58,42 +113,9 @@
   )
 
 
-(golden-ratio-mode 1)
-
-
-(evil-leader/set-key "f" 'golden-ratio)
 
 
 
-
-
-
-(evil-leader/set-key 
- (kbd "b")
- (lambda ()
-   (interactive)
-      (find-file "~/.bash.local")))
-
-
-(evil-leader/set-key 
- (kbd "i")
- (lambda ()
-   (interactive)
-      (find-file "~/.emacs.d/init.el")))
-
-
-(require 'evil)
 (evil-mode 1)
-
-
-
-(require 'all-the-icons)
-
-
-(setq evil-emacs-state-modes (delq 'ibuffer-mode evil-emacs-state-modes))
-(add-hook 'dired-mode-hook 'dired-icon-mode)
-
-
-
 
 (provide 'init-evil)

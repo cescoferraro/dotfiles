@@ -1,0 +1,7 @@
+(require 'helm)
+(helm-mode 1)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-z")  'helm-select-action)
+(define-key helm-map (kbd "C-2") 'helm-toggle-visible-mark)
+(provide 'init-helm)

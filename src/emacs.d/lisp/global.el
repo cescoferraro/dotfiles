@@ -1,19 +1,26 @@
-
-(tool-bar-mode -1)
-(load-theme 'tsdh-dark)
-(add-to-list 'auto-mode-alist '("\\.bash.local\\'" . shell-script-mode))
-(linum-relative-global-mode t)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-
-
 (require 'powerline)
-(powerline-default-theme)
 (require 'powerline-evil)
-
-
-
 (require 'spaceline-config)
-(spaceline-spacemacs-theme)
-
 (provide 'init-global)
+(require 'editorconfig)
+
+
+;; global modes
+(tool-bar-mode -1)
+(projectile-mode t)
+(linum-relative-global-mode t)
+(editorconfig-mode 1)
+
+;; set themes
+(load-theme 'tsdh-dark)
+(spaceline-spacemacs-theme)
+(powerline-default-theme)
+
+
+
+
+
+
+
+;; file extension syntax highlighting
+(add-to-list 'auto-mode-alist '("\\.bash.local\\'" . shell-script-mode))
