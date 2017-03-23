@@ -13,6 +13,7 @@
 (depends-on "csharp-mode")
 (depends-on "dash")
 (depends-on "dired-icon")
+(depends-on "docker")
 (depends-on "drag-stuff")
 (depends-on "editorconfig")
 (depends-on "evil")
