@@ -23,3 +23,6 @@ src/emacs.d/smex-items
 src/emacs.d/ac-comphist.dat
 *#
 *#*
+src/emacs.d/projectile-bookmarks.eld
+src/emacs.d/recentf
+/src/emacs.d/.cache/projectile-bookmarks.eld
