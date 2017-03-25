@@ -27,6 +27,7 @@
 (depends-on "idle-highlight-mode")
 (depends-on "linum-relative")
 (depends-on "magit")
+(depends-on "markdown-mode")
 (depends-on "meghanada")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
