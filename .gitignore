@@ -28,3 +28,4 @@ src/emacs.d/recentf
 src/emacs.d/.cache/
 src/emacs.d/spacemacs/
 src/emacs.d/elpa/
+/src/emacs.d/eshell/history

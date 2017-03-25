@@ -1,5 +1,16 @@
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
 (require 'golint)
+(require 'godoctor)
+;; golang shorcuts
+(require 'evil-leader)
+(evil-leader/set-key-for-mode 'go-mode
+  "j" 'godef-jump-other-window
+  "g" 'godef-jump
+ )
+
+
+
+
 
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -13,7 +24,6 @@
 (when window-system (set-exec-path-from-shell-PATH))
 
 (setenv "GOPATH" "/home/cescoferraro/go")
-
 (add-to-list 'exec-path "/home/cescoferraro/go/bin")
 
 

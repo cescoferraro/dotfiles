@@ -1,3 +1,16 @@
+(require 'evil-leader)
+
+;; typescript shortcuts
+(evil-leader/set-key-for-mode 'web-mode
+  "j"  (lambda ()
+    (interactive)
+    (tide-jump-to-implementation )
+    )
+  "g"  (lambda ()
+    (interactive)
+    (tide-jump-to-definition )
+    )
+)
 
 
 (defun setup-tide-mode ()
@@ -28,6 +41,10 @@
 	    (when (string-equal "tsx" (file-name-extension buffer-file-name))
 	                    (setup-tide-mode))))
 
-
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+    (lambda ()
+        (when (string-equal "jsx" (file-name-extension buffer-file-name))
+                          (setup-tide-mode))))
 
 (provide 'init-typescript)
