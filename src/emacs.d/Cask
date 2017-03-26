@@ -42,6 +42,7 @@
 (depends-on "spaceline")
 (depends-on "tide")
 (depends-on "use-package")
+(depends-on "vimrc-mode")
 (depends-on "web-mode")
 (depends-on "web-mode-edit-element")
 (depends-on "yasnippet")
