@@ -1,4 +1,5 @@
 (require 'golden-ratio)
+(require 'zoom-window)
 (require 'evil)
 (require 'evil-magit)
 (require 'evil-leader)
@@ -19,6 +20,7 @@
 (evil-define-key 'visual evil-surround-mode-map "y" 'evil-surround-region)
 
 ;; global shortcuts
+(evil-leader/set-key "z" 'zoom-window-zoom)
 (evil-leader/set-key "f" 'helm-projectile)
 (evil-leader/set-key "s" 'save-buffer)
 (evil-leader/set-key "q" 'kill-emacs)
