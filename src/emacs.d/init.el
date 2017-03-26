@@ -8,6 +8,7 @@
 
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/global.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/linum.el"))
+(mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/helm.el"))
 
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/spaceline.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/flycheck.el"))
@@ -23,9 +24,8 @@
 (require 'init-spaceline)
 (require 'init-evil)
 (require 'init-neotree)
-
-
 (require 'init-flycheck)
 (require 'init-golang)
 (require 'init-typescript)
 (require 'init-java)
+(require 'init-helm)

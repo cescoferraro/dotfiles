@@ -1,14 +1,12 @@
 (require 'helm)
-(use-package helm
-    :ensure t
-    :config
-    (helm-mode 1)
-    (setq helm-autoresize-mode t)
-    ;; (global-set-key (kbd "M-x") #'helm-M-x)
-    (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-z")  'helm-select-action)
-    (define-key helm-map (kbd "C-2") 'helm-toggle-visible-mark)
-    )
+(helm-mode 1)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(define-key global-map (kbd "C-x b") 'helm-buffers-list)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+
+(define-key helm-map (kbd "C-;") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-h") 'helm-execute-persistent-action)
+
 (provide 'init-helm)

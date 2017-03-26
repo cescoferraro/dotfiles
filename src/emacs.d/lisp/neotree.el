@@ -10,6 +10,7 @@
 (add-hook 'neotree-mode-hook
   (lambda ()
     (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+    (define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
     (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
     (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
     (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
@@ -24,5 +25,5 @@
     (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
     )
   )
-  
+
 (provide 'init-neotree)
