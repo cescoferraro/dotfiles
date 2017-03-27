@@ -23,7 +23,7 @@
 (evil-leader/set-key "z" 'zoom-window-zoom)
 (evil-leader/set-key "f" 'helm-projectile)
 (evil-leader/set-key "s" 'save-buffer)
-(evil-leader/set-key ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))  )
+
 (evil-leader/set-key "q" 'kill-emacs)
 (evil-leader/set-key "G" 'magit-status)
 (evil-leader/set-key "w" 'delete-window)
@@ -37,6 +37,7 @@
     )
 
 ;;global shortcuts functions
+(evil-leader/set-key ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))  )
 (evil-leader/set-key
  (kbd ".")
  (lambda ()
