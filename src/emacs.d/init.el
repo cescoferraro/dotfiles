@@ -1,15 +1,13 @@
+(package-initialize)
 (require 'cask "~/.cask/cask.el")
-
 (cask-initialize)
 (require 'pallet)
-
 (pallet-mode t)
 
 
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/global.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/linum.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/helm.el"))
-
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/spaceline.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/flycheck.el"))
 (mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/neotree.el"))
