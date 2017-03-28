@@ -11,6 +11,7 @@
 ;; Global Configs
 (require 'init-global)
 (require 'init-linum)
+(require 'init-org)
 ;; Status Line
 (require 'init-spaceline)
 ;; Vim Layer

@@ -1,5 +1,9 @@
 (require 'golden-ratio)
 (require 'zoom-window)
+
+;; allow org.mode TAB to work with evil
+;; has to cacme before (require 'evil)
+(setq evil-want-C-i-jump nil)
 (require 'evil)
 (require 'evil-magit)
 (require 'evil-leader)
@@ -14,10 +18,10 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 
-;;(evil-leader/set-key "z" 'zoom-window-zoom)
 (evil-leader/set-key "v" 'evil-visual-block)
 (evil-define-key 'visual evil-surround-mode-map "A" 'evil-substitute)
 (evil-define-key 'visual evil-surround-mode-map "a" 'evil-surround-region)
+(evil-define-key 'visual evil-surround-mode-map "E" 'org-export-dispatch)
 
 ;; global shortcuts
 (evil-leader/set-key "z" 'zoom-window-zoom)
@@ -27,8 +31,9 @@
 (evil-leader/set-key "q" 'kill-emacs)
 (evil-leader/set-key "G" 'magit-status)
 (evil-leader/set-key "w" 'delete-window)
-(evil-leader/set-key "e" 'kill-buffer)
-(evil-leader/set-key "b" 'helm-projectile-switch-to-buffer)
+(evil-leader/set-key "e" 'kill-this-buffer)
+(evil-leader/set-key "E" 'org-export-dispatch)
+(evil-leader/set-key "," 'helm-projectile-switch-to-buffer)
 (evil-leader/set-key (kbd "/")
 ( lambda ()
     (interactive)
@@ -37,7 +42,7 @@
     )
 
 ;;global shortcuts functions
-(evil-leader/set-key ","  (lambda () (interactive) (ansi-term (getenv "SHELL")))  )
+(evil-leader/set-key "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))  )
 (evil-leader/set-key
  (kbd ".")
  (lambda ()
