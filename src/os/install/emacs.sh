@@ -14,7 +14,7 @@ main() {
         curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
     fi
     printf "Installing dependencies \n"
-    cask install --path ~/.emacs.d/
+    ~/.cask/bin/cask install --path ~/.emacs.d/
 }
 
 main
