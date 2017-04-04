@@ -325,8 +325,8 @@
 
   #+END_SRC
 * Ivy
-
-  #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
+(use-package counsel :ensure t)
 (use-package swiper
     :ensure t
     :config
