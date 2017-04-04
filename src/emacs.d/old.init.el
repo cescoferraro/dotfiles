@@ -1,3 +1,12 @@
+(package-initialize)
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+(require 'pallet)
+(pallet-mode t)
+(eval-when-compile (require 'use-package))
+(require 'diminish)                ;; if you use :diminish
+(require 'bind-key)
+
 
 (use-package org :ensure t)
 
@@ -19,4 +28,4 @@
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
 
 
-(provide 'init-org)
+(org-babel-load-file "~/.emacs.d/configuration.org")

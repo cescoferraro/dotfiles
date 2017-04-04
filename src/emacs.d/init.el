@@ -1,28 +1,22 @@
-
-;; Initialization of Internet dependencies
+;; Setup package-manager
 (package-initialize)
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
-;; Initialization of local dependencies
-(mapc 'load (file-expand-wildcards "~/.emacs.d/lisp/*.el"))
 
-;; Global Configs
-(require 'init-global)
-(require 'init-linum)
+;; load use-package
+(eval-when-compile (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
+;; Set org-mode
+(load "~/.emacs.d/org.el")
 (require 'init-org)
-;; Status Line
-(require 'init-spaceline)
-;; Vim Layer
-(require 'init-evil)
-;; Folder side bar
-(require 'init-neotree)
-;; Linting
-(require 'init-flycheck)
-;; Language Definitions
-(require 'init-golang)
-(require 'init-typescript)
-(require 'init-java)
-;; Menu
-(require 'init-helm)
+
+;; Custom configuration
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
+;; Configuration
+(org-babel-load-file "~/.emacs.d/configuration.org")
