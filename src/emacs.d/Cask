@@ -1,5 +1,6 @@
-(source gnu)
-(source melpa)
+(source "gnu" "http://elpa.gnu.org/packages/")
+(source "melpa" "http://melpa.milkbox.net/packages/")
+(source "org" "http://orgmode.org/elpa/")
 
 (depends-on "ace-window")
 (depends-on "bind-key")
