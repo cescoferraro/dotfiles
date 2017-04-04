@@ -1,0 +1,189 @@
+* Setup
+** Set personal information
+
+#+BEGIN_SRC emacs-lisp
+
+  (setq user-full-name "Francesco Antonello Ferraro"
+        user-mail-address "francescoaferraro@gmail.com "
+        calendar-latitude 42.2
+        calendar-longitude -71.1
+        calendar-location-name "Cambridge, MA")
+#+END_SRC
+** Theme
+#+BEGIN_SRC emacs-lisp
+(load-theme 'tsdh-dark)
+#+END_SRC
+
+
+** ToolBar 
+#+BEGIN_SRC emacs-lisp
+(tool-bar-mode -1)
+#+END_SRC
+
+
+
+
+** Editorconfig
+#+BEGIN_SRC emacs-lisp
+(use-package editorconfig 
+  :config
+  (editorconfig-mode 1))
+#+END_SRC
+
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+	  :config
+	  (projectile-global-mode))
+#+END_SRC
+
+
+** LInum
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package linum-relative
+  :diminish linum-relative-mode
+  :ensure t
+  :config
+  (progn (linum-mode)
+         (linum-relative-global-mode)
+         (setq linum-relative-current-symbol "")
+         )
+)
+
+#+END_SRC
+** Spaceline
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package spaceline
+    :config
+    (require 'spaceline-config)
+    (spaceline-spacemacs-theme)
+    (spaceline-toggle-buffer-size-off)
+    (spaceline-toggle-version-control-on)
+    (spaceline-toggle-selection-info-on)
+    (spaceline-toggle-buffer-encoding-on)
+    (spaceline-toggle-minor-modes-on)
+    (spaceline-toggle-minor-modes-on))
+
+#+END_SRC
+* Evil
+
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package evil
+  :ensure t
+  :config
+  (use-package evil-org :ensure t)
+  (use-package neotree :ensure t)
+  (use-package evil-surround
+    :ensure t
+    :config
+    (global-evil-surround-mode))
+  (use-package evil-leader
+    :ensure t
+    :config
+    (evil-leader/set-leader ",")
+    (evil-leader/set-key
+    "m"  'neotree-toggle
+    "n"  'neotree-project-dir)
+    
+    (evil-leader/set-key "v" 'evil-visual-block)
+    (evil-define-key 'visual evil-surround-mode-map "A" 'evil-substitute)
+    (evil-define-key 'visual evil-surround-mode-map "a" 'evil-surround-region)
+    (evil-define-key 'visual evil-surround-mode-map "E" 'org-export-dispatch)
+    
+    ;; global shortcuts
+    (evil-leader/set-key "z" 'zoom-window-zoom)
+    (evil-leader/set-key "f" 'helm-projectile)
+    (evil-leader/set-key "s" 'save-buffer)
+    
+    (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
+    (evil-leader/set-key "q" 'kill-emacs)
+    (evil-leader/set-key "G" 'magit-status)
+    (evil-leader/set-key "w" 'delete-window)
+    (evil-leader/set-key "e" 'kill-this-buffer)
+    (evil-leader/set-key "E" 'org-export-dispatch)
+    (evil-leader/set-key "," 'helm-projectile-switch-to-buffer)
+    (evil-leader/set-key (kbd "/")
+    ( lambda ()
+        (interactive)
+          (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+    
+        )
+    
+    ;;global shortcuts functions
+    (evil-leader/set-key "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))  )
+    (evil-leader/set-key
+     (kbd ".")
+     (lambda ()
+       (interactive)
+          (ace-window "")))
+    
+    
+    
+    ;; quick jump to files!
+    (evil-leader/set-key
+     (kbd "o")
+     (lambda ()
+       (interactive)
+          (find-file "~/.bash.local")))
+    
+    
+    (evil-leader/set-key
+     (kbd "i")
+     (lambda ()
+       (interactive)
+          (find-file "~/.emacs.d/init.el")))
+    
+    
+    
+    
+    ;; emacs variable
+    (evil-leader/set-key "M"
+      (lambda ()
+        (interactive)
+        (message "%s" major-mode)
+        )
+      )
+    
+    
+    )
+  :config
+  (global-evil-leader-mode)
+  (evil-mode)
+
+  ; Search by symbols rather than words by default
+  (set-default 'evil-symbol-word-search t)
+  )
+
+#+END_SRC
+* Neotree
+
+
+#+BEGIN_SRC emacs-lisp
+(use-package neotree
+  :ensure t
+  :bind (("<f2>" . neotree-toggle))
+  :defer
+  :config
+    (evil-set-initial-state 'neotree-mode 'normal)
+    (evil-define-key 'normal neotree-mode-map
+      (kbd "RET") 'neotree-enter
+      (kbd "TAB") 'neotree-enter
+      (kbd "c")   'neotree-create-node
+      (kbd "r")   'neotree-rename-node
+      (kbd "d")   'neotree-delete-node
+      (kbd "j")   'neotree-next-node
+      (kbd "k")   'neotree-previous-node
+      (kbd "g")   'neotree-refresh
+      (kbd "C")   'neotree-change-root
+      (kbd "I")   'neotree-hidden-file-toggle
+      (kbd "H")   'neotree-hidden-file-toggle
+      (kbd "q")   'neotree-hide
+      (kbd "l")   'neotree-enter
+      ))
+#+END_SRC
