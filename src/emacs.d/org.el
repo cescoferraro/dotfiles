@@ -3,14 +3,12 @@
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
-(eval-when-compile
-  (require 'use-package))
+(eval-when-compile (require 'use-package))
 (require 'diminish)                ;; if you use :diminish
 (require 'bind-key)
 
 
-(use-package org
-  :ensure t)
+(use-package org :ensure t)
 
 (use-package org-bullets
     :ensure t

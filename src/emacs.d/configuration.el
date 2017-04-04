@@ -37,16 +37,6 @@
     (spaceline-toggle-minor-modes-on)
     (spaceline-toggle-minor-modes-on))
 
-(use-package helm
-  :ensure t
-  :config
-  (helm-mode 1)
-  (setq helm-autoresize-mode t)
-  (setq helm-buffer-max-length 40)
-  (global-set-key (kbd "M-x") #'helm-M-x)
-  (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
-  (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level))
-
 (use-package flycheck
   :init
   ;(add-hook 'after-init-hook #'global-flycheck-mode)
@@ -240,18 +230,8 @@
     (evil-define-key 'visual evil-surround-mode-map "E" 'org-export-dispatch)
     (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
     )
-  :config
-  (global-evil-leader-mode)
-  (evil-mode)
-
-  ; Search by symbols rather than words by default
-  (set-default 'evil-symbol-word-search t)
-  )
 
 (use-package neotree
-  :ensure neotree
-  :ensure evil-leader
-  :after evil
   :init
 (add-hook 'neotree-mode-hook
     (lambda ()
@@ -271,3 +251,13 @@
       (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
 ))
 )
+
+  :config
+  (global-evil-leader-mode)
+  (evil-mode)
+
+  ; Search by symbols rather than words by default
+  (set-default 'evil-symbol-word-search t)
+  )
+
+
