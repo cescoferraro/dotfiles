@@ -93,6 +93,14 @@
 
    #+END_SRC
 
+** Hl-line+
+#+BEGIN_SRC emacs-lisp
+(use-package hl-line+ :ensure t :config (global-hl-line-mode))
+#+END_SRC
+** Which-Keys
+#+BEGIN_SRC emacs-lisp
+(use-package which-key :ensure t :config (which-key-mode))
+#+END_SRC
 * Languages
 ** Golang
 
@@ -103,8 +111,7 @@
 ;; golang shorcuts
 (require 'evil-leader)
 (evil-leader/set-key-for-mode 'go-mode
-  "j" 'godef-jump-other-window
-  "g" 'godef-jump
+  "j" 'godef-jump
  )
 
 
