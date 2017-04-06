@@ -10,6 +10,10 @@ My emacs configuration! Enjoy
         calendar-longitude -71.1
         calendar-location-name "Cambridge, MA")
    #+END_SRC
+** Silence dumb warning
+#+BEGIN_SRC emacs-lisp
+(setq ad-redefinition-action 'accept)
+#+END_SRC
 ** Force Fullscreen
    It forces emacs into full-screen-mode.
    #+BEGIN_SRC emacs-lisp
@@ -25,6 +29,30 @@ My emacs configuration! Enjoy
    #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
    #+END_SRC
+** SimpleClip
+
+  #+BEGIN_SRC emacs-lisp
+
+(require 'simpleclip)
+(defun copy-to-x-clipboard ()
+  (interactive)
+  (let ((thing (if (region-active-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (thing-at-point 'symbol))))
+    (simpleclip-set-contents thing)
+    (message "thing => clipboard!")))
+
+(defun paste-from-x-clipboard()
+  "Paste string clipboard"
+  (interactive)
+  (insert (simpleclip-get-contents)))
+
+;; Press `Alt-Y' to paste from clibpoard when in minibuffer
+(defun my/paste-in-minibuffer ()
+  (local-set-key (kbd "M-y") 'paste-from-x-clipboard))
+(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
+
+  #+END_SRC
 
 * Packages
 ** Editorconfig
@@ -97,14 +125,15 @@ My emacs configuration! Enjoy
 ** Magit
 
    #+BEGIN_SRC emacs-lisp
-
 (use-package magit
-  :ensure magit
-  :ensure evil-magit
+	  :demand magit
+	  :config (progn
+(evil-leader/set-key "g" 'magit-status)
+	            (setq magit-auto-revert-mode nil)))
+
+	(use-package evil-magit
   :after evil
-  :init
-  (evil-magit-init)
-  (evil-leader/set-key "g" 'magit-status))
+	  :demand evil-magit)
 
    #+END_SRC
 
@@ -125,6 +154,64 @@ My emacs configuration! Enjoy
   (setq twittering-icon-mode t)
   (setq twittering-timer-interval 300)
   (setq twittering-url-show-status nil))
+  #+END_SRC
+
+** Neotree
+  #+BEGIN_SRC emacs-lisp
+
+(use-package neotree
+  :after evil
+  :init
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+(add-hook 'neotree-mode-hook
+    (lambda ()
+      (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+      (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
+      (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
+      (define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
+      (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
+      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
+      (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
+      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
+
+      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
+      (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
+
+      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+      (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter))))
+
+  #+END_SRC
+** Ivy
+  #+BEGIN_SRC emacs-lisp
+(use-package counsel :ensure t)
+(use-package swiper
+    :ensure t
+    :config
+    (progn
+        (ivy-mode 1)
+        (setq ivy-use-virtual-buffers t)
+        (setq enable-recursive-minibuffers t)
+        (global-set-key "\C-s" 'swiper)
+        (global-set-key (kbd "C-c C-r") 'ivy-resume)
+        (global-set-key (kbd "<f6>") 'ivy-resume)
+        (global-set-key (kbd "M-x") 'counsel-M-x)
+        (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+        (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+        (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+        (global-set-key (kbd "<f1> l") 'counsel-find-library)
+        (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+        (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+        (global-set-key (kbd "C-c g") 'counsel-git)
+        (global-set-key (kbd "C-c j") 'counsel-git-grep)
+        (global-set-key (kbd "C-c k") 'counsel-ag)
+        (global-set-key (kbd "C-x l") 'counsel-locate)
+        (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+        (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+    )
+)
+
+
   #+END_SRC
 * Languages
 ** Golang
@@ -278,19 +365,19 @@ My emacs configuration! Enjoy
    #+END_SRC
 
 * Evil
+** Evil Paraphernalia
+#+BEGIN_SRC emacs-lisp
 
-
-  #+BEGIN_SRC emacs-lisp
-
-(use-package evil
-  :ensure t
-  :config
   (use-package evil-org :ensure t)
   (use-package evil-surround
     :ensure t
     :config
     (global-evil-surround-mode))
-  (use-package evil-leader
+
+#+END_SRC
+** Evil-Leader
+  #+BEGIN_SRC emacs-lisp
+(use-package evil-leader
     :ensure t
     :config
     (evil-leader/set-leader ",")
@@ -319,100 +406,19 @@ My emacs configuration! Enjoy
     (evil-define-key 'visual evil-surround-mode-map "a" 'evil-surround-region)
     (evil-define-key 'visual evil-surround-mode-map "E" 'org-export-dispatch)
     (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
+  (global-evil-leader-mode)
     )
 
-(use-package neotree
-  :init
 
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+  #+END_SRC
+** Evil itself
+#+BEGIN_SRC emacs-lisp
 
-
-(add-hook 'neotree-mode-hook
-    (lambda ()
-      (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-      (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
-      (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
-    (define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
-      (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
-      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
-      (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
-      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
-
-      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
-      (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
-
-      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-      (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-))
-)
-
+(use-package evil
+  :ensure t
+  :after evil-leader
   :config
-  (global-evil-leader-mode)
   (evil-mode)
-
-  ; Search by symbols rather than words by default
   (set-default 'evil-symbol-word-search t)
   )
-
-
-  #+END_SRC
-
-  #+BEGIN_SRC emacs-lisp
-
-
-  #+END_SRC
-* Ivy
-  #+BEGIN_SRC emacs-lisp
-(use-package counsel :ensure t)
-(use-package swiper
-    :ensure t
-    :config
-    (progn
-        (ivy-mode 1)
-        (setq ivy-use-virtual-buffers t)
-        (setq enable-recursive-minibuffers t)
-        (global-set-key "\C-s" 'swiper)
-        (global-set-key (kbd "C-c C-r") 'ivy-resume)
-        (global-set-key (kbd "<f6>") 'ivy-resume)
-        (global-set-key (kbd "M-x") 'counsel-M-x)
-        (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-        (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-        (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-        (global-set-key (kbd "<f1> l") 'counsel-find-library)
-        (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-        (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-        (global-set-key (kbd "C-c g") 'counsel-git)
-        (global-set-key (kbd "C-c j") 'counsel-git-grep)
-        (global-set-key (kbd "C-c k") 'counsel-ag)
-        (global-set-key (kbd "C-x l") 'counsel-locate)
-        (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-        (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    )
-)
-
-
-  #+END_SRC
-* SimpleClip
-
-  #+BEGIN_SRC emacs-lisp
-
-(require 'simpleclip)
-(defun copy-to-x-clipboard ()
-  (interactive)
-  (let ((thing (if (region-active-p)
-                   (buffer-substring-no-properties (region-beginning) (region-end))
-                 (thing-at-point 'symbol))))
-    (simpleclip-set-contents thing)
-    (message "thing => clipboard!")))
-
-(defun paste-from-x-clipboard()
-  "Paste string clipboard"
-  (interactive)
-  (insert (simpleclip-get-contents)))
-
-;; Press `Alt-Y' to paste from clibpoard when in minibuffer
-(defun my/paste-in-minibuffer ()
-  (local-set-key (kbd "M-y") 'paste-from-x-clipboard))
-(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
-
-  #+END_SRC
+#+END_SRC

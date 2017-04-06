@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title></title>
+<meta name="author" content="(Francesco Antonello Ferraro)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme"/>
+
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h2 class="author">Francesco Antonello Ferraro</h2><p class="date">Created: 2017-04-06 Thu 19:49</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org934274c">1. Setup</a>
+<ul>
+<li><a href="#/slide-org543fab0">1.1. Set personal information</a></li>
+<li><a href="#/slide-org4398b8f">1.2. Force Fullscreen</a></li>
+<li><a href="#/slide-org4e0ecb0">1.3. Set Theme</a></li>
+<li><a href="#/slide-orge24580a">1.4. Hide ToolBar</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgf0e821d">2. Packages</a>
+<ul>
+<li><a href="#/slide-org06d4bb6">2.1. Editorconfig</a></li>
+<li><a href="#/slide-orgdfa94ae">2.2. Projectile</a></li>
+<li><a href="#/slide-orga0bb6c5">2.3. LInum</a></li>
+<li><a href="#/slide-orgfc8fb04">2.4. Spaceline</a></li>
+<li><a href="#/slide-orgdb7e088">2.5. Dashboard</a></li>
+<li><a href="#/slide-org21e06ef">2.6. FLycheck</a></li>
+<li><a href="#/slide-org0cce6b2">2.7. Magit</a></li>
+<li><a href="#/slide-org697a845">2.8. Hl-line+</a></li>
+<li><a href="#/slide-orgac0aa1e">2.9. Which-Keys</a></li>
+<li><a href="#/slide-orgfd64d33">2.10. Twitter</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org79d038b">3. Languages</a>
+<ul>
+<li><a href="#/slide-orgc839a75">3.1. Golang</a></li>
+<li><a href="#/slide-org5934c17">3.2. Java</a></li>
+<li><a href="#/slide-orga3c024a">3.3. Typescript</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgafb13ab">4. Evil</a></li>
+<li><a href="#/slide-orgc3776fe">5. Ivy</a></li>
+<li><a href="#/slide-orgc5bf4e9">6. SimpleClip</a></li>
+</ul>
+</div>
+</div>
+</section>
+<p>
+My emacs configuration! Enjoy
+</p>
+
+<section>
+<section id="slide-org934274c">
+<h2 id="org934274c"><span class="section-number-2">1</span> Setup</h2>
+<div class="outline-text-2" id="text-1">
+</div></section>
+<section id="slide-org543fab0">
+<h3 id="org543fab0"><span class="section-number-3">1.1</span> Set personal information</h3>
+<p>
+I am a gopher!
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">setq</span> user-full-name <span style="color: #ffa07a;">"Francesco Antonello Ferraro"</span>
+        user-mail-address <span style="color: #ffa07a;">"francescoaferraro@gmail.com "</span>
+        calendar-latitude 42.2
+        calendar-longitude -71.1
+        calendar-location-name <span style="color: #ffa07a;">"Cambridge, MA"</span>)
+</pre>
+</div>
+</section>
+<section id="slide-org4398b8f">
+<h3 id="org4398b8f"><span class="section-number-3">1.2</span> Force Fullscreen</h3>
+<p>
+It forces emacs into full-screen-mode.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+</pre>
+</div>
+
+</section>
+<section id="slide-org4e0ecb0">
+<h3 id="org4e0ecb0"><span class="section-number-3">1.3</span> Set Theme</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(load-theme 'tsdh-dark)
+</pre>
+</div>
+
+</section>
+<section id="slide-orge24580a">
+<h3 id="orge24580a"><span class="section-number-3">1.4</span> Hide ToolBar</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(tool-bar-mode -1)
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf0e821d">
+<h2 id="orgf0e821d"><span class="section-number-2">2</span> Packages</h2>
+<div class="outline-text-2" id="text-2">
+</div></section>
+<section id="slide-org06d4bb6">
+<h3 id="org06d4bb6"><span class="section-number-3">2.1</span> Editorconfig</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">editorconfig</span>
+  <span style="color: #76ee00;">:config</span>
+  (editorconfig-mode 1))
+</pre>
+</div>
+
+</section>
+<section id="slide-orgdfa94ae">
+<h3 id="orgdfa94ae"><span class="section-number-3">2.2</span> Projectile</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">projectile</span>
+          <span style="color: #76ee00;">:config</span>
+          (projectile-global-mode))
+</pre>
+</div>
+
+</section>
+<section id="slide-orga0bb6c5">
+<h3 id="orga0bb6c5"><span class="section-number-3">2.3</span> LInum</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">linum-relative</span>
+  <span style="color: #76ee00;">:diminish</span> linum-relative-mode
+  <span style="color: #76ee00;">:ensure</span> t
+  <span style="color: #76ee00;">:config</span>
+  (<span style="color: #20b2aa; font-weight: bold;">progn</span> (linum-mode)
+         (linum-relative-global-mode)
+         (<span style="color: #20b2aa; font-weight: bold;">setq</span> linum-relative-current-symbol <span style="color: #ffa07a;">""</span>)
+         )
+)
+</pre>
+</div>
+</section>
+<section id="slide-orgfc8fb04">
+<h3 id="orgfc8fb04"><span class="section-number-3">2.4</span> Spaceline</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">spaceline</span>
+    <span style="color: #76ee00;">:config</span>
+    (<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">spaceline-config</span>)
+    (spaceline-spacemacs-theme)
+    (spaceline-toggle-buffer-size-off)
+    (spaceline-toggle-version-control-on)
+    (spaceline-toggle-selection-info-on)
+    (spaceline-toggle-buffer-encoding-on)
+    (spaceline-toggle-minor-modes-off)
+)
+</pre>
+</div>
+</section>
+<section id="slide-orgdb7e088">
+<h3 id="orgdb7e088"><span class="section-number-3">2.5</span> Dashboard</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">dashboard</span>
+  <span style="color: #76ee00;">:config</span>
+  (dashboard-setup-startup-hook))
+</pre>
+</div>
+
+</section>
+<section id="slide-org21e06ef">
+<h3 id="org21e06ef"><span class="section-number-3">2.6</span> FLycheck</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">flycheck</span>
+  <span style="color: #76ee00;">:init</span>
+  <span style="color: #cd853f;">;</span><span style="color: #cd853f;">(add-hook 'after-init-hook #'global-flycheck-mode)</span>
+  <span style="color: #76ee00;">:config</span>
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> flycheck-display-errors-delay 0.3)
+  (set-face-attribute 'flycheck-error nil <span style="color: #76ee00;">:background</span> <span style="color: #ffa07a;">"#8c5353"</span>)
+  (set-face-attribute 'flycheck-warning nil <span style="color: #76ee00;">:background</span> <span style="color: #ffa07a;">"#535399"</span>)
+  <span style="color: #76ee00;">:bind</span> ((<span style="color: #ffa07a;">"M-n"</span> . flycheck-next-error)
+         (<span style="color: #ffa07a;">"M-p"</span> . flycheck-previous-error))
+)
+</pre>
+</div>
+</section>
+<section id="slide-org0cce6b2">
+<h3 id="org0cce6b2"><span class="section-number-3">2.7</span> Magit</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">magit</span>
+  <span style="color: #76ee00;">:ensure</span> magit
+  <span style="color: #76ee00;">:ensure</span> evil-magit
+  <span style="color: #76ee00;">:after</span> evil
+  <span style="color: #76ee00;">:init</span>
+  (evil-magit-init)
+  (evil-leader/set-key <span style="color: #ffa07a;">"g"</span> 'magit-status))
+</pre>
+</div>
+
+</section>
+<section id="slide-org697a845">
+<h3 id="org697a845"><span class="section-number-3">2.8</span> Hl-line+</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">hl-line+</span> <span style="color: #76ee00;">:ensure</span> t <span style="color: #76ee00;">:config</span> (global-hl-line-mode))
+</pre>
+</div>
+</section>
+<section id="slide-orgac0aa1e">
+<h3 id="orgac0aa1e"><span class="section-number-3">2.9</span> Which-Keys</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">which-key</span> <span style="color: #76ee00;">:ensure</span> t <span style="color: #76ee00;">:config</span> (which-key-mode))
+</pre>
+</div>
+</section>
+<section id="slide-orgfd64d33">
+<h3 id="orgfd64d33"><span class="section-number-3">2.10</span> Twitter</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">twittering-mode</span>
+  <span style="color: #76ee00;">:config</span>
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> twittering-use-master-password t)
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> twittering-icon-mode t)
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> twittering-timer-interval 300)
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> twittering-url-show-status nil))
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org79d038b">
+<h2 id="org79d038b"><span class="section-number-2">3</span> Languages</h2>
+<div class="outline-text-2" id="text-3">
+</div></section>
+<section id="slide-orgc839a75">
+<h3 id="orgc839a75"><span class="section-number-3">3.1</span> Golang</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(add-to-list 'load-path (concat (getenv <span style="color: #ffa07a;">"GOPATH"</span>)  <span style="color: #ffa07a;">"/src/github.com/golang/lint/misc/emacs"</span>))
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">golint</span>)
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">godoctor</span>)
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">golang shorcuts</span>
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">evil-leader</span>)
+(evil-leader/set-key-for-mode 'go-mode
+  <span style="color: #ffa07a;">"j"</span> 'godef-jump
+ )
+
+
+
+
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">set-exec-path-from-shell-PATH</span> ()
+  (<span style="color: #20b2aa; font-weight: bold;">let</span> ((path-from-shell (replace-regexp-in-string
+                          <span style="color: #ffa07a;">"[ \t\n]*$"</span>
+                          <span style="color: #ffa07a;">""</span>
+                          (shell-command-to-string <span style="color: #ffa07a;">"$SHELL --login -i -c 'echo $PATH'"</span>))))
+    (setenv <span style="color: #ffa07a;">"PATH"</span> path-from-shell)
+    (<span style="color: #20b2aa; font-weight: bold;">setq</span> eshell-path-env path-from-shell) <span style="color: #cd853f;">; </span><span style="color: #cd853f;">for eshell users</span>
+    (<span style="color: #20b2aa; font-weight: bold;">setq</span> exec-path (split-string path-from-shell path-separator))))
+
+(<span style="color: #20b2aa; font-weight: bold;">when</span> window-system (set-exec-path-from-shell-PATH))
+
+(setenv <span style="color: #ffa07a;">"GOPATH"</span> <span style="color: #ffa07a;">"/home/cescoferraro/go"</span>)
+(add-to-list 'exec-path <span style="color: #ffa07a;">"/home/cescoferraro/go/bin"</span>)
+
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">my-go-mode-hook</span> ()
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> gofmt-command <span style="color: #ffa07a;">"goimports"</span>)
+  <span style="color: #cd853f;">; </span><span style="color: #cd853f;">Call Gofmt before saving</span>
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  <span style="color: #cd853f;">; </span><span style="color: #cd853f;">Customize compile command to run go build</span>
+  (<span style="color: #20b2aa; font-weight: bold;">if</span> (not (string-match <span style="color: #ffa07a;">"go"</span> compile-command))
+      (set (make-local-variable 'compile-command)
+           <span style="color: #ffa07a;">"go build -v &amp;&amp; go test -v &amp;&amp; go vet"</span>))
+  (load-file <span style="color: #ffa07a;">"$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el"</span>)
+  )
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">auto-complete-for-go</span> ()
+  (auto-complete-mode 1))
+
+(<span style="color: #20b2aa; font-weight: bold;">with-eval-after-load</span> 'go-mode
+  (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+   (<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">go-autocomplete</span>))
+)
+
+
+
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+(add-hook 'go-mode-hook 'auto-complete-for-go)
+(add-hook 'go-mode-hook 'my-go-mode-hook)
+</pre>
+</div>
+
+</section>
+<section id="slide-org5934c17">
+<h3 id="org5934c17"><span class="section-number-3">3.2</span> Java</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">meghanada</span>)
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">flycheck</span>)
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">evil-leader</span>)
+
+<span style="color: #cd853f;">;;; </span><span style="color: #cd853f;">Code:</span>
+
+(evil-leader/set-key-for-mode 'java-mode <span style="color: #ffa07a;">"t"</span>
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+        (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+        (meghanada-run-task <span style="color: #ffa07a;">"test"</span>)
+        (ace-window <span style="color: #ffa07a;">""</span>)
+        (golden-ratio)
+        )
+    )
+(evil-leader/set-key-for-mode 'java-mode <span style="color: #ffa07a;">"c"</span>
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+        (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+        (meghanada-run-task <span style="color: #ffa07a;">"run"</span>)
+        (ace-window <span style="color: #ffa07a;">""</span>)
+        (golden-ratio)
+        )
+    )
+
+
+(add-hook 'java-mode-hook
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+        <span style="color: #cd853f;">;; </span><span style="color: #cd853f;">meghanada-mode on</span>
+        (meghanada-mode t)
+        (add-hook 'before-save-hook (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+                                        (flycheck-display-error-at-point)
+                                        (meghanada-code-beautify-before-save)
+                                        ))))
+</pre>
+</div>
+</section>
+<section id="slide-orga3c024a">
+<h3 id="orga3c024a"><span class="section-number-3">3.3</span> Typescript</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">evil-leader</span>)
+
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">typescript shortcuts</span>
+(evil-leader/set-key-for-mode 'web-mode
+  <span style="color: #ffa07a;">"j"</span>  (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+    (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+    (tide-jump-to-implementation )
+    )
+  <span style="color: #ffa07a;">"g"</span>  (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+    (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+    (tide-jump-to-definition )
+    )
+)
+
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">setup-tide-mode</span> ()
+  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+  (tide-setup)
+  (flycheck-mode +1)
+  (<span style="color: #20b2aa; font-weight: bold;">setq</span> flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  <span style="color: #cd853f;">;; </span><span style="color: #cd853f;">company is an optional dependency. You have to</span>
+  <span style="color: #cd853f;">;; </span><span style="color: #cd853f;">install it separately via package-install</span>
+  <span style="color: #cd853f;">;; </span><span style="color: #cd853f;">`M-x package-install [ret] company`</span>
+  (company-mode +1))
+
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">aligns annotation to the right hand side</span>
+(<span style="color: #20b2aa; font-weight: bold;">setq</span> company-tooltip-align-annotations t)
+
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">formats the buffer before saving</span>
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+
+(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">web-mode</span>)
+(add-to-list 'auto-mode-alist '(<span style="color: #ffa07a;">"\\.tsx\\'"</span> . web-mode))
+(add-hook 'web-mode-hook
+          (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+            (<span style="color: #20b2aa; font-weight: bold;">when</span> (string-equal <span style="color: #ffa07a;">"tsx"</span> (file-name-extension buffer-file-name))
+                            (setup-tide-mode))))
+
+(add-to-list 'auto-mode-alist '(<span style="color: #ffa07a;">"\\.jsx\\'"</span> . web-mode))
+(add-hook 'web-mode-hook
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+        (<span style="color: #20b2aa; font-weight: bold;">when</span> (string-equal <span style="color: #ffa07a;">"jsx"</span> (file-name-extension buffer-file-name))
+                          (setup-tide-mode))))
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgafb13ab">
+<h2 id="orgafb13ab"><span class="section-number-2">4</span> Evil</h2>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil</span>
+  <span style="color: #76ee00;">:ensure</span> t
+  <span style="color: #76ee00;">:config</span>
+  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-org</span> <span style="color: #76ee00;">:ensure</span> t)
+  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-surround</span>
+    <span style="color: #76ee00;">:ensure</span> t
+    <span style="color: #76ee00;">:config</span>
+    (global-evil-surround-mode))
+  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-leader</span>
+    <span style="color: #76ee00;">:ensure</span> t
+    <span style="color: #76ee00;">:config</span>
+    (evil-leader/set-leader <span style="color: #ffa07a;">","</span>)
+    (evil-leader/set-key
+    <span style="color: #ffa07a;">"m"</span>  'neotree-toggle
+    <span style="color: #ffa07a;">"n"</span>  'neotree-project-dir
+     <span style="color: #ffa07a;">"v"</span> 'evil-visual-block
+     <span style="color: #ffa07a;">"z"</span> 'zoom-window-zoom
+     <span style="color: #ffa07a;">"f"</span> 'helm-projectile
+     <span style="color: #ffa07a;">"s"</span> 'save-buffer
+     <span style="color: #ffa07a;">"q"</span> 'kill-emacs
+     <span style="color: #ffa07a;">"G"</span> 'magit-status
+     <span style="color: #ffa07a;">"w"</span> 'delete-window
+     <span style="color: #ffa07a;">"e"</span> 'kill-this-buffer
+     <span style="color: #ffa07a;">"E"</span> 'org-export-dispatch
+     <span style="color: #ffa07a;">","</span> 'next-buffer
+     (kbd <span style="color: #ffa07a;">"."</span>) 'ace-window
+     <span style="color: #ffa07a;">"'"</span>  (<span style="color: #20b2aa; font-weight: bold;">lambda</span> () (<span style="color: #20b2aa; font-weight: bold;">interactive</span>) (ansi-term (getenv <span style="color: #ffa07a;">"SHELL"</span>)))
+     (kbd <span style="color: #ffa07a;">"o"</span>) (<span style="color: #20b2aa; font-weight: bold;">lambda</span> () (<span style="color: #20b2aa; font-weight: bold;">interactive</span>) (find-file <span style="color: #ffa07a;">"~/.bash.local"</span>))
+     (kbd <span style="color: #ffa07a;">"i"</span>) (<span style="color: #20b2aa; font-weight: bold;">lambda</span> () (<span style="color: #20b2aa; font-weight: bold;">interactive</span>) (find-file <span style="color: #ffa07a;">"~/.emacs.d/configuration.org"</span>))
+     (kbd <span style="color: #ffa07a;">"/"</span>) ( lambda () (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+          (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+    )
+
+    (<span style="color: #20b2aa; font-weight: bold;">evil-define-key</span> 'visual evil-surround-mode-map <span style="color: #ffa07a;">"A"</span> 'evil-substitute)
+    (<span style="color: #20b2aa; font-weight: bold;">evil-define-key</span> 'visual evil-surround-mode-map <span style="color: #ffa07a;">"a"</span> 'evil-surround-region)
+    (<span style="color: #20b2aa; font-weight: bold;">evil-define-key</span> 'visual evil-surround-mode-map <span style="color: #ffa07a;">"E"</span> 'org-export-dispatch)
+    (define-key evil-normal-state-map (kbd <span style="color: #ffa07a;">"TAB"</span>) 'org-cycle)
+    )
+
+(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">neotree</span>
+  <span style="color: #76ee00;">:init</span>
+
+(<span style="color: #20b2aa; font-weight: bold;">setq</span> neo-theme (<span style="color: #20b2aa; font-weight: bold;">if</span> (display-graphic-p) 'icons 'arrow))
+
+
+(add-hook 'neotree-mode-hook
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"q"</span>) 'neotree-hide)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"I"</span>) 'neotree-hidden-file-toggle)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"z"</span>) 'neotree-stretch-toggle)
+    (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"1"</span>) 'neotree-change-root)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"R"</span>) 'neotree-refresh)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"m"</span>) 'neotree-rename-node)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"c"</span>) 'neotree-create-node)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"d"</span>) 'neotree-delete-node)
+
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"s"</span>) 'neotree-enter-vertical-split)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"S"</span>) 'neotree-enter-horizontal-split)
+
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"RET"</span>) 'neotree-enter)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"TAB"</span>) 'neotree-enter)
+))
+)
+
+  <span style="color: #76ee00;">:config</span>
+  (global-evil-leader-mode)
+  (evil-mode)
+
+  <span style="color: #cd853f;">; </span><span style="color: #cd853f;">Search by symbols rather than words by default</span>
+  (set-default 'evil-symbol-word-search t)
+  )
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp"></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgc3776fe">
+<h2 id="orgc3776fe"><span class="section-number-2">5</span> Ivy</h2>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">counsel</span> <span style="color: #76ee00;">:ensure</span> t)
+(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">swiper</span>
+    <span style="color: #76ee00;">:ensure</span> t
+    <span style="color: #76ee00;">:config</span>
+    (<span style="color: #20b2aa; font-weight: bold;">progn</span>
+        (ivy-mode 1)
+        (<span style="color: #20b2aa; font-weight: bold;">setq</span> ivy-use-virtual-buffers t)
+        (<span style="color: #20b2aa; font-weight: bold;">setq</span> enable-recursive-minibuffers t)
+        (global-set-key <span style="color: #ffa07a;">"\C-s"</span> 'swiper)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c C-r"</span>) 'ivy-resume)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f6&gt;"</span>) 'ivy-resume)
+        (global-set-key (kbd <span style="color: #ffa07a;">"M-x"</span>) 'counsel-M-x)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-x C-f"</span>) 'counsel-find-file)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; f"</span>) 'counsel-describe-function)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; v"</span>) 'counsel-describe-variable)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; l"</span>) 'counsel-find-library)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; i"</span>) 'counsel-info-lookup-symbol)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; u"</span>) 'counsel-unicode-char)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c g"</span>) 'counsel-git)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c j"</span>) 'counsel-git-grep)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c k"</span>) 'counsel-ag)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-x l"</span>) 'counsel-locate)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-S-o"</span>) 'counsel-rhythmbox)
+        (define-key read-expression-map (kbd <span style="color: #ffa07a;">"C-r"</span>) 'counsel-expression-history)
+    )
+)
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgc5bf4e9">
+<h2 id="orgc5bf4e9"><span class="section-number-2">6</span> SimpleClip</h2>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">simpleclip</span>)
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">copy-to-x-clipboard</span> ()
+  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+  (<span style="color: #20b2aa; font-weight: bold;">let</span> ((thing (<span style="color: #20b2aa; font-weight: bold;">if</span> (region-active-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (thing-at-point 'symbol))))
+    (simpleclip-set-contents thing)
+    (message <span style="color: #ffa07a;">"thing =&gt; clipboard!"</span>)))
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">paste-from-x-clipboard</span>()
+  <span style="color: #cd5c5c;">"Paste string clipboard"</span>
+  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+  (insert (simpleclip-get-contents)))
+
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">Press `</span><span style="color: #1e90ff;">Alt-Y</span><span style="color: #cd853f;">' to paste from clibpoard when in minibuffer</span>
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">my/paste-in-minibuffer</span> ()
+  (local-set-key (kbd <span style="color: #ffa07a;">"M-y"</span>) 'paste-from-x-clipboard))
+(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
+</pre>
+</div>
+</section>
+</section>
+</div>
+</div>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

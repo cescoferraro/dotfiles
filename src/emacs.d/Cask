@@ -51,6 +51,7 @@
 (depends-on "ob-typescript")
 (depends-on "org-bullets")
 (depends-on "org-plus-contrib")
+(depends-on "ox-reveal")
 (depends-on "pallet")
 (depends-on "popwin")
 (depends-on "prodigy")
