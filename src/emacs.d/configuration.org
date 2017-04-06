@@ -1,14 +1,21 @@
+My emacs configuration! Enjoy
+
 * Setup
 ** Set personal information
-
+   I am a gopher!
    #+BEGIN_SRC emacs-lisp
-
-  (setq user-full-name "Francesco Antonello Ferraro"
+(setq user-full-name "Francesco Antonello Ferraro"
         user-mail-address "francescoaferraro@gmail.com "
         calendar-latitude 42.2
         calendar-longitude -71.1
         calendar-location-name "Cambridge, MA")
    #+END_SRC
+** Force Fullscreen
+   It forces emacs into full-screen-mode.
+   #+BEGIN_SRC emacs-lisp
+(add-hook 'window-setup-hook 'toggle-frame-fullscreen t)
+   #+END_SRC
+
 ** Set Theme
    #+BEGIN_SRC emacs-lisp
 (load-theme 'tsdh-dark)
@@ -61,10 +68,18 @@
     (spaceline-toggle-version-control-on)
     (spaceline-toggle-selection-info-on)
     (spaceline-toggle-buffer-encoding-on)
-    (spaceline-toggle-minor-modes-on)
-    (spaceline-toggle-minor-modes-on))
+    (spaceline-toggle-minor-modes-off)
+)
 
    #+END_SRC
+** Dashboard
+
+   #+BEGIN_SRC emacs-lisp
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+   #+END_SRC
+
 ** FLycheck
 
    #+BEGIN_SRC emacs-lisp
@@ -94,13 +109,23 @@
    #+END_SRC
 
 ** Hl-line+
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package hl-line+ :ensure t :config (global-hl-line-mode))
-#+END_SRC
+   #+END_SRC
 ** Which-Keys
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package which-key :ensure t :config (which-key-mode))
-#+END_SRC
+   #+END_SRC
+** Twitter
+
+  #+BEGIN_SRC emacs-lisp
+(use-package twittering-mode
+  :config
+  (setq twittering-use-master-password t)
+  (setq twittering-icon-mode t)
+  (setq twittering-timer-interval 300)
+  (setq twittering-url-show-status nil))
+  #+END_SRC
 * Languages
 ** Golang
 
@@ -251,6 +276,7 @@
         (when (string-equal "jsx" (file-name-extension buffer-file-name))
                           (setup-tide-mode))))
    #+END_SRC
+
 * Evil
 
 
@@ -280,11 +306,11 @@
      "w" 'delete-window
      "e" 'kill-this-buffer
      "E" 'org-export-dispatch
-     "," 'helm-projectile-switch-to-buffer
+     "," 'next-buffer
+     (kbd ".") 'ace-window
      "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
-     (kbd ".") (lambda () (interactive (ace-window "")))
      (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
-     (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/init.el"))
+     (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org"))
      (kbd "/") ( lambda () (interactive)
           (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
     )
@@ -297,6 +323,10 @@
 
 (use-package neotree
   :init
+
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+
 (add-hook 'neotree-mode-hook
     (lambda ()
       (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
@@ -332,7 +362,7 @@
 
   #+END_SRC
 * Ivy
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 (use-package counsel :ensure t)
 (use-package swiper
     :ensure t
@@ -360,5 +390,29 @@
     )
 )
 
+
+  #+END_SRC
+* SimpleClip
+
+  #+BEGIN_SRC emacs-lisp
+
+(require 'simpleclip)
+(defun copy-to-x-clipboard ()
+  (interactive)
+  (let ((thing (if (region-active-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (thing-at-point 'symbol))))
+    (simpleclip-set-contents thing)
+    (message "thing => clipboard!")))
+
+(defun paste-from-x-clipboard()
+  "Paste string clipboard"
+  (interactive)
+  (insert (simpleclip-get-contents)))
+
+;; Press `Alt-Y' to paste from clibpoard when in minibuffer
+(defun my/paste-in-minibuffer ()
+  (local-set-key (kbd "M-y") 'paste-from-x-clipboard))
+(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
 
   #+END_SRC
