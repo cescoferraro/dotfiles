@@ -26,45 +26,53 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h2 class="author">Francesco Antonello Ferraro</h2><p class="date">Created: 2017-04-06 Thu 19:49</p>
+<section id="sec-title-slide"><h2 class="author">Francesco Antonello Ferraro</h2><p class="date">Created: 2017-04-06 Thu 20:25</p>
 </section>
 <section id="table-of-contents">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org934274c">1. Setup</a>
+<li><a href="#/slide-org516a421">1. Setup</a>
 <ul>
-<li><a href="#/slide-org543fab0">1.1. Set personal information</a></li>
-<li><a href="#/slide-org4398b8f">1.2. Force Fullscreen</a></li>
-<li><a href="#/slide-org4e0ecb0">1.3. Set Theme</a></li>
-<li><a href="#/slide-orge24580a">1.4. Hide ToolBar</a></li>
+<li><a href="#/slide-org06bc0c4">1.1. Set personal information</a></li>
+<li><a href="#/slide-org5d6a5fd">1.2. Silence dumb warning</a></li>
+<li><a href="#/slide-orgb8ec153">1.3. Force Fullscreen</a></li>
+<li><a href="#/slide-org930db81">1.4. Set Theme</a></li>
+<li><a href="#/slide-orgc8d059b">1.5. Hide ToolBar</a></li>
+<li><a href="#/slide-org423babb">1.6. SimpleClip</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orgf0e821d">2. Packages</a>
+<li><a href="#/slide-orge95a9d8">2. Packages</a>
 <ul>
-<li><a href="#/slide-org06d4bb6">2.1. Editorconfig</a></li>
-<li><a href="#/slide-orgdfa94ae">2.2. Projectile</a></li>
-<li><a href="#/slide-orga0bb6c5">2.3. LInum</a></li>
-<li><a href="#/slide-orgfc8fb04">2.4. Spaceline</a></li>
-<li><a href="#/slide-orgdb7e088">2.5. Dashboard</a></li>
-<li><a href="#/slide-org21e06ef">2.6. FLycheck</a></li>
-<li><a href="#/slide-org0cce6b2">2.7. Magit</a></li>
-<li><a href="#/slide-org697a845">2.8. Hl-line+</a></li>
-<li><a href="#/slide-orgac0aa1e">2.9. Which-Keys</a></li>
-<li><a href="#/slide-orgfd64d33">2.10. Twitter</a></li>
+<li><a href="#/slide-org0f0b86a">2.1. Editorconfig</a></li>
+<li><a href="#/slide-org37c3249">2.2. Projectile</a></li>
+<li><a href="#/slide-org177a500">2.3. Linum</a></li>
+<li><a href="#/slide-orga4c8794">2.4. Spaceline</a></li>
+<li><a href="#/slide-org2f51c9e">2.5. Dashboard</a></li>
+<li><a href="#/slide-orgc5fdd17">2.6. Flycheck</a></li>
+<li><a href="#/slide-org3a4817f">2.7. Magit</a></li>
+<li><a href="#/slide-org18ed100">2.8. Hl-line+</a></li>
+<li><a href="#/slide-org7826602">2.9. Which-Keys</a></li>
+<li><a href="#/slide-org6d209f6">2.10. Twitter</a></li>
+<li><a href="#/slide-org43469d2">2.11. Neotree</a></li>
+<li><a href="#/slide-org289dd42">2.12. Ivy</a></li>
 </ul>
 </li>
-<li><a href="#/slide-org79d038b">3. Languages</a>
+<li><a href="#/slide-org7047c6f">3. Languages</a>
 <ul>
-<li><a href="#/slide-orgc839a75">3.1. Golang</a></li>
-<li><a href="#/slide-org5934c17">3.2. Java</a></li>
-<li><a href="#/slide-orga3c024a">3.3. Typescript</a></li>
+<li><a href="#/slide-org26d4264">3.1. Golang</a></li>
+<li><a href="#/slide-org677f054">3.2. Java</a></li>
+<li><a href="#/slide-orgbd0ca42">3.3. Typescript</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orgafb13ab">4. Evil</a></li>
-<li><a href="#/slide-orgc3776fe">5. Ivy</a></li>
-<li><a href="#/slide-orgc5bf4e9">6. SimpleClip</a></li>
+<li><a href="#/slide-org5443660">4. Evil</a>
+<ul>
+<li><a href="#/slide-orgb9ed2f8">4.1. Evil Paraphernalia</a></li>
+<li><a href="#/slide-org6cc555b">4.2. Evil-Leader</a></li>
+<li><a href="#/slide-org9cd9c9c">4.3. Evil itself</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -74,12 +82,12 @@ My emacs configuration! Enjoy
 </p>
 
 <section>
-<section id="slide-org934274c">
-<h2 id="org934274c"><span class="section-number-2">1</span> Setup</h2>
+<section id="slide-org516a421">
+<h2 id="org516a421"><span class="section-number-2">1</span> Setup</h2>
 <div class="outline-text-2" id="text-1">
 </div></section>
-<section id="slide-org543fab0">
-<h3 id="org543fab0"><span class="section-number-3">1.1</span> Set personal information</h3>
+<section id="slide-org06bc0c4">
+<h3 id="org06bc0c4"><span class="section-number-3">1.1</span> Set personal information</h3>
 <p>
 I am a gopher!
 </p>
@@ -93,8 +101,16 @@ I am a gopher!
 </pre>
 </div>
 </section>
-<section id="slide-org4398b8f">
-<h3 id="org4398b8f"><span class="section-number-3">1.2</span> Force Fullscreen</h3>
+<section id="slide-org5d6a5fd">
+<h3 id="org5d6a5fd"><span class="section-number-3">1.2</span> Silence dumb warning</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">setq</span> ad-redefinition-action 'accept)
+</pre>
+</div>
+</section>
+<section id="slide-orgb8ec153">
+<h3 id="orgb8ec153"><span class="section-number-3">1.3</span> Force Fullscreen</h3>
 <p>
 It forces emacs into full-screen-mode.
 </p>
@@ -105,8 +121,8 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-org4e0ecb0">
-<h3 id="org4e0ecb0"><span class="section-number-3">1.3</span> Set Theme</h3>
+<section id="slide-org930db81">
+<h3 id="org930db81"><span class="section-number-3">1.4</span> Set Theme</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(load-theme 'tsdh-dark)
@@ -114,23 +130,48 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-orge24580a">
-<h3 id="orge24580a"><span class="section-number-3">1.4</span> Hide ToolBar</h3>
+<section id="slide-orgc8d059b">
+<h3 id="orgc8d059b"><span class="section-number-3">1.5</span> Hide ToolBar</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(tool-bar-mode -1)
+</pre>
+</div>
+</section>
+<section id="slide-org423babb">
+<h3 id="org423babb"><span class="section-number-3">1.6</span> SimpleClip</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">simpleclip</span>)
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">copy-to-x-clipboard</span> ()
+  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+  (<span style="color: #20b2aa; font-weight: bold;">let</span> ((thing (<span style="color: #20b2aa; font-weight: bold;">if</span> (region-active-p)
+                   (buffer-substring-no-properties (region-beginning) (region-end))
+                 (thing-at-point 'symbol))))
+    (simpleclip-set-contents thing)
+    (message <span style="color: #ffa07a;">"thing =&gt; clipboard!"</span>)))
+
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">paste-from-x-clipboard</span>()
+  <span style="color: #cd5c5c;">"Paste string clipboard"</span>
+  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
+  (insert (simpleclip-get-contents)))
+
+<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">Press `</span><span style="color: #1e90ff;">Alt-Y</span><span style="color: #cd853f;">' to paste from clibpoard when in minibuffer</span>
+(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">my/paste-in-minibuffer</span> ()
+  (local-set-key (kbd <span style="color: #ffa07a;">"M-y"</span>) 'paste-from-x-clipboard))
+(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
 </pre>
 </div>
 
 </section>
 </section>
 <section>
-<section id="slide-orgf0e821d">
-<h2 id="orgf0e821d"><span class="section-number-2">2</span> Packages</h2>
+<section id="slide-orge95a9d8">
+<h2 id="orge95a9d8"><span class="section-number-2">2</span> Packages</h2>
 <div class="outline-text-2" id="text-2">
 </div></section>
-<section id="slide-org06d4bb6">
-<h3 id="org06d4bb6"><span class="section-number-3">2.1</span> Editorconfig</h3>
+<section id="slide-org0f0b86a">
+<h3 id="org0f0b86a"><span class="section-number-3">2.1</span> Editorconfig</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">editorconfig</span>
@@ -140,8 +181,8 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-orgdfa94ae">
-<h3 id="orgdfa94ae"><span class="section-number-3">2.2</span> Projectile</h3>
+<section id="slide-org37c3249">
+<h3 id="org37c3249"><span class="section-number-3">2.2</span> Projectile</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">projectile</span>
@@ -151,8 +192,8 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-orga0bb6c5">
-<h3 id="orga0bb6c5"><span class="section-number-3">2.3</span> LInum</h3>
+<section id="slide-org177a500">
+<h3 id="org177a500"><span class="section-number-3">2.3</span> Linum</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">linum-relative</span>
@@ -167,8 +208,8 @@ It forces emacs into full-screen-mode.
 </pre>
 </div>
 </section>
-<section id="slide-orgfc8fb04">
-<h3 id="orgfc8fb04"><span class="section-number-3">2.4</span> Spaceline</h3>
+<section id="slide-orga4c8794">
+<h3 id="orga4c8794"><span class="section-number-3">2.4</span> Spaceline</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">spaceline</span>
@@ -184,8 +225,8 @@ It forces emacs into full-screen-mode.
 </pre>
 </div>
 </section>
-<section id="slide-orgdb7e088">
-<h3 id="orgdb7e088"><span class="section-number-3">2.5</span> Dashboard</h3>
+<section id="slide-org2f51c9e">
+<h3 id="org2f51c9e"><span class="section-number-3">2.5</span> Dashboard</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">dashboard</span>
@@ -195,8 +236,8 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-org21e06ef">
-<h3 id="org21e06ef"><span class="section-number-3">2.6</span> FLycheck</h3>
+<section id="slide-orgc5fdd17">
+<h3 id="orgc5fdd17"><span class="section-number-3">2.6</span> Flycheck</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">flycheck</span>
@@ -212,39 +253,41 @@ It forces emacs into full-screen-mode.
 </pre>
 </div>
 </section>
-<section id="slide-org0cce6b2">
-<h3 id="org0cce6b2"><span class="section-number-3">2.7</span> Magit</h3>
+<section id="slide-org3a4817f">
+<h3 id="org3a4817f"><span class="section-number-3">2.7</span> Magit</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">magit</span>
-  <span style="color: #76ee00;">:ensure</span> magit
-  <span style="color: #76ee00;">:ensure</span> evil-magit
+          <span style="color: #76ee00;">:demand</span> magit
+          <span style="color: #76ee00;">:config</span> (<span style="color: #20b2aa; font-weight: bold;">progn</span>
+(evil-leader/set-key <span style="color: #ffa07a;">"g"</span> 'magit-status)
+                    (<span style="color: #20b2aa; font-weight: bold;">setq</span> magit-auto-revert-mode nil)))
+
+        (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-magit</span>
   <span style="color: #76ee00;">:after</span> evil
-  <span style="color: #76ee00;">:init</span>
-  (evil-magit-init)
-  (evil-leader/set-key <span style="color: #ffa07a;">"g"</span> 'magit-status))
+          <span style="color: #76ee00;">:demand</span> evil-magit)
 </pre>
 </div>
 
 </section>
-<section id="slide-org697a845">
-<h3 id="org697a845"><span class="section-number-3">2.8</span> Hl-line+</h3>
+<section id="slide-org18ed100">
+<h3 id="org18ed100"><span class="section-number-3">2.8</span> Hl-line+</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">hl-line+</span> <span style="color: #76ee00;">:ensure</span> t <span style="color: #76ee00;">:config</span> (global-hl-line-mode))
 </pre>
 </div>
 </section>
-<section id="slide-orgac0aa1e">
-<h3 id="orgac0aa1e"><span class="section-number-3">2.9</span> Which-Keys</h3>
+<section id="slide-org7826602">
+<h3 id="org7826602"><span class="section-number-3">2.9</span> Which-Keys</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">which-key</span> <span style="color: #76ee00;">:ensure</span> t <span style="color: #76ee00;">:config</span> (which-key-mode))
 </pre>
 </div>
 </section>
-<section id="slide-orgfd64d33">
-<h3 id="orgfd64d33"><span class="section-number-3">2.10</span> Twitter</h3>
+<section id="slide-org6d209f6">
+<h3 id="org6d209f6"><span class="section-number-3">2.10</span> Twitter</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">twittering-mode</span>
@@ -255,15 +298,77 @@ It forces emacs into full-screen-mode.
   (<span style="color: #20b2aa; font-weight: bold;">setq</span> twittering-url-show-status nil))
 </pre>
 </div>
+
+</section>
+<section id="slide-org43469d2">
+<h3 id="org43469d2"><span class="section-number-3">2.11</span> Neotree</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">neotree</span>
+  <span style="color: #76ee00;">:after</span> evil
+  <span style="color: #76ee00;">:init</span>
+(<span style="color: #20b2aa; font-weight: bold;">setq</span> neo-theme (<span style="color: #20b2aa; font-weight: bold;">if</span> (display-graphic-p) 'icons 'arrow))
+
+(add-hook 'neotree-mode-hook
+    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"q"</span>) 'neotree-hide)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"I"</span>) 'neotree-hidden-file-toggle)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"z"</span>) 'neotree-stretch-toggle)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"1"</span>) 'neotree-change-root)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"R"</span>) 'neotree-refresh)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"m"</span>) 'neotree-rename-node)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"c"</span>) 'neotree-create-node)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"d"</span>) 'neotree-delete-node)
+
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"s"</span>) 'neotree-enter-vertical-split)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"S"</span>) 'neotree-enter-horizontal-split)
+
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"RET"</span>) 'neotree-enter)
+      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"TAB"</span>) 'neotree-enter))))
+</pre>
+</div>
+</section>
+<section id="slide-org289dd42">
+<h3 id="org289dd42"><span class="section-number-3">2.12</span> Ivy</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">counsel</span> <span style="color: #76ee00;">:ensure</span> t)
+(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">swiper</span>
+    <span style="color: #76ee00;">:ensure</span> t
+    <span style="color: #76ee00;">:config</span>
+    (<span style="color: #20b2aa; font-weight: bold;">progn</span>
+        (ivy-mode 1)
+        (<span style="color: #20b2aa; font-weight: bold;">setq</span> ivy-use-virtual-buffers t)
+        (<span style="color: #20b2aa; font-weight: bold;">setq</span> enable-recursive-minibuffers t)
+        (global-set-key <span style="color: #ffa07a;">"\C-s"</span> 'swiper)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c C-r"</span>) 'ivy-resume)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f6&gt;"</span>) 'ivy-resume)
+        (global-set-key (kbd <span style="color: #ffa07a;">"M-x"</span>) 'counsel-M-x)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-x C-f"</span>) 'counsel-find-file)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; f"</span>) 'counsel-describe-function)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; v"</span>) 'counsel-describe-variable)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; l"</span>) 'counsel-find-library)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; i"</span>) 'counsel-info-lookup-symbol)
+        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; u"</span>) 'counsel-unicode-char)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c g"</span>) 'counsel-git)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c j"</span>) 'counsel-git-grep)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-c k"</span>) 'counsel-ag)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-x l"</span>) 'counsel-locate)
+        (global-set-key (kbd <span style="color: #ffa07a;">"C-S-o"</span>) 'counsel-rhythmbox)
+        (define-key read-expression-map (kbd <span style="color: #ffa07a;">"C-r"</span>) 'counsel-expression-history)
+    )
+)
+</pre>
+</div>
 </section>
 </section>
 <section>
-<section id="slide-org79d038b">
-<h2 id="org79d038b"><span class="section-number-2">3</span> Languages</h2>
+<section id="slide-org7047c6f">
+<h2 id="org7047c6f"><span class="section-number-2">3</span> Languages</h2>
 <div class="outline-text-2" id="text-3">
 </div></section>
-<section id="slide-orgc839a75">
-<h3 id="orgc839a75"><span class="section-number-3">3.1</span> Golang</h3>
+<section id="slide-org26d4264">
+<h3 id="org26d4264"><span class="section-number-3">3.1</span> Golang</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(add-to-list 'load-path (concat (getenv <span style="color: #ffa07a;">"GOPATH"</span>)  <span style="color: #ffa07a;">"/src/github.com/golang/lint/misc/emacs"</span>))
@@ -322,8 +427,8 @@ It forces emacs into full-screen-mode.
 </div>
 
 </section>
-<section id="slide-org5934c17">
-<h3 id="org5934c17"><span class="section-number-3">3.2</span> Java</h3>
+<section id="slide-org677f054">
+<h3 id="org677f054"><span class="section-number-3">3.2</span> Java</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">meghanada</span>)
@@ -361,8 +466,8 @@ It forces emacs into full-screen-mode.
 </pre>
 </div>
 </section>
-<section id="slide-orga3c024a">
-<h3 id="orga3c024a"><span class="section-number-3">3.3</span> Typescript</h3>
+<section id="slide-orgbd0ca42">
+<h3 id="orgbd0ca42"><span class="section-number-3">3.3</span> Typescript</h3>
 <div class="org-src-container">
 
 <pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">evil-leader</span>)
@@ -419,19 +524,27 @@ It forces emacs into full-screen-mode.
 </section>
 </section>
 <section>
-<section id="slide-orgafb13ab">
-<h2 id="orgafb13ab"><span class="section-number-2">4</span> Evil</h2>
+<section id="slide-org5443660">
+<h2 id="org5443660"><span class="section-number-2">4</span> Evil</h2>
+<div class="outline-text-2" id="text-4">
+</div></section>
+<section id="slide-orgb9ed2f8">
+<h3 id="orgb9ed2f8"><span class="section-number-3">4.1</span> Evil Paraphernalia</h3>
 <div class="org-src-container">
 
-<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil</span>
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-org</span> <span style="color: #76ee00;">:ensure</span> t)
+(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-surround</span>
   <span style="color: #76ee00;">:ensure</span> t
   <span style="color: #76ee00;">:config</span>
-  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-org</span> <span style="color: #76ee00;">:ensure</span> t)
-  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-surround</span>
-    <span style="color: #76ee00;">:ensure</span> t
-    <span style="color: #76ee00;">:config</span>
-    (global-evil-surround-mode))
-  (<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-leader</span>
+  (global-evil-surround-mode))
+</pre>
+</div>
+</section>
+<section id="slide-org6cc555b">
+<h3 id="org6cc555b"><span class="section-number-3">4.2</span> Evil-Leader</h3>
+<div class="org-src-container">
+
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil-leader</span>
     <span style="color: #76ee00;">:ensure</span> t
     <span style="color: #76ee00;">:config</span>
     (evil-leader/set-leader <span style="color: #ffa07a;">","</span>)
@@ -460,107 +573,22 @@ It forces emacs into full-screen-mode.
     (<span style="color: #20b2aa; font-weight: bold;">evil-define-key</span> 'visual evil-surround-mode-map <span style="color: #ffa07a;">"a"</span> 'evil-surround-region)
     (<span style="color: #20b2aa; font-weight: bold;">evil-define-key</span> 'visual evil-surround-mode-map <span style="color: #ffa07a;">"E"</span> 'org-export-dispatch)
     (define-key evil-normal-state-map (kbd <span style="color: #ffa07a;">"TAB"</span>) 'org-cycle)
-    )
-
-(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">neotree</span>
-  <span style="color: #76ee00;">:init</span>
-
-(<span style="color: #20b2aa; font-weight: bold;">setq</span> neo-theme (<span style="color: #20b2aa; font-weight: bold;">if</span> (display-graphic-p) 'icons 'arrow))
-
-
-(add-hook 'neotree-mode-hook
-    (<span style="color: #20b2aa; font-weight: bold;">lambda</span> ()
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"q"</span>) 'neotree-hide)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"I"</span>) 'neotree-hidden-file-toggle)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"z"</span>) 'neotree-stretch-toggle)
-    (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"1"</span>) 'neotree-change-root)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"R"</span>) 'neotree-refresh)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"m"</span>) 'neotree-rename-node)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"c"</span>) 'neotree-create-node)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"d"</span>) 'neotree-delete-node)
-
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"s"</span>) 'neotree-enter-vertical-split)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"S"</span>) 'neotree-enter-horizontal-split)
-
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"RET"</span>) 'neotree-enter)
-      (define-key evil-normal-state-local-map (kbd <span style="color: #ffa07a;">"TAB"</span>) 'neotree-enter)
-))
-)
-
-  <span style="color: #76ee00;">:config</span>
   (global-evil-leader-mode)
-  (evil-mode)
+    )
+</pre>
+</div>
+</section>
+<section id="slide-org9cd9c9c">
+<h3 id="org9cd9c9c"><span class="section-number-3">4.3</span> Evil itself</h3>
+<div class="org-src-container">
 
-  <span style="color: #cd853f;">; </span><span style="color: #cd853f;">Search by symbols rather than words by default</span>
+<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">evil</span>
+  <span style="color: #76ee00;">:ensure</span> t
+  <span style="color: #76ee00;">:after</span> evil-leader
+  <span style="color: #76ee00;">:config</span>
+  (evil-mode)
   (set-default 'evil-symbol-word-search t)
   )
-</pre>
-</div>
-
-<div class="org-src-container">
-
-<pre  class="src src-emacs-lisp"></pre>
-</div>
-</section>
-</section>
-<section>
-<section id="slide-orgc3776fe">
-<h2 id="orgc3776fe"><span class="section-number-2">5</span> Ivy</h2>
-<div class="org-src-container">
-
-<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">counsel</span> <span style="color: #76ee00;">:ensure</span> t)
-(<span style="color: #20b2aa; font-weight: bold;">use-package</span> <span style="color: #1e90ff;">swiper</span>
-    <span style="color: #76ee00;">:ensure</span> t
-    <span style="color: #76ee00;">:config</span>
-    (<span style="color: #20b2aa; font-weight: bold;">progn</span>
-        (ivy-mode 1)
-        (<span style="color: #20b2aa; font-weight: bold;">setq</span> ivy-use-virtual-buffers t)
-        (<span style="color: #20b2aa; font-weight: bold;">setq</span> enable-recursive-minibuffers t)
-        (global-set-key <span style="color: #ffa07a;">"\C-s"</span> 'swiper)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-c C-r"</span>) 'ivy-resume)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f6&gt;"</span>) 'ivy-resume)
-        (global-set-key (kbd <span style="color: #ffa07a;">"M-x"</span>) 'counsel-M-x)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-x C-f"</span>) 'counsel-find-file)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; f"</span>) 'counsel-describe-function)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; v"</span>) 'counsel-describe-variable)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f1&gt; l"</span>) 'counsel-find-library)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; i"</span>) 'counsel-info-lookup-symbol)
-        (global-set-key (kbd <span style="color: #ffa07a;">"&lt;f2&gt; u"</span>) 'counsel-unicode-char)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-c g"</span>) 'counsel-git)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-c j"</span>) 'counsel-git-grep)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-c k"</span>) 'counsel-ag)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-x l"</span>) 'counsel-locate)
-        (global-set-key (kbd <span style="color: #ffa07a;">"C-S-o"</span>) 'counsel-rhythmbox)
-        (define-key read-expression-map (kbd <span style="color: #ffa07a;">"C-r"</span>) 'counsel-expression-history)
-    )
-)
-</pre>
-</div>
-</section>
-</section>
-<section>
-<section id="slide-orgc5bf4e9">
-<h2 id="orgc5bf4e9"><span class="section-number-2">6</span> SimpleClip</h2>
-<div class="org-src-container">
-
-<pre  class="src src-emacs-lisp">(<span style="color: #20b2aa; font-weight: bold;">require</span> '<span style="color: #1e90ff;">simpleclip</span>)
-(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">copy-to-x-clipboard</span> ()
-  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
-  (<span style="color: #20b2aa; font-weight: bold;">let</span> ((thing (<span style="color: #20b2aa; font-weight: bold;">if</span> (region-active-p)
-                   (buffer-substring-no-properties (region-beginning) (region-end))
-                 (thing-at-point 'symbol))))
-    (simpleclip-set-contents thing)
-    (message <span style="color: #ffa07a;">"thing =&gt; clipboard!"</span>)))
-
-(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">paste-from-x-clipboard</span>()
-  <span style="color: #cd5c5c;">"Paste string clipboard"</span>
-  (<span style="color: #20b2aa; font-weight: bold;">interactive</span>)
-  (insert (simpleclip-get-contents)))
-
-<span style="color: #cd853f;">;; </span><span style="color: #cd853f;">Press `</span><span style="color: #1e90ff;">Alt-Y</span><span style="color: #cd853f;">' to paste from clibpoard when in minibuffer</span>
-(<span style="color: #20b2aa; font-weight: bold;">defun</span> <span style="color: #00ff7f;">my/paste-in-minibuffer</span> ()
-  (local-set-key (kbd <span style="color: #ffa07a;">"M-y"</span>) 'paste-from-x-clipboard))
-(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
 </pre>
 </div>
 </section>
