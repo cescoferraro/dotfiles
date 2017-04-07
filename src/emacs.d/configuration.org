@@ -229,6 +229,12 @@ My emacs configuration! Enjoy
 
 
    #+END_SRC
+** Golden-ratio
+#+BEGIN_SRC emacs-lisp
+(use-package golden-ratio
+	  :config
+	  (golden-ratio-mode 1))
+#+END_SRC
 * Languages
 ** Golang
 *** Go path
@@ -403,7 +409,11 @@ My emacs configuration! Enjoy
      "e" 'kill-this-buffer
      "E" 'org-export-dispatch
      "," 'next-buffer
-     (kbd ".") 'ace-window
+     (kbd ".") (lambda ()
+          (interactive)
+        (golden-ratio)
+          (ace-window "")
+     )
      "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
      (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
      (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org"))
