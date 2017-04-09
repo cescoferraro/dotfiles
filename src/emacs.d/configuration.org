@@ -334,6 +334,24 @@ narrowed."
 
 
 #+END_SRC
+** SmartParens
+   #+BEGIN_SRC emacs-lisp
+
+     (use-package smartparens
+       :ensure smartparens
+       :config
+       (progn
+         (require 'smartparens-config)
+         (require 'smartparens-html)
+         (require 'smartparens-python)
+         (require 'smartparens-latex)
+         (smartparens-global-mode t)
+         (show-smartparens-global-mode t)
+         )
+
+       )
+
+   #+END_SRC
 ** Engine Mode
 #+BEGIN_SRC emacs-lisp
   (setq engine-mode-packages '(engine-mode))

@@ -1,4 +1,0 @@
-package: github.com/cescoferraro/dotfiles
-import:
-- package: github.com/fatih/color
-  version: v1.4.1
