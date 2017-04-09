@@ -4,7 +4,7 @@ My emacs configuration! Enjoy
 ** Set personal information
    I am a gopher!
    #+BEGIN_SRC emacs-lisp
-(setq user-full-name "Francesco Antonello Ferraro"
+   (setq user-full-name "Francesco Antonello Ferraro"
         user-mail-address "francescoaferraro@gmail.com "
         calendar-latitude 42.2
         calendar-longitude -71.1
@@ -14,16 +14,16 @@ My emacs configuration! Enjoy
 ** Setting path
    #+BEGIN_SRC emacs-lisp
 
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$"
-                          ""
-                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq eshell-path-env path-from-shell) ; for eshell users
-    (setq exec-path (split-string path-from-shell path-separator))))
+     (defun set-exec-path-from-shell-PATH ()
+       (let ((path-from-shell (replace-regexp-in-string
+                               "[ \t\n]*$"
+                               ""
+                               (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+         (setenv "PATH" path-from-shell)
+         (setq eshell-path-env path-from-shell) ; for eshell users
+         (setq exec-path (split-string path-from-shell path-separator))))
 
-(when window-system (set-exec-path-from-shell-PATH))
+     (when window-system (set-exec-path-from-shell-PATH))
 
 
    #+END_SRC
@@ -39,38 +39,63 @@ My emacs configuration! Enjoy
 
 ** Set Theme
    #+BEGIN_SRC emacs-lisp
-(load-theme 'tsdh-dark)
+     ;; (load-theme 'tsdh-dark)
+(use-package color-theme
+:ensure t)
+;(use-package spacemacs-theme
+;:ensure t
+;:init
+;(load-theme 'spacemacs-dark t))
+
+(use-package zenburn-theme
+:ensure t
+:init (load-theme 'zenburn t) )
+
    #+END_SRC
 
 ** Hide ToolBar
    #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
    #+END_SRC
-** SimpleClip
+** SimpleClipo
+
+
+
 
    #+BEGIN_SRC emacs-lisp
+     (use-package simpleclip :ensure t
+       :config
 
-(require 'simpleclip)
-(defun copy-to-x-clipboard ()
-  (interactive)
-  (let ((thing (if (region-active-p)
-                   (buffer-substring-no-properties (region-beginning) (region-end))
-                 (thing-at-point 'symbol))))
-    (simpleclip-set-contents thing)
-    (message "thing => clipboard!")))
+       (defun copy-to-x-clipboard ()
+         (interactive)
+         (let ((thing (if (region-active-p)
+   		       (buffer-substring-no-properties (region-beginning) (region-end))
+   		     (thing-at-point 'symbol))))
+   	(simpleclip-set-contents thing)
+   	(message "thing => clipboard!")))
 
-(defun paste-from-x-clipboard()
-  "Paste string clipboard"
-  (interactive)
-  (insert (simpleclip-get-contents)))
+       (defun paste-from-x-clipboard()
+         "Paste string clipboard"
+         (interactive)
+         (insert (simpleclip-get-contents)))
 
-;; Press `Alt-Y' to paste from clibpoard when in minibuffer
-(defun my/paste-in-minibuffer ()
-  (local-set-key (kbd "M-y") 'paste-from-x-clipboard))
-(add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
+       ;; Press `Alt-Y' to paste from clibpoard when in minibuffer
+       (defun my/paste-in-minibuffer ()
+         (local-set-key (kbd "M-y") 'paste-from-x-clipboard))
+       (add-hook 'minibuffer-setup-hook 'my/paste-in-minibuffer)
+       )
+   #+END_SRC
+** Autosave & backup files
+   #+BEGIN_SRC emacs-lisp
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
    #+END_SRC
 ** Y&N
+
    #+BEGIN_SRC emacs-lisp
      (defalias 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
@@ -110,6 +135,10 @@ narrowed."
      "\C-x\C-s" #'org-edit-src-exit))
 
 #+END_SRC
+** Prefer vertical window
+#+BEGIN_SRC emacs-lisp
+(setq split-width-threshold 1 )
+#+END_SRC
 * Packages
 ** Iedit
 #+BEGIN_SRC emacs-lisp
@@ -144,30 +173,6 @@ narrowed."
 )
 
    #+END_SRC
-** Spaceline
-
-   #+BEGIN_SRC emacs-lisp
-
-(use-package spaceline
-    :config
-    (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-toggle-buffer-size-off)
-    (spaceline-toggle-version-control-on)
-    (spaceline-toggle-selection-info-on)
-    (spaceline-toggle-buffer-encoding-on)
-    (spaceline-toggle-minor-modes-off)
-)
-
-   #+END_SRC
-** Dashboard
-
-   #+BEGIN_SRC emacs-lisp
-(use-package dashboard
-  :config
-  (dashboard-setup-startup-hook))
-   #+END_SRC
-
 ** Flycheck
 
    #+BEGIN_SRC emacs-lisp
@@ -279,6 +284,73 @@ narrowed."
 	  :config
 	  (golden-ratio-mode 1))
    #+END_SRC
+** Beacon
+#+BEGIN_SRC emacs-lisp
+(use-package beacon
+:ensure t
+:config
+(progn
+(beacon-mode 1)
+(setq beacon-push-mark 35)
+(setq beacon-color "#666600")))
+#+END_SRC
+** ModeLine
+#+BEGIN_SRC emacs-lisp
+(use-package      smart-mode-line-powerline-theme
+    :ensure smart-mode-line-powerline-theme)
+  (use-package smart-mode-line
+    :ensure smart-mode-line
+    :init
+    (progn
+    (setq sml/no-confirm-load-theme t)
+    (sml/setup)
+    (sml/apply-theme 'powerline))
+)
+(use-package spaceline
+:ensure t
+:init (progn
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
+)
+(require 'diminish)
+(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
+(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
+(eval-after-load "guide-key" '(diminish 'guide-key-mode))
+(eval-after-load "smartparens" '(diminish 'smartparens-mode))
+(eval-after-load "guide-key" '(diminish 'guide-key-mode))
+(eval-after-load "eldoc" '(diminish 'eldoc-mode))
+(diminish 'visual-line-mode))
+#+END_SRC
+** Startup Screen
+#+BEGIN_SRC emacs-lisp
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook))
+
+#+END_SRC
+
+** Whatever
+#+BEGIN_SRC emacs-lisp
+
+
+#+END_SRC
+** Engine Mode
+#+BEGIN_SRC emacs-lisp
+  (setq engine-mode-packages '(engine-mode))
+
+  (defun engine-mode/init-engine-mode ()
+    "Initialize my package"
+    (use-package engine-mode
+      :defer t
+      :config
+      (defengine duckduckgo "https://duckduckgo.com/?q=%s")
+      (defengine github "https://github.com/search?ref=simplesearch&q=%s")
+      (defengine youtube "https://www.youtube.com/results?search_query=%s")
+      (evil-leader/set-key
+	"swd" 'engine/search-duckduckgo
+	"swh" 'engine/search-github
+	"swy" 'engine/search-youtube)))
+#+END_SRC
 * Languages
 ** Golang
 *** Go path
@@ -332,38 +404,38 @@ narrowed."
 ** Java
    #+BEGIN_SRC emacs-lisp
 
-(require 'meghanada)
-(require 'flycheck)
-(require 'evil-leader)
+     (require 'meghanada)
+     (require 'flycheck)
+     (require 'evil-leader)
 
-;;; Code:
+     ;;; Code:
 
-(evil-leader/set-key-for-mode 'java-mode "t"
-    (lambda ()
-        (interactive)
-        (meghanada-run-task "test")
-        (ace-window "")
-        (golden-ratio)
-        )
-    )
-(evil-leader/set-key-for-mode 'java-mode "c"
-    (lambda ()
-        (interactive)
-        (meghanada-run-task "run")
-        (ace-window "")
-        (golden-ratio)
-        )
-    )
+     (evil-leader/set-key-for-mode 'java-mode "t"
+       (lambda ()
+         (interactive)
+         (meghanada-run-task "test")
+         (ace-window "")
+         (golden-ratio)
+         )
+       )
+     (evil-leader/set-key-for-mode 'java-mode "c"
+       (lambda ()
+         (interactive)
+         (meghanada-run-task "run")
+         (ace-window "")
+         (golden-ratio)
+         )
+       )
 
 
-(add-hook 'java-mode-hook
-    (lambda ()
-        ;; meghanada-mode on
-        (meghanada-mode t)
-        (add-hook 'before-save-hook (lambda ()
-                                        (flycheck-display-error-at-point)
-                                        (meghanada-code-beautify-before-save)
-                                        ))))
+     (add-hook 'java-mode-hook
+   	    (lambda ()
+   	      ;; meghanada-mode on
+   	      (meghanada-mode t)
+   	      (add-hook 'before-save-hook (lambda ()
+   					    (flycheck-display-error-at-point)
+   					    (meghanada-code-beautify-before-save)
+   					    ))))
 
 
    #+END_SRC
@@ -420,7 +492,6 @@ narrowed."
         (when (string-equal "jsx" (file-name-extension buffer-file-name))
                           (setup-tide-mode))))
    #+END_SRC
-
 * Evil
 ** Evil Paraphernalia
    #+BEGIN_SRC emacs-lisp
@@ -450,7 +521,7 @@ narrowed."
          "w" 'delete-window
          "e" 'kill-this-buffer
          "E" 'org-export-dispatch
-         "," 'next-buffer
+         "," 'previous-buffer
          (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
          "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
          (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
