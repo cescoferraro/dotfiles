@@ -360,6 +360,12 @@ narrowed."
        )
 
    #+END_SRC
+** Expand Region
+   #+BEGIN_SRC emacs-lisp
+   (use-package expand-region
+	  :defer t
+	  :bind (("C-a" . er/expand-region)))
+   #+END_SRC
 ** Engine Mode
 #+BEGIN_SRC emacs-lisp
   (setq engine-mode-packages '(engine-mode))
