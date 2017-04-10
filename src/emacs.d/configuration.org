@@ -158,6 +158,14 @@ narrowed."
 	  (projectile-global-mode))
    #+END_SRC
 
+** Emmet
+   #+BEGIN_SRC emacs-lisp
+     (use-package emmet-mode
+       :ensure t
+       :init
+       (add-hook 'html-mode-hook 'emmet-mode)
+       (add-hook 'web-mode-hook 'emmet-mode))
+   #+END_SRC
 ** Linum
 
    #+BEGIN_SRC emacs-lisp
@@ -369,6 +377,7 @@ narrowed."
 	"swh" 'engine/search-github
 	"swy" 'engine/search-youtube)))
 #+END_SRC
+
 * Languages
 ** Golang
 *** Go path
@@ -513,12 +522,15 @@ narrowed."
 * Evil
 ** Evil Paraphernalia
    #+BEGIN_SRC emacs-lisp
-
-  (use-package evil-org :ensure t)
-  (use-package evil-surround
-    :ensure t
-    :config
-    (global-evil-surround-mode))
+     (use-package
+   	    evil-smartparens
+   	    :ensure t
+   	    :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+       (use-package evil-org :ensure t)
+       (use-package evil-surround
+         :ensure t
+         :config
+         (global-evil-surround-mode))
 
    #+END_SRC
 ** Evil-Leader
@@ -529,7 +541,6 @@ narrowed."
        (evil-leader/set-leader ",")
        (evil-leader/set-key
          "m"  'neotree-toggle
-         "n"  'neotree-project-dir
          "v" 'evil-visual-block
          "z" 'zoom-window-zoom
          "f" 'helm-projectile
@@ -541,7 +552,7 @@ narrowed."
          "E" 'org-export-dispatch
          "," 'previous-buffer
          (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
-         "'"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
+         "n"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
          (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
          (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org"))
          (kbd "/") ( lambda () (interactive)
@@ -563,4 +574,8 @@ narrowed."
        (evil-mode)
        (set-default 'evil-symbol-word-search t)
        )
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (setq timonier-k8s-proxy "http://127.0.0.1:8001")
+
    #+END_SRC

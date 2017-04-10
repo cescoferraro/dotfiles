@@ -72,6 +72,7 @@
 (depends-on "spotify")
 (depends-on "swiper")
 (depends-on "tide")
+(depends-on "timonier")
 (depends-on "twittering-mode")
 (depends-on "use-package")
 (depends-on "vimrc-mode")
