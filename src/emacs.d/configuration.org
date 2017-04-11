@@ -58,10 +58,6 @@ My emacs configuration! Enjoy
 (tool-bar-mode -1)
    #+END_SRC
 ** SimpleClipo
-
-
-
-
    #+BEGIN_SRC emacs-lisp
      (use-package simpleclip :ensure t
        :config
@@ -234,6 +230,7 @@ narrowed."
 
 (use-package neotree
   :after evil
+  :bind ([f2] . neotree-projectile-action)
   :init
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
@@ -257,32 +254,30 @@ narrowed."
    #+END_SRC
 ** Ivy
    #+BEGIN_SRC emacs-lisp
-(use-package counsel :ensure t)
-(use-package swiper
-    :ensure t
-    :config
-    (progn
-        (ivy-mode 1)
-        (setq ivy-use-virtual-buffers t)
-        (setq enable-recursive-minibuffers t)
-        (global-set-key "\C-s" 'swiper)
-        (global-set-key (kbd "C-c C-r") 'ivy-resume)
-        (global-set-key (kbd "<f6>") 'ivy-resume)
-        (global-set-key (kbd "M-x") 'counsel-M-x)
-        (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-        (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-        (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-        (global-set-key (kbd "<f1> l") 'counsel-find-library)
-        (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-        (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-        (global-set-key (kbd "C-c g") 'counsel-git)
-        (global-set-key (kbd "C-c j") 'counsel-git-grep)
-        (global-set-key (kbd "C-c k") 'counsel-ag)
-        (global-set-key (kbd "C-x l") 'counsel-locate)
-        (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-        (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    )
-)
+     (use-package counsel :ensure t)
+     (use-package swiper
+         :ensure t
+         :config
+         (progn
+             (ivy-mode 1)
+             (setq ivy-use-virtual-buffers t)
+             (setq enable-recursive-minibuffers t)
+             (global-set-key "\C-s" 'swiper)
+             (global-set-key (kbd "C-c C-r") 'ivy-resume)
+             (global-set-key (kbd "<f6>") 'ivy-resume)
+             (global-set-key (kbd "M-x") 'counsel-M-x)
+             (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+             (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+             (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+             (global-set-key (kbd "<f1> l") 'counsel-find-library)
+             ;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+             ;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+             (global-set-key (kbd "C-c k") 'counsel-ag)
+             (global-set-key (kbd "C-x l") 'counsel-locate)
+             (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+             (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+         )
+     )
 
 
    #+END_SRC
@@ -360,29 +355,37 @@ narrowed."
        )
 
    #+END_SRC
-** Expand Region
-   #+BEGIN_SRC emacs-lisp
-   (use-package expand-region
-	  :defer t
-	  :bind (("C-a" . er/expand-region)))
-   #+END_SRC
+
 ** Engine Mode
 #+BEGIN_SRC emacs-lisp
-  (setq engine-mode-packages '(engine-mode))
+;; engine
+;; Search engines integrated into Emacs.
+(use-package engine-mode
+  :commands (engine/search-github engine/search-google)
+  :config
 
-  (defun engine-mode/init-engine-mode ()
-    "Initialize my package"
-    (use-package engine-mode
-      :defer t
-      :config
-      (defengine duckduckgo "https://duckduckgo.com/?q=%s")
-      (defengine github "https://github.com/search?ref=simplesearch&q=%s")
-      (defengine youtube "https://www.youtube.com/results?search_query=%s")
-      (evil-leader/set-key
-	"swd" 'engine/search-duckduckgo
-	"swh" 'engine/search-github
-	"swy" 'engine/search-youtube)))
+  (global-set-key (kbd "C-c g") 'engine/search-google)
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "h")
+  (defengine google
+    "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+    :keybinding "g"))
 #+END_SRC
+** Expand-Region
+   #+BEGIN_SRC emacs-lisp
+     (use-package expand-region
+       :ensure t
+       :config
+       (global-set-key (kbd "C-a") 'er/expand-region)
+       (global-set-key (kbd "C-c a") 'er/expand-region)
+       )
+   #+END_SRC
+
+** Kubernetes Timonier
+   #+BEGIN_SRC emacs-lisp
+     (setq timonier-k8s-proxy "http://127.0.0.1:8001")
+   #+END_SRC
 
 * Languages
 ** Golang
@@ -528,15 +531,20 @@ narrowed."
 * Evil
 ** Evil Paraphernalia
    #+BEGIN_SRC emacs-lisp
+     (use-package evil-nerd-commenter
+       :ensure t
+       :config (progn
+                 (evilnc-default-hotkeys)))
+
      (use-package
-   	    evil-smartparens
-   	    :ensure t
-   	    :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
-       (use-package evil-org :ensure t)
-       (use-package evil-surround
-         :ensure t
-         :config
-         (global-evil-surround-mode))
+       evil-smartparens
+       :ensure t
+       :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+     (use-package evil-org :ensure t)
+     (use-package evil-surround
+       :ensure t
+       :config
+       (global-evil-surround-mode))
 
    #+END_SRC
 ** Evil-Leader
@@ -547,7 +555,15 @@ narrowed."
        (evil-leader/set-leader ",")
        (evil-leader/set-key
          "m"  'neotree-toggle
-         "v" 'evil-visual-block
+         "ci" 'evilnc-comment-or-uncomment-lines
+         "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+         "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+         "cc" 'evilnc-copy-and-comment-lines
+         "cp" 'evilnc-comment-or-uncomment-paragraphs
+         "cr" 'comment-or-uncomment-region
+         "cv" 'evilnc-toggle-invert-comment-line-by-line
+         "."  'evilnc-copy-and-comment-operator
+         "\\" 'evilnc-comment-operator
          "z" 'zoom-window-zoom
          "f" 'helm-projectile
          "s" 'save-buffer
@@ -562,7 +578,7 @@ narrowed."
          (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
          (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org"))
          (kbd "/") ( lambda () (interactive)
-   		  (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
+      		  (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
        (evil-define-key 'visual evil-surround-mode-map
          "A" 'evil-substitute
          "a" 'evil-surround-region
@@ -580,8 +596,4 @@ narrowed."
        (evil-mode)
        (set-default 'evil-symbol-word-search t)
        )
-   #+END_SRC
-   #+BEGIN_SRC emacs-lisp
-     (setq timonier-k8s-proxy "http://127.0.0.1:8001")
-
    #+END_SRC

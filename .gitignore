@@ -32,3 +32,5 @@ src/emacs.d/configuration.el
 src/emacs.d/elpa
 src/emacs.d/emojis
 src/emacs.d/session.*
+src/emacs.d/configuration.org_archive
+src/emacs.d/url/

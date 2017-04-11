@@ -5,6 +5,6 @@
 import * as React from "react";
 
 
-export const $1 = ({$2}){
+export const $1 = ({$2}) => {
        return $0
 }
