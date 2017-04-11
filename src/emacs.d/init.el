@@ -10,9 +10,6 @@
 (require 'diminish)
 (require 'bind-key)
 
-;; Set org-mode
-(load "~/.emacs.d/org.el")
-(require 'init-org)
 
 ;; Custom configuration
 (setq custom-file "~/.emacs.d/custom.el")
