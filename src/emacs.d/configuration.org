@@ -452,9 +452,6 @@ narrowed."
 (add-to-list 'exec-path (concat (getenv "GOPATH")  "/bin"))
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
     #+END_SRC
-*** GOlang Paraphernalia
-    #+BEGIN_SRC emacs-lisp
-    #+END_SRC
 *** Go-mode
     #+BEGIN_SRC emacs-lisp
 
@@ -469,10 +466,11 @@ narrowed."
       (use-package go-mode
         :ensure t
         :after evil
+        :bind ("C-a" . go-guru-expand-region )
         :config
 
-(use-package golint :ensure t)
-(use-package godoctor :ensure t)
+        (use-package golint :ensure t)
+        (use-package godoctor :ensure t)
         (evil-leader/set-key-for-mode 'go-mode
           "j" 'godef-jump
           )
