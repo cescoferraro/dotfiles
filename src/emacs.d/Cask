@@ -12,6 +12,7 @@
 (depends-on "bind-key")
 (depends-on "cask")
 (depends-on "color-theme")
+(depends-on "company-go")
 (depends-on "counsel")
 (depends-on "dash")
 (depends-on "dashboard")
