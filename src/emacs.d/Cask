@@ -53,6 +53,7 @@
 (depends-on "ivy")
 (depends-on "linum-relative")
 (depends-on "magit")
+(depends-on "magit-gitflow")
 (depends-on "markdown-mode")
 (depends-on "meghanada")
 (depends-on "multiple-cursors")

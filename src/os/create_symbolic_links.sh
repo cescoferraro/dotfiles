@@ -29,8 +29,8 @@ create_symlinks() {
 
         "vim/vim"
         "vim/vimrc"
-	
-	"emacs.d"
+        "kube"
+	    "emacs.d"
     )
 
     local i=""

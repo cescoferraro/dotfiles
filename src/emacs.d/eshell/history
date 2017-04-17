@@ -1,0 +1,45 @@
+cd ../craigs/
+ll
+ls
+yarn start
+yarn start
+..
+..
+yarn start
+..
+yarn start
+ll
+ls
+yarn start
+..
+..
+..
+yarn start
+yarn start
+yarn start
+gh
+source
+source ~/.bashrc 
+yarn list
+yarn list | grep firebase
+yarn add react-redux-firebase@1.4.0
+yarn list react-redux-firebase
+yarn add react-redux-firebase@1.4.0-rc.1
+..
+..
+cp ~/.kube/ src/
+cp -r ~/.kube/ src/
+cd src/
+ll
+ls
+cp -r ~/.kube/ src/kube
+cp -pr ~/.kube/ src/kube
+ls
+mkdir kube
+cp -r ~/.kube/ kube/
+ls
+cd kube/
+ll
+ls
+cp -r /home/cescoferraro/.kube/* ./
+ls

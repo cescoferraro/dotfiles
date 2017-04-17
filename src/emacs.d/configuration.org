@@ -41,6 +41,19 @@ My emacs configuration! Enjoy
         calendar-location-name "Cambridge, MA")
    #+END_SRC
 
+** Kill other buffers
+#+BEGIN_SRC emacs-lisp
+(defun kill-other-buffers ()
+      "Kill all other buffers."
+      (interactive)
+      (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+
+#+END_SRC
+
+#+RESULTS:
+: kill-other-buffers
+
 ** Setting path
    #+BEGIN_SRC emacs-lisp
 
@@ -84,9 +97,19 @@ My emacs configuration! Enjoy
    #+END_SRC
 
 ** Hide ToolBar
+
    #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
    #+END_SRC
+
+** DEletion Mode
+   #+BEGIN_SRC emacs-lisp
+   (delete-selection-mode 1)
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 ** SimpleClipo
    #+BEGIN_SRC emacs-lisp
      (use-package simpleclip :ensure t
@@ -228,15 +251,19 @@ narrowed."
 ** Magit
 
    #+BEGIN_SRC emacs-lisp
-(use-package magit
-	  :demand magit
-	  :config (progn
-(evil-leader/set-key "g" 'magit-status)
-	            (setq magit-auto-revert-mode nil)))
+     (use-package magit
+       :demand magit
+       :config (progn     (use-package magit-gitflow
+   			 :commands (turn-on-magit-gitflow)
+   			 :init
+   			 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+   			 )
+   		       (evil-leader/set-key "g" 'magit-status)
+   		       (setq magit-auto-revert-mode nil)))
 
-	(use-package evil-magit
-  :after evil
-	  :demand evil-magit)
+     (use-package evil-magit
+       :after evil
+       :demand evil-magit)
 
    #+END_SRC
 
@@ -361,6 +388,15 @@ narrowed."
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
 (diminish 'visual-line-mode))
 #+END_SRC
+** Yasnippet
+
+   #+BEGIN_SRC emacs-lisp
+   (use-package yasnippet
+   :config
+	  (yas-global-mode 1))
+
+   #+END_SRC
+
 ** Startup Screen
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-screen t)
@@ -431,18 +467,18 @@ narrowed."
 ** Company
 #+BEGIN_SRC emacs-lisp
 
-      (use-package company
-        :ensure t
-        :config
-        (define-key company-active-map (kbd "M-n") nil)
-        (define-key company-active-map (kbd "M-p") nil)
-        (define-key company-active-map (kbd "C-n") #'company-select-next)
-        (define-key company-active-map (kbd "C-p") #'company-select-previous)
-        :init
-        (setq company-dabbrev-downcase 0)
-        (setq company-idle-delay 0)
-         (add-hook 'after-init-hook 'global-company-mode))
-
+  (use-package company
+    :ensure t
+    :config
+    (define-key company-active-map (kbd "M-n") nil)
+    (define-key company-active-map (kbd "M-p") nil)
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous)
+    :init
+    (use-package company-yasnippet)
+    (setq company-dabbrev-downcase 0)
+    (setq company-idle-delay 0)
+    (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
 * Languages
 ** Golang
@@ -466,7 +502,6 @@ narrowed."
       (use-package go-mode
         :ensure t
         :after evil
-        :bind ("C-a" . go-guru-expand-region )
         :config
 
         (use-package golint :ensure t)
@@ -619,6 +654,7 @@ narrowed."
          "\\" 'evilnc-comment-operator
          "z" 'zoom-window-zoom
          "f" 'helm-projectile
+         "b" 'helm-buffers-list
          "s" 'save-buffer
          "q" 'kill-emacs
          "G" 'magit-status
@@ -636,6 +672,10 @@ narrowed."
        (global-evil-leader-mode)
        )
    #+END_SRC
+
+   #+RESULTS:
+   : t
+
 ** Evil itself
    #+BEGIN_SRC emacs-lisp
      (use-package evil
