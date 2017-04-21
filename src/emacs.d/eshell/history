@@ -43,3 +43,4 @@ ll
 ls
 cp -r /home/cescoferraro/.kube/* ./
 ls
+rm -rf /home/admin/.emacs.d/.cask/25.1/elpa/org-plus-contrib-20170210/*.elc 

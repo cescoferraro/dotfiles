@@ -1,6 +1,6 @@
 My emacs configuration! Enjoy
 * Org
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
   (use-package org :ensure t)
 
   (use-package org-bullets
@@ -29,7 +29,7 @@ My emacs configuration! Enjoy
   (use-package htmlize
   :ensure t)
 
-#+END_SRC
+  #+END_SRC
 * Setup
 ** Set personal information
    I am a gopher!
@@ -41,18 +41,21 @@ My emacs configuration! Enjoy
         calendar-location-name "Cambridge, MA")
    #+END_SRC
 
+   #+RESULTS:
+   : Cambridge, MA
+
 ** Kill other buffers
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (defun kill-other-buffers ()
       "Kill all other buffers."
       (interactive)
       (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
 
-#+END_SRC
+   #+END_SRC
 
-#+RESULTS:
-: kill-other-buffers
+   #+RESULTS:
+   : kill-other-buffers
 
 ** Setting path
    #+BEGIN_SRC emacs-lisp
@@ -150,7 +153,7 @@ My emacs configuration! Enjoy
    #+END_SRC
 ** Narrow & WIdening
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (defun narrow-or-widen-dwim (p)
   "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
 Intelligently means: region, org-src-block, org-subtree, or defun,
@@ -183,16 +186,16 @@ narrowed."
   '(define-key org-src-mode-map
      "\C-x\C-s" #'org-edit-src-exit))
 
-#+END_SRC
+   #+END_SRC
 ** Prefer vertical window
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (setq split-width-threshold 1 )
-#+END_SRC
+   #+END_SRC
 * Packages
 ** Iedit
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package iedit :ensure t)
-#+END_SRC
+   #+END_SRC
 ** Editorconfig
    #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
@@ -241,6 +244,8 @@ narrowed."
        :diminish global-flycheck-mode
        :config
        (global-flycheck-mode)
+(with-eval-after-load 'flycheck
+(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
        (setq flycheck-display-errors-delay 0.3)
        (set-face-attribute 'flycheck-error nil :background "#8c5353")
        (set-face-attribute 'flycheck-warning nil :background "#535399")
@@ -351,7 +356,7 @@ narrowed."
    	    (golden-ratio-mode 1))
    #+END_SRC
 ** Beacon
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package beacon
 :diminish beacon-mode
 :ensure t
@@ -360,9 +365,9 @@ narrowed."
 (beacon-mode 1)
 (setq beacon-push-mark 35)
 (setq beacon-color "#666600")))
-#+END_SRC
+   #+END_SRC
 ** ModeLine
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package      smart-mode-line-powerline-theme
     :ensure smart-mode-line-powerline-theme)
   (use-package smart-mode-line
@@ -387,7 +392,7 @@ narrowed."
 (eval-after-load "guide-key" '(diminish 'guide-key-mode))
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
 (diminish 'visual-line-mode))
-#+END_SRC
+   #+END_SRC
 ** Yasnippet
 
    #+BEGIN_SRC emacs-lisp
@@ -398,19 +403,19 @@ narrowed."
    #+END_SRC
 
 ** Startup Screen
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-screen t)
 (use-package dashboard
   :config
   (dashboard-setup-startup-hook))
 
-#+END_SRC
+   #+END_SRC
 
 ** Whatever
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
 
-#+END_SRC
+   #+END_SRC
 ** SmartParens
    #+BEGIN_SRC emacs-lisp
 
@@ -431,7 +436,7 @@ narrowed."
    #+END_SRC
 
 ** Engine Mode
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 ;; engine
 ;; Search engines integrated into Emacs.
 (use-package engine-mode
@@ -445,7 +450,7 @@ narrowed."
   (defengine google
     "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
     :keybinding "g"))
-#+END_SRC
+   #+END_SRC
 ** Expand-Region
    #+BEGIN_SRC emacs-lisp
      (use-package expand-region
@@ -465,7 +470,7 @@ narrowed."
    #+END_SRC
 
 ** Company
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
   (use-package company
     :ensure t
@@ -479,7 +484,7 @@ narrowed."
     (setq company-dabbrev-downcase 0)
     (setq company-idle-delay 0)
     (add-hook 'after-init-hook 'global-company-mode))
-#+END_SRC
+   #+END_SRC
 * Languages
 ** Golang
 *** Go path
@@ -662,13 +667,14 @@ narrowed."
          "e" 'kill-this-buffer
          "E" 'org-export-dispatch
          "," 'previous-buffer
-         (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
+         "E" 'org-export-dispatch
+         "TAB" 'org-cycle
          "n"  (lambda () (interactive) (ansi-term (getenv "SHELL")))
+         (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
          (kbd "o") (lambda () (interactive) (find-file "~/.bash.local"))
          (kbd "i") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org")))
-       (evil-define-key 'visual evil-surround-mode-map
-         "E" 'org-export-dispatch)
-       (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
+
+
        (global-evil-leader-mode)
        )
    #+END_SRC
