@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: redux-reducer 
+# --
+export const $0 = (state = [], action) => {
+    switch (action.type) {
+        default:
+            return state
+    }
+}

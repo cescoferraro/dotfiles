@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: reqdef
+# key: reqdef
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# --
+define([$1],
+       function($2) {
+	   var f = function() {
+	   };
+	   return {
+	       f:f
+	   };
+       });
+
+$0

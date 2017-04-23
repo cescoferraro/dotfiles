@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: redux-action
+# --
+
+export const $1_ACTION_NAME = "$1";
+
+export function $1_ACTION($2:$0): Action<any> {
+    return {
+        type: $1_ACTION_NAME,
+        payload: $2
+    }
+}
