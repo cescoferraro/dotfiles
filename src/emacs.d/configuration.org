@@ -249,33 +249,53 @@ narrowed."
    #+END_SRC
 * Org
   #+BEGIN_SRC emacs-lisp
-  (use-package org :ensure t)
-
-  (use-package org-bullets
-      :ensure t
+    (use-package org :ensure t
       :config
 
-      (setq org-src-fontify-natively t)
-      (setq org-confirm-babel-evaluate nil)
-      (org-babel-do-load-languages
-          'org-babel-load-languages
-          '((emacs-lisp . t)
-               (python . t)
-               (go . t)
-               (java . t)
-               (lisp . t)))
+      ;; Append new packages
+      (require 'ox-latex)
+      (use-package org-bullets
+        :ensure t
+        :config
 
 
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
+        (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+)
 
-  (use-package ox-reveal
-  :ensure ox-reveal)
+      (use-package ox-reveal
+        :ensure ox-reveal)
 
-  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-  (setq org-reveal-mathjax t)
+      (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+      (setq org-reveal-mathjax t)
 
-  (use-package htmlize
-  :ensure t)
+      (use-package htmlize
+        :ensure t)
+
+
+        (defvar org-export-latex-add-link-footnotes nil
+  	"If non-nil links will be added as footnotes if exported to latex.")
+
+        (defun org-export-latex-link-footnote (text backend info)
+  	"Create a footnote in latex for each link. So when printed the information isn't lost."
+  	(when (and org-export-latex-add-link-footnotes
+  		   (org-export-derived-backend-p backend 'latex)
+  		   (string-match "\\\\href{\\(.*\\)}{\\(.*\\)}" text))
+  	  (when (some (lambda (type)
+  			(string-prefix-p type (match-string 1 text)))
+  		      '("http" "https" "ftp" "mailto" "doi"))
+  	    (format "%s \\footnote{\\url{%s}} " text (match-string 1 text)))))
+        (add-to-list 'org-export-filter-link-functions #'org-export-latex-link-footnote)
+        (setq org-src-fontify-natively t)
+        (setq org-confirm-babel-evaluate nil)
+        (org-babel-do-load-languages
+         'org-babel-load-languages
+         '((emacs-lisp . t)
+  	 (python . t)
+  	 (go . t)
+  	 (java . t)
+  	 (lisp . t)))
+
+      )
 
   #+END_SRC
 * Packages
@@ -329,15 +349,16 @@ narrowed."
 
    #+BEGIN_SRC emacs-lisp
 
-(use-package linum-relative
-  :diminish linum-relative-mode
-  :ensure t
-  :config
-  (progn (linum-mode)
-         (linum-relative-global-mode)
+     (use-package linum-relative
+       :diminish linum-relative-mode
+       :ensure t
+       :config
+       (progn
+         (add-hook 'prog-mode-hook 'linum-mode)
+         (add-hook 'prog-mode-hook 'linum-relative-global-mode)
          (setq linum-relative-current-symbol "")
          )
-)
+       )
 
    #+END_SRC
 ** Flycheck
@@ -400,22 +421,32 @@ narrowed."
 ** Neotree
    #+BEGIN_SRC emacs-lisp
 
+     (use-package find-file-in-project :ensure t)
+
+
      (use-package neotree
        :after evil
        :bind ([f2] . neotree-projectile-action)
        :config
        (use-package all-the-icons :ensure t
-         :config (add-to-list 'all-the-icons-icon-alist
-   			   '("\\.pcss"
-   			     all-the-icons-alltheicon "css3"
-   			     :height 1.0
-   			     :face all-the-icons-red))
+         :config
+
+         (add-to-list 'all-the-icons-icon-alist
+   		   '("^dobi.yaml"
+   		     all-the-icons-alltheicon "terminal"
+   		     :height 1.0
+   		     :face all-the-icons-pink))
+         (add-to-list 'all-the-icons-icon-alist
+   		   '("\\.pcss"
+   		     all-the-icons-alltheicon "css3"
+   		     :height 1.0
+   		     :face all-the-icons-red))
          (add-to-list 'all-the-icons-icon-alist
    		   '("\\.tsx$"
    		     all-the-icons-alltheicon "react"
    		     :height 1.0
    		     :face all-the-icons-blue))
-)
+         )
        :init
        (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
        (add-hook 'neotree-mode-hook
@@ -434,7 +465,6 @@ narrowed."
 
    		(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
    		(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter))))
-
    #+END_SRC
 
    #+RESULTS:
@@ -766,7 +796,18 @@ narrowed."
        :config
        (evil-leader/set-leader ",")
        (evil-leader/set-key
-         "m"  'neotree-toggle
+         "m"  (lambda () (interactive)
+   	     (if (not(string-equal " *NeoTree*" (buffer-name)))
+   		 (progn
+   		   (neotree-projectile-action)
+   		   (message (buffer-name))
+   		   )
+   	       (progn
+         		 (message "toogled")
+      		 (neotree-toggle)
+   		 )
+   	       )
+   	     )
          "/" 'evilnc-comment-or-uncomment-lines
          "ci" 'evilnc-comment-or-uncomment-lines
          "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -811,3 +852,9 @@ narrowed."
        (set-default 'evil-symbol-word-search t)
        )
    #+END_SRC
+#+BEGIN_SRC emacs-list :tangle yes
+
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq doc-view-continuous t)
+#+END_SRC

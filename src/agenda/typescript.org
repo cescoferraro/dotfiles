@@ -1,0 +1,46 @@
+#+TITLE: Typescript
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=grey}
+#+BIND: org-export-filter-link-functions (org-export-latex-link-footnote)
+#+begin_src emacs-lisp :exports results :results none
+(defun org-export-latex-link-footnote (text backend info)
+  "Create a footnote in latex for each link. So when printed the information isn't lost."
+  (when (and t
+             (org-export-derived-backend-p backend 'latex)
+             (string-match "\\\\href{\\(.*\\)}{\\(.*\\)}" text))
+    (when (some (lambda (type)
+                  (string-prefix-p type (match-string 1 text)))
+                '("http" "https" "ftp" "mailto" "doi"))
+      (format "%s \\footnote{\\url{%s}} " text (match-string 1 text)))))
+
+
+#+end_src
+* Descrição
+
+  Como o próprio website diz, Typescript é um *superset* da linguagem Javascript. E por *superset* ele querem dizer, que a liguagem criada adiciona uma poderosa ferramentas que não está inclusas na liguagem de origem. Javascript é uma liguagem fracamente tipa, ou seja, os dados incluidos em suas variaveis não são impostos. E é exatamente isso que a Typescript vem tentar implementar.
+  Pode parecer uma pequena mudança, mas considerando o alcance mundial do Javascript. Esse pode ser o maior avanço da linguagem em décadas. Segundo o site https://stackoverflow.com em [[http://stackoverflow.com/insights/survey/2016][análise anual dos dados de tráfego do ano de 2016]].
+  #+BEGIN_QUOTE
+  Javascript é a linguagem de programação mais comunmente usada no planeta terra. Até desenvolvedores Back-End estão mais predispostos a usá-la do que qualquer outra linguagem.
+  #+END_QUOTE
+
+* Author
+  É um projeto oficialmente criado pela Microsoft. Está é a [[https://github.com/Microsoft/TypeScript/blob/master/AUTHORS.md][lista do principais desenvolvedores]] do projeto disponibilzada pela empresa no seu repositória em github.com.
+  O nome mais proeminente é o do Dinamarquês Anders Hejlsberg, mundialmente conhecido com principal arquiteto da linguagem de programaćão Delphi e do ambiente de desenvolvimento de software Turbo Pascal.
+
+* Ano
+  2012
+
+* Examplos
+  #+BEGIN_SRC typescript
+  const cesco = Math.random();
+  #+END_SRC
+
+* Bibliografia
+** Impressa
+
+   - Nome: Essential TypeScript | It’s JavaScript... only better.
+   - Author: Jess Chadwick
+
+** Links
+   - Typescript Deep Dive
+   - https://basarat.gitbooks.io/typescript/
