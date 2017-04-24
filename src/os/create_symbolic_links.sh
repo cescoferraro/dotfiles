@@ -31,6 +31,7 @@ create_symlinks() {
         "vim/vimrc"
         "kube"
 	    "emacs.d"
+        "agenda"
     )
 
     local i=""

@@ -52,6 +52,7 @@
 (depends-on "htmlize")
 (depends-on "idle-highlight-mode")
 (depends-on "iedit")
+(depends-on "interleave")
 (depends-on "ivy")
 (depends-on "linum-relative")
 (depends-on "magit")
