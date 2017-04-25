@@ -2,7 +2,6 @@
 #+LATEX_HEADER: \usepackage{geometry}
 #+LATEX_HEADER: \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=grey}
 #+BIND: org-export-filter-link-functions (org-export-latex-link-footnote)
-#+INTERLEAVE_PDF: $GO
 #+begin_src emacs-lisp :exports results :results none
 (defun org-export-latex-link-footnote (text backend info)
   "Create a footnote in latex for each link. So when printed the information isn't lost."
