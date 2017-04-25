@@ -22,7 +22,7 @@ clusters:
   name: cescoferraro
 - cluster:
     certificate-authority: machine/machines/cescoferraro.xyz/ca.pem
-    server: https://138.197.3.103:6443
+    server: https://54.207.24.221:6443
   name: cescoferraro.xyz
 - cluster:
     insecure-skip-tls-verify: true
@@ -80,4 +80,4 @@ users:
     token: TNDGdjhoyDUjn1AbV3enmHyeCX3UkTtR
 - name: cescoferraro.xyz
   user:
-    token: p5DGbPqko9uTFenCDGk19K3J01h4Dj50
+    token: DVUK0jx2Ki3y6rSrqdvEcuRUpgTA8k1c

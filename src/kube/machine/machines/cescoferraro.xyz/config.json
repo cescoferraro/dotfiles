@@ -1,8 +1,8 @@
 {
     "ConfigVersion": 3,
     "Driver": {
-        "IPAddress": "138.197.3.103",
-        "SSHUser": "root",
+        "IPAddress": "54.207.24.221",
+        "SSHUser": "ubuntu",
         "SSHPort": 22,
         "MachineName": "cescoferraro.xyz",
         "K8SPort": 0,
@@ -10,18 +10,32 @@
         "SwarmHost": "tcp://0.0.0.0:3376",
         "SwarmDiscovery": "",
         "StorePath": "/home/cescoferraro/.kube/machine",
-        "AccessToken": "a8c1cfae6d35bc9fda2cf752571a1b15757fd431d1947952d6b7ade42b50aab2",
-        "DropletID": 45322976,
-        "DropletName": "",
-        "Image": "ubuntu-14-04-x64",
-        "Region": "nyc3",
-        "SSHKeyID": 8037855,
-        "Size": "512mb",
-        "IPv6": false,
-        "Backups": false,
-        "PrivateNetworking": false
+        "Id": "2be77e542313d1d8cd0a793919c60239",
+        "AccessKey": "AKIAJ3MKBAO7QOQ7H3BA",
+        "SecretKey": "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",
+        "SessionToken": "",
+        "Region": "sa-east-1",
+        "AMI": "ami-1199190c",
+        "SSHKeyID": 0,
+        "KeyName": "cescoferraro.xyz",
+        "InstanceId": "i-0664c5d9d8b07786e",
+        "InstanceType": "t2.micro",
+        "PrivateIPAddress": "172.31.5.43",
+        "SecurityGroupId": "sg-c30649a7",
+        "SecurityGroupName": "docker-machine",
+        "ReservationId": "",
+        "RootSize": 16,
+        "IamInstanceProfile": "",
+        "VpcId": "vpc-26d78c43",
+        "SubnetId": "subnet-b3bca4d6",
+        "Zone": "a",
+        "RequestSpotInstance": false,
+        "SpotPrice": "0.50",
+        "PrivateIPOnly": false,
+        "UsePrivateIP": false,
+        "Monitoring": false
     },
-    "DriverName": "digitalocean",
+    "DriverName": "amazonec2",
     "HostOptions": {
         "Driver": "",
         "Memory": 0,
@@ -67,7 +81,7 @@
             "StorePath": "/home/cescoferraro/.kube/machine/machines/cescoferraro.xyz"
         },
         "KubernetesOptions": {
-            "K8SToken": "p5DGbPqko9uTFenCDGk19K3J01h4Dj50",
+            "K8SToken": "DVUK0jx2Ki3y6rSrqdvEcuRUpgTA8k1c",
             "K8SUser": "cescoferraro.xyz",
             "K8SCertPath": "/var/run/kubernetes",
             "K8SAPICert": "/home/cescoferraro/.kube/machine/machines/cescoferraro.xyz/cescoferraro.xyz-api_cert.pem",
@@ -80,5 +94,5 @@
         }
     },
     "Name": "cescoferraro.xyz",
-    "RawDriver": "eyJJUEFkZHJlc3MiOiIxMzguMTk3LjMuMTAzIiwiU1NIVXNlciI6InJvb3QiLCJTU0hQb3J0IjoyMiwiTWFjaGluZU5hbWUiOiJjZXNjb2ZlcnJhcm8ueHl6IiwiSzhTUG9ydCI6MCwiU3dhcm1NYXN0ZXIiOmZhbHNlLCJTd2FybUhvc3QiOiJ0Y3A6Ly8wLjAuMC4wOjMzNzYiLCJTd2FybURpc2NvdmVyeSI6IiIsIlN0b3JlUGF0aCI6Ii9ob21lL2Nlc2NvZmVycmFyby8ua3ViZS9tYWNoaW5lIiwiQWNjZXNzVG9rZW4iOiJhOGMxY2ZhZTZkMzViYzlmZGEyY2Y3NTI1NzFhMWIxNTc1N2ZkNDMxZDE5NDc5NTJkNmI3YWRlNDJiNTBhYWIyIiwiRHJvcGxldElEIjo0NTMyMjk3NiwiRHJvcGxldE5hbWUiOiIiLCJJbWFnZSI6InVidW50dS0xNC0wNC14NjQiLCJSZWdpb24iOiJueWMzIiwiU1NIS2V5SUQiOjgwMzc4NTUsIlNpemUiOiI1MTJtYiIsIklQdjYiOmZhbHNlLCJCYWNrdXBzIjpmYWxzZSwiUHJpdmF0ZU5ldHdvcmtpbmciOmZhbHNlfQ=="
+    "RawDriver": "eyJJUEFkZHJlc3MiOiI1NC4yMDcuMjQuMjIxIiwiU1NIVXNlciI6InVidW50dSIsIlNTSFBvcnQiOjIyLCJNYWNoaW5lTmFtZSI6ImNlc2NvZmVycmFyby54eXoiLCJLOFNQb3J0IjowLCJTd2FybU1hc3RlciI6ZmFsc2UsIlN3YXJtSG9zdCI6InRjcDovLzAuMC4wLjA6MzM3NiIsIlN3YXJtRGlzY292ZXJ5IjoiIiwiU3RvcmVQYXRoIjoiL2hvbWUvY2VzY29mZXJyYXJvLy5rdWJlL21hY2hpbmUiLCJJZCI6IjJiZTc3ZTU0MjMxM2QxZDhjZDBhNzkzOTE5YzYwMjM5IiwiQWNjZXNzS2V5IjoiQUtJQUozTUtCQU83UU9RN0gzQkEiLCJTZWNyZXRLZXkiOiJrRXBXUTFEcTRRWUpMdVBsbFEyOGVkMHZlTFNvbHJOOURxcXMxcEFCIiwiU2Vzc2lvblRva2VuIjoiIiwiUmVnaW9uIjoic2EtZWFzdC0xIiwiQU1JIjoiYW1pLTExOTkxOTBjIiwiU1NIS2V5SUQiOjAsIktleU5hbWUiOiJjZXNjb2ZlcnJhcm8ueHl6IiwiSW5zdGFuY2VJZCI6ImktMDY2NGM1ZDlkOGIwNzc4NmUiLCJJbnN0YW5jZVR5cGUiOiJ0Mi5taWNybyIsIlByaXZhdGVJUEFkZHJlc3MiOiIxNzIuMzEuNS40MyIsIlNlY3VyaXR5R3JvdXBJZCI6InNnLWMzMDY0OWE3IiwiU2VjdXJpdHlHcm91cE5hbWUiOiJkb2NrZXItbWFjaGluZSIsIlJlc2VydmF0aW9uSWQiOiIiLCJSb290U2l6ZSI6MTYsIklhbUluc3RhbmNlUHJvZmlsZSI6IiIsIlZwY0lkIjoidnBjLTI2ZDc4YzQzIiwiU3VibmV0SWQiOiJzdWJuZXQtYjNiY2E0ZDYiLCJab25lIjoiYSIsIlJlcXVlc3RTcG90SW5zdGFuY2UiOmZhbHNlLCJTcG90UHJpY2UiOiIwLjUwIiwiUHJpdmF0ZUlQT25seSI6ZmFsc2UsIlVzZVByaXZhdGVJUCI6ZmFsc2UsIk1vbml0b3JpbmciOmZhbHNlfQ=="
 }
