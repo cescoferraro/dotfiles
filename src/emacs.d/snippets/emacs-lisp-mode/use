@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: use
+# key: use
+# --
+(use-package $0 :ensure t)
