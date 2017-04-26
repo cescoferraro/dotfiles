@@ -28,21 +28,11 @@ My emacs configuration! Enjoy
 
 ** Kill other buffers
    #+BEGIN_SRC emacs-lisp
-(defun kill-other-buffers ()
-      "Kill all other buffers."
-      (interactive)
-      (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
-
-
+     (defun kill-other-buffers ()
+       "Kill all other buffers."
+       (interactive)
+       (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
    #+END_SRC
-
-   #+RESULTS:
-   : kill-other-buffers
-
-
-
-
-
 
 ** Shift+ Enter
    #+BEGIN_SRC emacs-lisp
@@ -54,60 +44,23 @@ My emacs configuration! Enjoy
 ** tabbar
 
    #+BEGIN_SRC emacs-lisp
-     (require 'tabbar)
-     ;; Tabbar settings
-     (set-face-attribute
-      'tabbar-default nil
-      :background "gray20"
-      :foreground "gray20"
-      :box '(:line-width 1 :color "gray20" :style nil))
-     (set-face-attribute
-      'tabbar-unselected nil
-      :background "gray30"
-      :foreground "white"
-      :box '(:line-width 5 :color "gray30" :style nil))
-     (set-face-attribute
-      'tabbar-selected nil
-      :background "gray75"
-      :foreground "black"
-      :box '(:line-width 5 :color "gray75" :style nil))
-     (set-face-attribute
-      'tabbar-highlight nil
-      :background "white"
-      :foreground "black"
-      :underline nil
-      :box '(:line-width 5 :color "white" :style nil))
-     (set-face-attribute
-      'tabbar-button nil
-      :box '(:line-width 1 :color "gray20" :style nil))
-     (set-face-attribute
-      'tabbar-separator nil
-      :background "gray20"
-      :height 0.6)
-
-     ;; Change padding of the tabs
-     ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
-     (custom-set-variables
-      '(tabbar-separator (quote (0.5))))
-     ;; adding spaces
-     (defun tabbar-buffer-tab-label (tab)
-       "Return a label for TAB.
-     That is, a string used to represent it on the tab bar."
-       (let ((label  (if tabbar--buffer-show-groups
-                         (format "[%s]  " (tabbar-tab-tabset tab))
-                       (format "%s  " (tabbar-tab-value tab)))))
-         ;; Unless the tab bar auto scrolls to keep the selected tab
-         ;; visible, shorten the tab label to keep as many tabs as possible
-         ;; in the visible area of the tab bar.
-         (if tabbar-auto-scroll-flag
-             label
-   	(tabbar-shorten
-   	 label (max 1 (/ (window-width)
-   			 (length (tabbar-view
-                                     (tabbar-current-tabset)))))))))
-
-     (tabbar-mode 1)
-
+     (use-package tabbar
+     :after evil
+       :init
+       (setq tabbar-background-color nil)
+       (setq tabbar-separator (quote (1.0)))
+       (setq tool-bar-mode nil)
+       :config
+       (setq tabbar-background-color "#393939")
+       (custom-set-faces
+        '(tabbar-default ((t (:inherit variable-pitch :background "#393939" :foreground "black" :weight bold))))
+        '(tabbar-button ((t (:inherit tabbar-default :foreground "#f2f0ec"))))
+        '(tabbar-button-highlight ((t (:inherit tabbar-default))))
+        '(tabbar-highlight ((t (:underline t))))
+        '(tabbar-selected ((t (:inherit tabbar-default :background "#393939" :foreground "#ffcc66"))))
+        '(tabbar-separator ((t (:inherit tabbar-default :background "#393939"))))
+        '(tabbar-unselected ((t (:inherit tabbar-default)))))
+       (tabbar-mode 1))
    #+END_SRC
 ** Indent
    #+BEGIN_SRC emacs-lisp
@@ -370,19 +323,15 @@ narrowed."
 
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
-       :init
-   					  ;(add-hook 'after-init-hook #'global-flycheck-mode)
-
        :diminish global-flycheck-mode
        :config
        (global-flycheck-mode)
-(with-eval-after-load 'flycheck
-(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-       (setq flycheck-display-errors-delay 0.3)
+       (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+       (setq flycheck-display-errors-delay 0)
        (set-face-attribute 'flycheck-error nil :background "#8c5353")
        (set-face-attribute 'flycheck-warning nil :background "#535399")
        :bind (("M-n" . flycheck-next-error)
-              ("M-p" . flycheck-previous-error))
+   	   ("M-p" . flycheck-previous-error))
        )
    #+END_SRC
 ** Magit
@@ -559,14 +508,13 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t
-       :bind (
-         ("M-n" . nil)
-       ("M-p". nil)
-       ("C-n" . company-select-next)
-       ("C-p" . company-select-previous)
-       )
        :config
        (progn
+
+         (define-key company-active-map (kbd "M-n") nil)
+         (define-key company-active-map (kbd "M-p") nil)
+         (define-key company-active-map (kbd "C-n") #'company-select-next)
+         (define-key company-active-map (kbd "C-p") #'company-select-previous)
          (global-company-mode +1))
        :init
        (progn
@@ -660,8 +608,9 @@ narrowed."
       (use-package company-go
         :ensure t
         :config
-        (eval-after-load 'company
-          '(push 'company-go company-backends))
+        (progn
+          (add-to-list 'company-backends '(company-go :with company-yasnippet))
+          )
         (setq company-go-show-annotation t)
         (setq company-go-insert-arguments t))
 
@@ -680,8 +629,8 @@ narrowed."
           (add-hook 'before-save-hook 'gofmt-before-save)
           (setq tab-width 2)
           (if (not (string-match "go" compile-command))
-        	  (set (make-local-variable 'compile-command)
-        	       "go build -v && go test -v && go vet"))
+    	  (set (make-local-variable 'compile-command)
+    	       "go build -v && go test -v && go vet"))
           (load-file "$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el")
           )
         (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -862,6 +811,9 @@ narrowed."
        :ensure t
        :after evil-leader
        :config
+
+       (define-key evil-normal-state-map "L" 'tabbar-forward-tab)
+       (define-key evil-normal-state-map "H" 'tabbar-backward-tab)
        (evil-mode)
        (set-default 'evil-symbol-word-search t)
        )
