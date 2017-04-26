@@ -1,40 +1,41 @@
-
 #+TITLE: Paradigma Imperativo
-#+LATEX_HEADER: \usepackage{geometry}
-#+LATEX_HEADER: \hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=grey}
-#+BIND: org-export-filter-link-functions (org-export-latex-link-footnote)
-#+begin_src emacs-lisp :exports results :results none
-
-
-(defun org-export-latex-link-footnote (text backend info)
-  "Create a footnote in latex for each link. So when printed the information isn't lost."
-  (when (and t
-             (org-export-derived-backend-p backend 'latex)
-             (string-match "\\\\href{\\(.*\\)}{\\(.*\\)}" text))
-    (when (some (lambda (type)
-                  (string-prefix-p type (match-string 1 text)))
-                '("http" "https" "ftp" "mailto" "doi"))
-      (format "%s \\footnote{\\url{%s}} " text (match-string 1 text)))))
-
-
-#+end_src
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage[brazil,english]{babel}
+#+language: pt
+#+macro: lang @@latex:\selectlanguage{$1}@@
+{{{lang(english)}}}
+#+begin_abstract
+This article aims to show some specificity of the imperative paradigm, furthermore showing an analisys of how it compares
+with the functional paradigm. For a better visualizations and understanding, tables will be use to show its differences.
+#+end_abstract
+{{{lang(portuguese)}}}
+#+begin_abstract
+Esse artigo visa demostrar a especificidades do paradigma imperativo, além de exibir uma análise de como o mesmo se contrapõe com o paradigma funcional. Para que a visualização e entendimento sejam claros serão utilizadas tabelas contrastando essas diferenças.
+#+end_abstract
 
 
 
-* Descrição
+* Contextualização
 
-  Como o próprio website diz, Typescript é um *superset* da linguagem Javascript. E por *superset* ele querem dizer, que a liguagem criada adiciona uma poderosa ferramentas que não está inclusas na liguagem de origem. Javascript é uma liguagem fracamente tipa, ou seja, os dados incluidos em suas variaveis não são impostos. E é exatamente isso que a Typescript vem tentar implementar.
-  Pode parecer uma pequena mudança, mas considerando o alcance mundial do Javascript. Esse pode ser o maior avanço da linguagem em décadas. Segundo o site https://stackoverflow.com em [[http://stackoverflow.com/insights/survey/2016][análise anual dos dados de tráfego do ano de 2016]].
-  #+BEGIN_QUOTE
-  Javascript é a linguagem de programação mais comunmente usada no planeta terra. Até desenvolvedores Back-End estão mais predispostos a usá-la do que qualquer outra linguagem.
-  #+END_QUOTE
+  Uma linguagem de programação é a padronização de métodos que tem como objetivo comunicar instruções um computador mantendo a mesma estrutura sintática. Não obstante, um paradigma de programação é a visão que o indivíduo que digita o código tem sobre a estrutura e execuçjão de um programa. O que nos leva a concluir que diferentes linguagem fazem escolhas diferentes quanto a forma e compilação dos mesmos, dependendo da visão que o seu autor vê como o mais ajustado para enfrentar os seus desafios e problemas que a mesma tenta resolver.
+** Paradigma Imperativo
 
-* Bibliografia
-** Impressa
+  Mas o que torna uma linguagem imperativa? Basicamente um programa encrito de maneira imperativa possui duas característica básicas:
 
-   - Nome: Essential TypeScript | It’s JavaScript... only better.
-   - Author: Jess Chadwick
+  - Um estado do programa;
+  - Instruções que alteram o estado do programa;
 
-** Links
-   - Typescript Deep Dive
-   - https://basarat.gitbooks.io/typescript/
+    Por intruções pode se inferir o sentido lexical da palavra de mandar, ou imperar que uma atividade seja executada de forma autoritária. Uma frase que é usualmente  usada na literatura para decrever esse paradigma é
+
+    #+BEGIN_QUOTE
+    Primeiro faça isso, depois faça aquilo.
+    #+END_QUOTE
+
+    Indicando que o prgramador é diretamente responsável por preconceber todos os caminhos em que o usuário vai poder percorrer. O problema começa a aparecer quando o tamanho do programa cresce. Maiores programas oferecem mais "caminhos" aos usuário, que exponecialmente aumentam a combinações de rotas possíveis em que o usuário teóricamente tem acesso. Com isso situações atípicas podem intruduzir bugs de difícil reconhecimento tornando o código de difícil manutenção.
+
+** Paradigma Funcional
+
+
+
+
+* Linguagens Imperativas
