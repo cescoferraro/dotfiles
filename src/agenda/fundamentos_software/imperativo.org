@@ -1,19 +1,9 @@
 #+TITLE: Paradigma Imperativo
 #+OPTIONS: toc:nil
-#+LATEX_HEADER: \usepackage[brazil,english]{babel}
 
-#+language: pt
-#+macro: lang @@latex:\selectlanguage{$1}@@
-{{{lang(english)}}}
-#+begin_abstract
-whatever
-#+end_abstract
-{{{lang(portuguese)}}}
-#+begin_abstract
-Esse artigo visa demostrar a especificidades do paradigma imperativo, além de exibir uma análise de como o mesmo se contrapõe com o paradigma funcional. Para que a visualização e entendimento sejam claros serão utilizadas tabelas contrastando essas diferenças.
-#+end_abstract
-
-
+\begin{abstract}
+This article aims to show the specificities of the imperative paradigm. As well as making a history background of the reason why the paradigm is wwidely used at classic programming languages, making them behave like they do.
+\end{abstract}
 
 * Relação com Engenharia de Software
 

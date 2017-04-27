@@ -1,0 +1,12 @@
+Matemática Discreta
+
+
+| Relação      | Entendimento                             |
+|--------------+------------------------------------------|
+| Funcional    | Para cada A existe no máximo um B        |
+| Injetora     | Para cada B existe no máximo um A        |
+| Total        | Domínio deve ser o Próprio A             |
+| Sobrejetora  | Conjunto images é o próprio B            |
+| Monomorfismo | Total e Injetora                         |
+| Epimorfismo  | Funcional e Sobrejetora                  |
+| Isomorfismo  | Total, Injetora, Funcional e Sobrejetora |

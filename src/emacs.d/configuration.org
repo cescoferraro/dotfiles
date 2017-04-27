@@ -264,7 +264,19 @@ narrowed."
 
    #+END_SRC
 
+
+** Openwith
+
+#+BEGIN_SRC emacs-lisp
+(use-package openwith
+	  :ensure t
+	  :config
+	  (openwith-mode t)
+	  (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
+#+END_SRC
+
 ** Iedit
+
    #+BEGIN_SRC emacs-lisp
 (use-package iedit :ensure t)
    #+END_SRC
