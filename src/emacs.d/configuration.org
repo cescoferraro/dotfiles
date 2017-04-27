@@ -207,53 +207,41 @@ narrowed."
    #+END_SRC
 * Org
   #+BEGIN_SRC emacs-lisp
-        (use-package org :ensure t
-  	:config
+    (use-package org :ensure t
+      :config
 
-  	;; Append new packages
-  	(require 'ox-latex)
-  	(use-package org-bullets
-            :ensure t
-            :config
-
-
-            (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
-    )
-
-  	(use-package ox-reveal
-            :ensure ox-reveal)
-
-  	(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-  	(setq org-reveal-mathjax t)
-
-  	(use-package htmlize
-            :ensure t)
+      (require 'ox-latex)
+      (use-package org-bullets
+        :ensure t
+        :config
 
 
-            (defvar org-export-latex-add-link-footnotes nil
-    	  "If non-nil links will be added as footnotes if exported to latex.")
+        (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+        )
 
-            (defun org-export-latex-link-footnote (text backend info)
-    	  "Create a footnote in latex for each link. So when printed the information isn't lost."
-    	  (when (and org-export-latex-add-link-footnotes
-    		     (org-export-derived-backend-p backend 'latex)
-    		     (string-match "\\\\href{\\(.*\\)}{\\(.*\\)}" text))
-    	    (when (some (lambda (type)
-    			  (string-prefix-p type (match-string 1 text)))
-    			'("http" "https" "ftp" "mailto" "doi"))
-    	      (format "%s \\footnote{\\url{%s}} " text (match-string 1 text)))))
-            (add-to-list 'org-export-filter-link-functions #'org-export-latex-link-footnote)
-            (setq org-src-fontify-natively t)
-            (setq org-confirm-babel-evaluate nil)
-            (org-babel-do-load-languages
-             'org-babel-load-languages
-             '((emacs-lisp . t)
-    	   (python . t)
-    	   (go . t)
-    	   (java . t)
-    	   (lisp . t)))
+      (use-package ox-reveal
+        :ensure ox-reveal)
 
-  	)
+      (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+      (setq org-reveal-mathjax t)
+
+      (use-package htmlize
+        :ensure t)
+
+
+      (add-hook 'org-mode-hook #'visual-line-mode)
+      (setq org-src-fontify-natively t)
+      (setq org-src-preserve-indentation t)
+      (setq org-confirm-babel-evaluate nil)
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((emacs-lisp . t)
+         (python . t)
+         (go . t)
+         (java . t)
+         (lisp . t)))
+
+      )
 
   #+END_SRC
 * Packages

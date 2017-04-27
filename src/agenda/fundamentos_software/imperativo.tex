@@ -1,4 +1,4 @@
-% Created 2017-04-26 Wed 14:39
+% Created 2017-04-26 Wed 20:50
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -30,8 +30,7 @@
 \maketitle
 \selectlanguage{english}
 \begin{abstract}
-This article aims to show some specificity of the imperative paradigm, furthermore showing an analisys of how it compares
-with the functional paradigm. For a better visualizations and understanding, tables will be use to show its differences.
+whatever
 \end{abstract}
 \selectlanguage{portuguese}
 \begin{abstract}
@@ -40,22 +39,116 @@ Esse artigo visa demostrar a especificidades do paradigma imperativo, além de e
 
 
 
-\section{Contextualização}
-\label{sec:org9d1b70b}
+\section{Relação com Engenharia de Software}
+\label{sec:orga62fccb}
 
-Uma linguagem de programação é a padronização de métodos que tem como objetivo comunicar instruções um computador mantendo a mesma estrutura sintática. Não obstante, um paradigma de programação é a visão que o indivíduo que digita o código tem sobre a estrutura e execução de um programa. O que nos leva a concluir que diferentes linguagem fazem escolhas diferentes quanto a forma e compilação dos mesmos, dependendo da visão que o seu autor vê como o mais ajustado para enfrentar os seus desafios e problemas que a mesma tenta resolver.
-Mas o que torna uma linguagem imperativa? Basicamente um programa encrito de maneira imperativa possui duas característica básica:
+Uma linguagem de programação é a padronização de métodos que tem como objetivo comunicar instruções um computador mantendo a mesma estrutura sintática. Não obstante, um paradigma de programação é a visão que o indivíduo que digita o código tem sobre a estrutura e execuçjão de um programa. O que nos leva a concluir que diferentes linguagem fazem escolhas diferentes quanto a forma e compilação dos mesmos, dependendo da visão que o seu autor vê como o mais ajustado para enfrentar os seus desafios e problemas que a mesma tenta resolver. Portanto, como enegenheiros de software é imprescindível que possamos entender as características básicas que diferenciam as principais linguagens de programação do mercado, permitindo a escolha da linguagem mais apropriada para o desenvolvimento de um software para um possível contratante.
+
+\section{Contextualização}
+\label{sec:orgf4a1de4}
+
+Mas o que torna uma linguagem imperativa? Basicamente um programa encrito de maneira imperativa possui duas característica básicas:
 
 \begin{itemize}
 \item Um estado do programa;
-\item Instruções que alteram o estado do programa;
+\item Instruções que alteram o estado do programa.
+\end{itemize}
 
 Por intruções pode se inferir o sentido lexical da palavra de mandar, ou imperar que uma atividade seja executada de forma autoritária. Uma frase que é usualmente  usada na literatura para decrever esse paradigma é
 
 \begin{quote}
 Primeiro faça isso, depois faça aquilo.
 \end{quote}
+
+Indicando que o prgramador é diretamente responsável por preconceber todos os caminhos em que o usuário vai poder percorrer. O problema começa a aparecer quando o tamanho do programa cresce. Maiores programas oferecem mais "caminhos" aos usuário, que exponecialmente aumentam a combinações de rotas possíveis em que o usuário teóricamente tem acesso. Com isso situações atípicas podem intruduzir bugs de difícil reconhecimento tornando o código de difícil manutenção.
+
+\section{Modelo Computacional}
+\label{sec:org2b9f14e}
+
+O paradigma imperativo também é conhecido por paradigma procedural, é o modelo de programação mais antigo. Na década de 40, John von Neumann e outros cientistas da computação se dão conta de que assim como o programa, seus dados podem ser guardados na memória principal da aplicação. Touring também trabalhaca na mesma linha de pensamento à época e é esse conceito que fundamenta o paradigma imperativo. A atribuição de novos valores às variáveis que residem em memória é o cerne do conceito.
+Essas declarações atribuem locais de memória e nome para cada variável e associam tipos aos valores armazenados. A execução do programa é basicamente síncrona; isto é, eles são executados na mesma ordem em que aparecem na memória. Entretanto, tanto variações condicionais quando incondicionais podem alterar o fluxo normal de execução. Os fatos de que um programa alocar dinamicamente variaveis e seus valores em memória , bem como, possuir comandos de ramificação e/ou condicionais que permitem que um determinado comando deixe de ser executado ou seja repetidamente executado tornam uma linguagem completa quanto a Touring.
+Essa medida, é importante por que apresenta um conjunto mínimo de recusos que uma linguagem de programação deve possuir ; a fim de ser capaz de expressar qualquer algoritmo a ser cocebido. Segundo TUCKER(2010):
+\begin{quote}
+Linguagens imperativas que contêm variáveis e valores inteiros, operações aritméticas básicas, comandos de atribuição, seqüenciamento de comandos baseados em memórias, condições e comandos de ramificação são “completas quanto a Turing”
+\end{quote}
+
+\section{Características}
+\label{sec:org9a7fb94}
+
+A fim de ser considerada imperativa uma linguagem tem de obrigatoriamente ser completa quanto a Touring e suportar características mais elaboradas que se tornaram mais necessárias com a evolução da ciência como um todo. São eles
+
+\begin{itemize}
+\item Estruturas de controle.
+\item Entrada/saída.
+\item Manipulação de exceções e erros.
+\item Abstração procedural.
+\item Expressões e atribuição.
+\item Suporte de biblioteca para estruturas de dados.
 \end{itemize}
-\section{Linguagens Imperativas}
-\label{sec:org6590f4c}
+
+Enquanto os três primeiros ítems são inerentes à Touring, os três ultimos fazem referência a essas características mais contemporâneas do paradigma. São esse pontos em que o artigo tenta focar, por serem as características que variam dependendo da linguagem a ser observada.
+
+\subsection{Abstração Procedural}
+\label{sec:org0e25a6e}
+É a capacidade de extrair pequenas unidades lógicas que permitem o programador abstrair a implementação de um algarismo, possibilitando um maior foco no valor da algoritmo do que sua implementação em sí. Considere esse simples programa escrito em Golang. Dado um array de inteiros chamado \uline{list}, ele impreme na tela verdadeiro ou falso, dependendo do valor da variável \uline{check}.
+\begin{verbatim}
+fmt.Println("Current Time:", time.Now())
+
+var list = []int{2, 3, 3}
+var check = 3
+for _, a := range list {
+	if a == check {
+		log.Println(true)
+	}
+}
+log.Println(false)
+\end{verbatim}
+
+Já no exemplo a seguir, o resultado é o mesmo, entretanto as instruções ultilizadas para gerar o resultado do algoritmo que indentifica se a variével \uline{check} está em \_ list\_ foram abstraidos para uma função chamada \uline{contains}. Nesse caso, a implmentação é pequena, apenas seis linhas, mas é fácil perceber como esse processo permite que grandes algoritmos não atrapalhem a legibilidade do código escrito. Uma vez escrito, um algoritmo seja abstraído em um porção que código que pode ser reultilizada em diferentes partes do programa,
+
+
+\begin{verbatim}
+package main
+
+import "log"
+
+func main() {
+	var list = []int{1, 2, 3}
+	var check = 3
+	log.Println(contains(list, check))
+}
+
+func contains(s []int, e int) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+\end{verbatim}
+
+\subsection{Expressões e Atribuições}
+\label{sec:org4116f31}
+
+\subsection{Suporte de Bibliotecas para estrutura de Dados}
+\label{sec:orgc7ced55}
+
+\subsection{Exemplos de Linguagens Imperativas}
+\label{sec:org8717b60}
+
+Ada,ALGOL,Basic,C,PHP,Java,Cobol,Fortran,Pascal,Python,Lua e Mathematica
+
+
+kk
+
+
+\section{Bibliografia}
+\label{sec:org5c37155}
+
+
+Tucker, Allen B.
+Linguagens de programação - Princípios e paradigmas
+Allen B. Tucker, Robert E. Noonan
+Porto Alegre : AMGH, 2010.
 \end{document}
