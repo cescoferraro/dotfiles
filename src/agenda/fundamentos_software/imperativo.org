@@ -1,6 +1,7 @@
 #+TITLE: Paradigma Imperativo
 #+OPTIONS: toc:nil
 #+LATEX_HEADER: \usepackage[brazil,english]{babel}
+
 #+language: pt
 #+macro: lang @@latex:\selectlanguage{$1}@@
 {{{lang(english)}}}
@@ -49,69 +50,69 @@ Esse artigo visa demostrar a especificidades do paradigma imperativo, além de e
   - Estruturas de controle.
   - Entrada/saída.
   - Manipulação de exceções e erros.
-  - Abstração procedural.
   - Expressões e atribuição.
+  - Abstração procedural.
   - Suporte de biblioteca para estruturas de dados.
 
-  Enquanto os três primeiros ítems são inerentes à Touring, os três ultimos fazem referência a essas características mais contemporâneas do paradigma. São esse pontos em que o artigo tenta focar, por serem as características que variam dependendo da linguagem a ser observada.
-
-** Abstração Procedural
-   É a capacidade de extrair pequenas unidades lógicas que permitem o programador abstrair a implementação de um algarismo, possibilitando um maior foco no valor da algoritmo do que sua implementação em sí. Considere esse simples programa escrito em Golang. Dado um array de inteiros chamado _list_, ele impreme na tela verdadeiro ou falso, dependendo do valor da variável _check_.
-#+begin_src go :imports '("fmt" "log" "time")
-  fmt.Println("Current Time:", time.Now())
-
-  var list = []int{2, 3, 3}
-  var check = 3
-  for _, a := range list {
-	  if a == check {
-		  log.Println(true)
-	  }
-  }
-  log.Println(false)
-#+end_src
-
-   Já no exemplo a seguir, o resultado é o mesmo, entretanto as instruções ultilizadas para gerar o resultado do algoritmo que indentifica se a variével _check_ está em _ list_ foram abstraidos para uma função chamada _contains_. Nesse caso, a implmentação é pequena, apenas seis linhas, mas é fácil perceber como esse processo permite que grandes algoritmos não atrapalhem a legibilidade do código escrito. Uma vez escrito, um algoritmo seja abstraído em um porção que código que pode ser reultilizada em diferentes partes do programa,
-
-
-   #+BEGIN_SRC go
-  package main
-
-  import "log"
-
-  func main() {
-	  var list = []int{1, 2, 3}
-	  var check = 3
-	  log.Println(contains(list, check))
-  }
-
-  func contains(s []int, e int) bool {
-	  for _, a := range s {
-		  if a == e {
-			  return true
-		  }
-	  }
-	  return false
-  }
-   #+END_SRC
-
-   #+RESULTS:
+  Enquanto os três primeiros ítems são inerentes à Touring, os três ultimos fazem referência a essas características mais contemporâneas do paradigma. São esse pontos em que o artigo tenta focar, por serem as características que mais variam dependendo da linguagem a ser observada.
 
 ** Expressões e Atribuições
 
+A sentença imperativa mais trivial é a de atribuição. Onde o resultado de uma expressão é atribuido a uma variável alvo em memória. Existe uma variedade de operadores de atribuição, entretanto os mais usuais são _=_ e _:=_. Exemplos de linguagens que usa o primeiro operador são Fortran, Java e C, enquanto Golang, Algol e Swift usa o último.
+
+#+BEGIN_SRC go
+alvo = expressão
+alvo := expressão
+#+END_SRC
+** Abstração Procedural
+   É a capacidade de extrair pequenas unidades lógicas que permitem o programador abstrair a implementação de um algarismo, possibilitando um maior foco no valor da algoritmo do que sua implementação em sí. Considere esse simples programa escrito em Golang. Dado um array de inteiros chamado _list_, ele imprime na tela verdadeiro ou falso, dependendo do valor da variável _check_.
+   #+begin_src go :imports '("fmt" "log" "time")
+func main() {
+    var list = []int{2, 3, 3}
+    var check = 3
+    for _, a := range list {
+        if a == check {
+	            log.Println(true)
+	        }
+    }
+    log.Println(false)
+}
+   #+end_src
+
+   Já no exemplo a seguir, o resultado é o mesmo, entretanto as instruções utilizadas para gerar o resultado do algoritmo que indentifica se a variével _check_ está em _ list_ foram abstraidos para uma função chamada _contains_. Nesse caso, a implementação é pequena, apenas seis linhas, mas é fácil perceber como esse processo permite que grandes algoritmos não atrapalhem a legibilidade do código escrito. Uma vez abstraído para uma função, o algoritmo agora pode ser reultilizada em diferentes partes do programa,
+
+
+   #+begin_src go :imports '("fmt" "log" "time")
+func main() {
+    var list = []int{1, 2, 3}
+	    var check = 3
+	    log.Println(contains(list, check))
+}
+
+func contains(s []int, e int) bool {
+    for _, a := range s {
+	        if a == e {
+		            return true
+		        }
+	    }
+	    return false
+}
+   #+end_src
+
+
 ** Suporte de Bibliotecas para estrutura de Dados
 
-** Exemplos de Linguagens Imperativas
+   Linguagens modernas disponibilizam bibliotes de funções básicas que facialitam o desenvolvimento de softwares mais complexos, ultilizando a abstração procedural para encapsular funções que irão acabar sendo usadas na maioria do programas, evitando que desenvolvedores "reinventem a roda". Na linguagem Golang, essa biblioteca se chama "standard library" e possui uma lista grande de "packages" que podem ser importados individualmente para facilitar partes específicas do processo de desenvolvimento de software. Algumas delas são:
 
-   Ada,ALGOL,Basic,C,PHP,Java,Cobol,Fortran,Pascal,Python,Lua e Mathematica
-
-
-   kk
-
+| Packages | Função                         |
+|----------+--------------------------------|
+| net/http | servidores web                 |
+| strconv  | conversão de strings           |
+| flag     | argumentos de linha de comando |
+| math     | operações matemáticas          |
+| strings  | manipulação destrings          |
 
 * Bibliografia
 
-
-  Tucker, Allen B.
-  Linguagens de programação - Princípios e paradigmas
-  Allen B. Tucker, Robert E. Noonan
-  Porto Alegre : AMGH, 2010.
+- TUCKER, A. B.; NOONAN R. Linguagens de programação - Princípios e paradigmas. 2a ed. Porto Alegre: AMGH, 2010. 630 p.
+- BROOKSHEAR, J. G. Ciência da Computação: uma visão abrangente. 11a ed. Capítulo 6 - Linguagens de Programação. Porto Alegre: Bookman, 2013. 561 p.
