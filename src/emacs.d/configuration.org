@@ -605,78 +605,46 @@ narrowed."
 *** Go-mode
     #+BEGIN_SRC emacs-lisp
 
-      (use-package company-go
-        :ensure t
-        :config
-        (progn
-          (add-to-list 'company-backends '(company-go :with company-yasnippet))
-          )
-        (setq company-go-show-annotation t)
-        (setq company-go-insert-arguments t))
 
-      (use-package go-mode
-        :ensure t
-        :after evil
-        :config
+(use-package go-mode
+  :ensure t
+  :after evil
+  :config
+  (use-package company-go
+    :ensure t
+    :config
+    (progn
+      (add-to-list 'company-backends '(company-go :with company-yasnippet))
+      )
+    (setq company-go-show-annotation t)
+    (setq company-go-insert-arguments t))
 
-        (use-package golint :ensure t)
-        (use-package godoctor :ensure t)
-        (evil-leader/set-key-for-mode 'go-mode
-          "j" 'godef-jump
-          )
-        (defun my-go-mode-hook ()
-          (setq gofmt-command "goimports")
-          (add-hook 'before-save-hook 'gofmt-before-save)
-          (setq tab-width 2)
-          (if (not (string-match "go" compile-command))
-    	  (set (make-local-variable 'compile-command)
-    	       "go build -v && go test -v && go vet"))
-          (load-file "$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el")
-          )
-        (add-hook 'go-mode-hook 'go-eldoc-setup)
-        (add-hook 'go-mode-hook 'my-go-mode-hook)
+  (use-package golint :ensure t)
+  (use-package godoctor :ensure t)
+  (evil-leader/set-key-for-mode 'go-mode "j" 'godef-jump)
+  (defun my-go-mode-hook ()
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (setq tab-width 8)
+    (if (not (string-match "go" compile-command))
+	(set (make-local-variable 'compile-command)
+	     "go build -v && go test -v && go vet"))
+    (load-file "$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el")
+    )
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-hook 'go-mode-hook 'my-go-mode-hook)
 
-        )
+  )
     #+END_SRC
 
+
 ** Java
-   #+BEGIN_SRC emacs-lisp
-
-     (require 'meghanada)
-     (require 'flycheck)
-     (require 'evil-leader)
-
-     ;;; Code:
-
-     (evil-leader/set-key-for-mode 'java-mode "t"
-       (lambda ()
-         (interactive)
-         (meghanada-run-task "test")
-         (ace-window "")
-         (golden-ratio)
-         )
-       )
-     (evil-leader/set-key-for-mode 'java-mode "c"
-       (lambda ()
-         (interactive)
-         (meghanada-run-task "run")
-         (ace-window "")
-         (golden-ratio)
-         )
-       )
-
-
-     (add-hook 'java-mode-hook
-   	    (lambda ()
-   	      ;; meghanada-mode on
-   	      (meghanada-mode t)
-   	      (add-hook 'before-save-hook (lambda ()
-   					    (flycheck-display-error-at-point)
-   					    (meghanada-code-beautify-before-save)
-   					    ))))
-
-
-   #+END_SRC
+skdbfjsdf
+#+BEGIN_SRC emacs-lisp
+(require 'eclim)
+(add-hook 'java-mode-hook 'eclim-mode)
+(setq eclim-executable "/opt/eclipse/eclim")
+#+END_SRC
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp
