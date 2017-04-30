@@ -27,6 +27,7 @@ My emacs configuration! Enjoy
    : Cambridge, MA
 
 ** Kill other buffers
+
    #+BEGIN_SRC emacs-lisp
      (defun kill-other-buffers ()
        "Kill all other buffers."
@@ -34,7 +35,15 @@ My emacs configuration! Enjoy
        (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
    #+END_SRC
 
+** Errors
+
+   #+BEGIN_SRC emacs-lisp
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
+   #+END_SRC
 ** Shift+ Enter
+
    #+BEGIN_SRC emacs-lisp
      (defun cesco/insert-empty-line ()
        (interactive)
@@ -267,13 +276,13 @@ narrowed."
 
 ** Openwith
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package openwith
 	  :ensure t
 	  :config
 	  (openwith-mode t)
 	  (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
-#+END_SRC
+   #+END_SRC
 
 ** Iedit
 
@@ -515,6 +524,8 @@ narrowed."
          (define-key company-active-map (kbd "M-p") nil)
          (define-key company-active-map (kbd "C-n") #'company-select-next)
          (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (require 'company-emacs-eclim)
+  (company-emacs-eclim-setup)
          (global-company-mode +1))
        :init
        (progn
@@ -639,12 +650,34 @@ narrowed."
 
 
 ** Java
-skdbfjsdf
-#+BEGIN_SRC emacs-lisp
-(require 'eclim)
-(add-hook 'java-mode-hook 'eclim-mode)
+   skdbfjsdf
+   #+BEGIN_SRC emacs-lisp
+
+(use-package gradle-mode
+	  :ensure gradle-mode
+	  :config
+	  (progn
+	(add-hook 'groovy-mode 'gradle-mode)
+	(add-to-list 'auto-mode-alist '("\\.gradle?\\'" . gradle-mode))
+(defun build-and-run ()
+	(interactive)
+	(gradle-run "build run"))
+
+(define-key gradle-mode-map (kbd "C-c C-r") 'build-and-run)
+	    (gradle-mode 1)
+	    ))
+
+(use-package eclim
+:ensure t
+:if (equal user-login-name "cescoferraro")
+:config (progn
+(setq eclimd-autostart t)
 (setq eclim-executable "/opt/eclipse/eclim")
-#+END_SRC
+(define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
+(global-eclim-mode)
+				 ))
+
+   #+END_SRC
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp
@@ -786,9 +819,9 @@ skdbfjsdf
        (set-default 'evil-symbol-word-search t)
        )
    #+END_SRC
-#+BEGIN_SRC emacs-list :tangle yes
+   #+BEGIN_SRC emacs-list :tangle yes
 
-#+END_SRC
-#+BEGIN_SRC emacs-lisp
+   #+END_SRC
+   #+BEGIN_SRC emacs-lisp
 (setq doc-view-continuous t)
-#+END_SRC
+   #+END_SRC
