@@ -1,4 +1,4 @@
-% Created 2017-04-27 Thu 15:15
+% Created 2017-05-01 Mon 02:06
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -22,7 +22,7 @@
  pdftitle={Paradigma Imperativo},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 25.1.2 (Org mode 9.0.5)},
+ pdfcreator={Emacs 25.2.1 (Org mode 9.0.5)},
  pdflang={English}}
 \begin{document}
 
@@ -32,12 +32,12 @@ This article aims to show the specificities of the imperative paradigm. As well 
 \end{abstract}
 
 \section{Relação com Engenharia de Software}
-\label{sec:orgcf7c10f}
+\label{sec:orgf4ba8e6}
 
 Uma linguagem de programação é a padronização de métodos que tem como objetivo comunicar instruções um computador mantendo a mesma estrutura sintática. Não obstante, um paradigma de programação é a visão que o indivíduo que digita o código tem sobre a estrutura e execuçjão de um programa. O que nos leva a concluir que diferentes linguagem fazem escolhas diferentes quanto a forma e compilação dos mesmos, dependendo da visão que o seu autor vê como o mais ajustado para enfrentar os seus desafios e problemas que a mesma tenta resolver. Portanto, como enegenheiros de software é imprescindível que possamos entender as características básicas que diferenciam as principais linguagens de programação do mercado, permitindo a escolha da linguagem mais apropriada para o desenvolvimento de um software para um possível contratante.
 
 \section{Contextualização}
-\label{sec:org2471387}
+\label{sec:org844b0c9}
 
 Mas o que torna uma linguagem imperativa? Basicamente um programa encrito de maneira imperativa possui duas característica básicas:
 
@@ -55,7 +55,7 @@ Primeiro faça isso, depois faça aquilo.
 Indicando que o prgramador é diretamente responsável por preconceber todos os caminhos em que o usuário vai poder percorrer. O problema começa a aparecer quando o tamanho do programa cresce. Maiores programas oferecem mais "caminhos" aos usuário, que exponecialmente aumentam a combinações de rotas possíveis em que o usuário teóricamente tem acesso. Com isso situações atípicas podem intruduzir bugs de difícil reconhecimento tornando o código de difícil manutenção.
 
 \section{Modelo Computacional}
-\label{sec:orga669638}
+\label{sec:org42806ee}
 
 O paradigma imperativo também é conhecido por paradigma procedural, é o modelo de programação mais antigo. Na década de 40, John von Neumann e outros cientistas da computação se dão conta de que assim como o programa, seus dados podem ser guardados na memória principal da aplicação. Touring também trabalhaca na mesma linha de pensamento à época e é esse conceito que fundamenta o paradigma imperativo. A atribuição de novos valores às variáveis que residem em memória é o cerne do conceito.
 Essas declarações atribuem locais de memória e nome para cada variável e associam tipos aos valores armazenados. A execução do programa é basicamente síncrona; isto é, eles são executados na mesma ordem em que aparecem na memória. Entretanto, tanto variações condicionais quando incondicionais podem alterar o fluxo normal de execução. Os fatos de que um programa alocar dinamicamente variaveis e seus valores em memória , bem como, possuir comandos de ramificação e/ou condicionais que permitem que um determinado comando deixe de ser executado ou seja repetidamente executado tornam uma linguagem completa quanto a Touring.
@@ -65,7 +65,7 @@ Linguagens imperativas que contêm variáveis e valores inteiros, operaçõe
 \end{quote}
 
 \section{Características}
-\label{sec:orgc2ed9eb}
+\label{sec:org1e3324c}
 
 A fim de ser considerada imperativa uma linguagem tem de obrigatoriamente ser completa quanto a Touring e suportar características mais elaboradas que se tornaram mais necessárias com a evolução da ciência como um todo. São eles
 
@@ -81,7 +81,7 @@ A fim de ser considerada imperativa uma linguagem tem de obrigatoriamente ser co
 Enquanto os três primeiros ítems são inerentes à Touring, os três ultimos fazem referência a essas características mais contemporâneas do paradigma. São esse pontos em que o artigo tenta focar, por serem as características que mais variam dependendo da linguagem a ser observada.
 
 \subsection{Expressões e Atribuições}
-\label{sec:org8d685a2}
+\label{sec:orge341f54}
 
 A sentença imperativa mais trivial é a de atribuição. Onde o resultado de uma expressão é atribuido a uma variável alvo em memória. Existe uma variedade de operadores de atribuição, entretanto os mais usuais são \uline{=} e \uline{:=}. Exemplos de linguagens que usa o primeiro operador são Fortran, Java e C, enquanto Golang, Algol e Swift usa o último.
 
@@ -90,7 +90,7 @@ alvo = expressão
 alvo := expressão
 \end{verbatim}
 \subsection{Abstração Procedural}
-\label{sec:orga596fbc}
+\label{sec:orgfe8df86}
 É a capacidade de extrair pequenas unidades lógicas que permitem o programador abstrair a implementação de um algarismo, possibilitando um maior foco no valor da algoritmo do que sua implementação em sí. Considere esse simples programa escrito em Golang. Dado um array de inteiros chamado \uline{list}, ele imprime na tela verdadeiro ou falso, dependendo do valor da variável \uline{check}.
 \begin{verbatim}
 func main() {
@@ -127,7 +127,7 @@ func contains(s []int, e int) bool {
 
 
 \subsection{Suporte de Bibliotecas para estrutura de Dados}
-\label{sec:org4cc92d0}
+\label{sec:org0ac2f90}
 
 Linguagens modernas disponibilizam bibliotes de funções básicas que facialitam o desenvolvimento de softwares mais complexos, ultilizando a abstração procedural para encapsular funções que irão acabar sendo usadas na maioria do programas, evitando que desenvolvedores "reinventem a roda". Na linguagem Golang, essa biblioteca se chama "standard library" e possui uma lista grande de "packages" que podem ser importados individualmente para facilitar partes específicas do processo de desenvolvimento de software. Algumas delas são:
 
@@ -144,7 +144,7 @@ strings & manipulação destrings\\
 \end{center}
 
 \section{Bibliografia}
-\label{sec:org3d5b90e}
+\label{sec:org42524cd}
 
 \begin{itemize}
 \item TUCKER, A. B.; NOONAN R. Linguagens de programação - Princípios e paradigmas. 2a ed. Porto Alegre: AMGH, 2010. 630 p.

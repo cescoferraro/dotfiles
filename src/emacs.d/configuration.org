@@ -42,6 +42,12 @@ My emacs configuration! Enjoy
 (setq mac-command-modifier 'control)
 (setq mac-control-modifier 'super)
    #+END_SRC
+** PDF
+
+   #+BEGIN_SRC emacs-lisp
+(setq doc-view-continuous t)
+   #+END_SRC
+
 ** Errors
 
    #+BEGIN_SRC emacs-lisp
@@ -532,7 +538,7 @@ narrowed."
        :ensure t
        :config
        (progn
-
+(add-to-list 'company-backends '(company-elisp  :with company-yasnippet))
          (define-key company-active-map (kbd "M-n") nil)
          (define-key company-active-map (kbd "M-p") nil)
          (define-key company-active-map (kbd "C-n") #'company-select-next)
@@ -551,7 +557,6 @@ narrowed."
          )
        )
    #+END_SRC
-
 ** Startup Screen
    #+BEGIN_SRC emacs-lisp
 (setq inhibit-startup-screen t)
@@ -704,7 +709,7 @@ narrowed."
 *** Meghanada
 
 
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 
 (use-package meghanada :ensure t
 :if (not (string-match-p (regexp-quote "cesco") user-login-name))
@@ -740,7 +745,7 @@ narrowed."
 	    )
 
   )
-#+END_SRC
+    #+END_SRC
 
 ** Typescript
 
@@ -833,7 +838,7 @@ narrowed."
 	       (if (projectile-project-p) ;; detect if current buffer is in a project
 		   (neotree-projectile-action)
 		 (neotree-toggle))
-	       (message "have just deleted neotree window"))))
+	       (message "have just popped neotree"))))
     "/" 'evilnc-comment-or-uncomment-lines
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -882,16 +887,5 @@ narrowed."
        )
    #+END_SRC
    #+BEGIN_SRC emacs-list :tangle yes
-
-   #+END_SRC
-   #+BEGIN_SRC emacs-lisp
-(setq doc-view-continuous t)
-   #+END_SRC
-
-   #+BEGIN_SRC emacs-lisp
-
-(defun buffer-exists (bufname)   (not (eq nil (get-buffer bufname))))
-(buffer-list)
-(buffer-exists " *NeoTree*")
 
    #+END_SRC
