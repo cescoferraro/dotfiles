@@ -37,11 +37,11 @@ My emacs configuration! Enjoy
    #+END_SRC
 
 ** Osx
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'control)
 (setq mac-control-modifier 'super)
-#+END_SRC
+   #+END_SRC
 ** Errors
 
    #+BEGIN_SRC emacs-lisp
@@ -49,6 +49,13 @@ My emacs configuration! Enjoy
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
    #+END_SRC
+
+** FontSize
+
+   #+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :height 150)
+   #+END_SRC
+
 ** Shift+ Enter
 
    #+BEGIN_SRC emacs-lisp
@@ -658,8 +665,8 @@ narrowed."
 
 ** Java
 *** Gradle
-   skdbfjsdf
-   #+BEGIN_SRC emacs-lisp
+    skdbfjsdf
+    #+BEGIN_SRC emacs-lisp
 
 (use-package gradle-mode
 	  :ensure gradle-mode
@@ -674,11 +681,12 @@ narrowed."
 (define-key gradle-mode-map (kbd "C-c C-r") 'build-and-run)
 	    (gradle-mode 1)
 	    ))
-   #+END_SRC
+    #+END_SRC
 *** Eclim
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 (use-package eclim
 :ensure t
+:if (string-match-p (regexp-quote "cesco") user-login-name)
 :config (progn
 (setq eclimd-autostart t)
 
@@ -698,7 +706,7 @@ narrowed."
 				 ))
 
 
-   #+END_SRC
+    #+END_SRC
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp
@@ -782,17 +790,15 @@ narrowed."
   (evil-leader/set-leader ",")
   (evil-leader/set-key
     "m"  (lambda () (interactive)
-	   (if (not(string-equal " *NeoTree*" (buffer-name)))
+	   (if (string-equal " *NeoTree*" (buffer-name))
 	       (progn
-		 (neotree-projectile-action)
-		 (message (buffer-name))
-		 )
+		 (delete-window)
+		 (message "have just deleted neotree window"))
 	     (progn
-	       (message "toogled")
-	       (neotree-toggle)
-	       )
-	     )
-	   )
+	       (if (projectile-project-p) ;; detect if current buffer is in a project
+		   (neotree-projectile-action)
+		 (neotree-toggle))
+	       (message "have just deleted neotree window"))))
     "/" 'evilnc-comment-or-uncomment-lines
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -815,7 +821,7 @@ narrowed."
     "E" 'org-export-dispatch
     "i" 'cesco/indent
     "TAB" 'org-cycle
-    "p" 'helm-projectile-switch-project
+    "p" 'projectile-switch-project
     (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
     (kbd "o") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org")))
 
@@ -845,4 +851,12 @@ narrowed."
    #+END_SRC
    #+BEGIN_SRC emacs-lisp
 (setq doc-view-continuous t)
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+
+(defun buffer-exists (bufname)   (not (eq nil (get-buffer bufname))))
+(buffer-list)
+(buffer-exists " *NeoTree*")
+
    #+END_SRC
