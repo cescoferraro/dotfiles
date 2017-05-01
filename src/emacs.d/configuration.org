@@ -287,7 +287,6 @@ narrowed."
 
    #+END_SRC
 
-
 ** Openwith
 
    #+BEGIN_SRC emacs-lisp
@@ -562,11 +561,6 @@ narrowed."
 
    #+END_SRC
 
-** Whatever
-   #+BEGIN_SRC emacs-lisp
-
-
-   #+END_SRC
 ** SmartParens
    #+BEGIN_SRC emacs-lisp
 
@@ -662,7 +656,6 @@ narrowed."
   )
     #+END_SRC
 
-
 ** Java
 *** Gradle
     skdbfjsdf
@@ -684,6 +677,7 @@ narrowed."
     #+END_SRC
 *** Eclim
     #+BEGIN_SRC emacs-lisp
+
 (use-package eclim
 :ensure t
 :if (string-match-p (regexp-quote "cesco") user-login-name)
@@ -707,58 +701,99 @@ narrowed."
 
 
     #+END_SRC
+*** Meghanada
+
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package meghanada :ensure t
+:if (not (string-match-p (regexp-quote "cesco") user-login-name))
+  :after evil-leader
+  :config (progn
+
+     (evil-leader/set-key-for-mode 'java-mode "t"
+       (lambda ()
+         (interactive)
+         (meghanada-run-task "test")
+         (ace-window "")
+         (golden-ratio)
+         )
+       )
+     (evil-leader/set-key-for-mode 'java-mode "c"
+       (lambda ()
+         (interactive)
+         (meghanada-run-task "run")
+         (ace-window "")
+         (golden-ratio)
+         )
+       )
+
+
+     (add-hook 'java-mode-hook
+   	    (lambda ()
+   	      ;; meghanada-mode on
+   	      (meghanada-mode t)
+   	      (add-hook 'before-save-hook (lambda ()
+   					    (flycheck-display-error-at-point)
+   					    (meghanada-code-beautify-before-save)
+   					    ))))
+	    )
+
+  )
+#+END_SRC
+
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp
-     (use-package tide
-       :ensure t
-       :after evil-leader
-       :config
-       (progn
-         (evil-leader/set-key-for-mode 'web-mode
-   	"j"  (lambda ()
-   	       (interactive)
-   	       (tide-jump-to-implementation )
-   	       )
-   	"g"  (lambda ()
-   	       (interactive)
-   	       (tide-jump-to-definition )
-   	       )
-   	)
+(use-package tide
+  :ensure t
+  :after evil-leader
+  :config
+  (progn
+    (evil-leader/set-key-for-mode 'web-mode
+      "j"  (lambda ()
+	     (interactive)
+	     (tide-jump-to-implementation )
+	     )
+      "g"  (lambda ()
+	     (interactive)
+	     (tide-jump-to-definition )
+	     )
+      )
 
-         (defun setup-tide-mode ()
-   	(interactive)
-   	(tide-setup)
-   	(flycheck-mode +1)
-   	(setq flycheck-check-syntax-automatically '(save mode-enabled))
-   	(eldoc-mode +1)
-   	(tide-hl-identifier-mode +1)
-   	(add-to-list 'company-backends '(company-tide :with company-yasnippet))
-   	)
+    (defun setup-tide-mode ()
+      (interactive)
+      (tide-setup)
+      (flycheck-mode +1)
+      (setq flycheck-check-syntax-automatically '(save mode-enabled))
+      (eldoc-mode +1)
+      (tide-hl-identifier-mode +1)
+      (add-to-list 'company-backends '(company-tide :with company-yasnippet))
+      )
 
-         ;; formats the buffer before saving
-         (add-hook 'before-save-hook 'tide-format-before-save)
+    ;; formats the buffer before saving
+    (add-hook 'before-save-hook 'tide-format-before-save)
 
-         (add-hook 'typescript-mode-hook #'setup-tide-mode)
+    (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
-         (use-package web-mode :ensure t
-   	:config
+    (use-package web-mode :ensure t
+      :config
 
-   	(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-   	(add-hook 'web-mode-hook
-   		  (lambda ()
-   		    (when (string-equal "tsx" (file-name-extension buffer-file-name))
-   		      (setup-tide-mode))))
+      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+      (add-hook 'web-mode-hook
+		(lambda ()
+		  (when (string-equal "tsx" (file-name-extension buffer-file-name))
+		    (setup-tide-mode))))
 
-   	(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-   	(add-hook 'web-mode-hook
-   		  (lambda ()
-   		    (when (string-equal "jsx" (file-name-extension buffer-file-name))
-   		      (setup-tide-mode))))
+      (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+      (add-hook 'web-mode-hook
+		(lambda ()
+		  (when (string-equal "jsx" (file-name-extension buffer-file-name))
+		    (setup-tide-mode))))
 
-   	)
-         )
-       )
+      )
+    )
+  )
 
 
    #+END_SRC
