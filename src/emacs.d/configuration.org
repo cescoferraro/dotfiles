@@ -26,7 +26,8 @@ My emacs configuration! Enjoy
    #+RESULTS:
    : Cambridge, MA
 
-** Kill other buffers
+** Kill other bufferso
+
 
    #+BEGIN_SRC emacs-lisp
      (defun kill-other-buffers ()
@@ -35,6 +36,12 @@ My emacs configuration! Enjoy
        (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
    #+END_SRC
 
+** Osx
+#+BEGIN_SRC emacs-lisp
+(setq mac-option-modifier 'meta)
+(setq mac-command-modifier 'control)
+(setq mac-control-modifier 'super)
+#+END_SRC
 ** Errors
 
    #+BEGIN_SRC emacs-lisp
@@ -650,6 +657,7 @@ narrowed."
 
 
 ** Java
+*** Gradle
    skdbfjsdf
    #+BEGIN_SRC emacs-lisp
 
@@ -666,16 +674,29 @@ narrowed."
 (define-key gradle-mode-map (kbd "C-c C-r") 'build-and-run)
 	    (gradle-mode 1)
 	    ))
-
+   #+END_SRC
+*** Eclim
+#+BEGIN_SRC emacs-lisp
 (use-package eclim
 :ensure t
-:if (equal user-login-name "cescoferraro")
 :config (progn
 (setq eclimd-autostart t)
+
+(cond
+   ((string-equal system-type "gnu/linux")
+        ;; window size
+
 (setq eclim-executable "/opt/eclipse/eclim")
+        )
+   ((string-equal system-type "darwin")
+    ;; window size
+(setq eclim-executable "~/eclipse/Eclipse.app/Contents/Eclipse/eclim")
+    )
+)
 (define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
 (global-eclim-mode)
 				 ))
+
 
    #+END_SRC
 ** Typescript
@@ -755,52 +776,52 @@ narrowed."
    #+END_SRC
 ** Evil-Leader
    #+BEGIN_SRC emacs-lisp
-     (use-package evil-leader
-       :ensure t
-       :config
-       (evil-leader/set-leader ",")
-       (evil-leader/set-key
-         "m"  (lambda () (interactive)
-   	     (if (not(string-equal " *NeoTree*" (buffer-name)))
-   		 (progn
-   		   (neotree-projectile-action)
-   		   (message (buffer-name))
-   		   )
-   	       (progn
-         		 (message "toogled")
-      		 (neotree-toggle)
-   		 )
-   	       )
-   	     )
-         "/" 'evilnc-comment-or-uncomment-lines
-         "ci" 'evilnc-comment-or-uncomment-lines
-         "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-         "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
-         "cc" 'evilnc-copy-and-comment-lines
-         "cp" 'evilnc-comment-or-uncomment-paragraphs
-         "cr" 'comment-or-uncomment-region
-         "cv" 'evilnc-toggle-invert-comment-line-by-line
-         "\\" 'evilnc-comment-operator
-         "z" 'zoom-window-zoom
-         "f" 'helm-projectile
-         "b" 'helm-buffers-list
-         "s" 'save-buffer
-         "q" 'kill-emacs
-         "G" 'magit-status
-         "w" 'delete-window
-         "e" 'kill-this-buffer
-         "," 'previous-buffer
-         ";" 'projectile-run-eshell
-         "E" 'org-export-dispatch
-         "i" 'cesco/indent
-         "TAB" 'org-cycle
-         "p" 'helm-projectile-switch-project
-         (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
-         (kbd "o") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org")))
+(use-package evil-leader
+  :ensure t
+  :config
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key
+    "m"  (lambda () (interactive)
+	   (if (not(string-equal " *NeoTree*" (buffer-name)))
+	       (progn
+		 (neotree-projectile-action)
+		 (message (buffer-name))
+		 )
+	     (progn
+	       (message "toogled")
+	       (neotree-toggle)
+	       )
+	     )
+	   )
+    "/" 'evilnc-comment-or-uncomment-lines
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "\\" 'evilnc-comment-operator
+    "z" 'zoom-window-zoom
+    "f" 'helm-projectile
+    "b" 'helm-buffers-list
+    "s" 'save-buffer
+    "q" 'kill-emacs
+    "G" 'magit-status
+    "w" 'delete-window
+    "e" 'kill-this-buffer
+    "," 'previous-buffer
+    ";" 'projectile-run-eshell
+    "E" 'org-export-dispatch
+    "i" 'cesco/indent
+    "TAB" 'org-cycle
+    "p" 'helm-projectile-switch-project
+    (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
+    (kbd "o") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org")))
 
 
-       (global-evil-leader-mode)
-       )
+  (global-evil-leader-mode)
+  )
    #+END_SRC
 
    #+RESULTS:
