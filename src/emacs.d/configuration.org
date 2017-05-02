@@ -73,23 +73,60 @@ My emacs configuration! Enjoy
 ** tabbar
 
    #+BEGIN_SRC emacs-lisp
-     (use-package tabbar
-     :after evil
-       :init
-       (setq tabbar-background-color nil)
-       (setq tabbar-separator (quote (1.0)))
-       (setq tool-bar-mode nil)
-       :config
-       (setq tabbar-background-color "#393939")
-       (custom-set-faces
-        '(tabbar-default ((t (:inherit variable-pitch :background "#393939" :foreground "black" :weight bold))))
-        '(tabbar-button ((t (:inherit tabbar-default :foreground "#f2f0ec"))))
-        '(tabbar-button-highlight ((t (:inherit tabbar-default))))
-        '(tabbar-highlight ((t (:underline t))))
-        '(tabbar-selected ((t (:inherit tabbar-default :background "#393939" :foreground "#ffcc66"))))
-        '(tabbar-separator ((t (:inherit tabbar-default :background "#393939"))))
-        '(tabbar-unselected ((t (:inherit tabbar-default)))))
-       (tabbar-mode 1))
+(use-package tabbar
+  :after evil
+  :init
+  (setq tabbar-cycle-scope 'tabs)
+  (setq tabbar-background-color nil)
+  (setq tabbar-separator (quote (1.0)))
+  (setq tool-bar-mode nil)
+  :config
+  (setq tabbar-background-color "#393939")
+  (custom-set-faces
+   '(tabbar-default ((t (:inherit variable-pitch :height 1.4 :background "#393939" :foreground "black" :weight bold))))
+   '(tabbar-button ((t (:inherit tabbar-default :foreground "#f2f0ec"))))
+   '(tabbar-button-highlight ((t (:inherit tabbar-default))))
+   '(tabbar-highlight ((t (:underline t))))
+   '(tabbar-selected ((t (:inherit tabbar-default :background "#393939" :foreground "#ffcc66"))))
+   '(tabbar-separator ((t (:inherit tabbar-default :background "#393939"))))
+   '(tabbar-unselected ((t (:inherit tabbar-default)))))
+  (global-set-key (kbd "s-{") 'tabbar-backward-group)
+  (global-set-key (kbd "s-}") 'tabbar-forward-group)
+  (global-set-key (kbd "s-[") 'tabbar-backward)
+  (global-set-key (kbd "s-]") 'tabbar-forward)
+  (defun my-tabbar-buffer-groups-by-project ()
+    (list
+     (cond
+      ((memq major-mode '(mu4e-view-mode mu4e-main-mode mu4e-headers-mode mu4e-view-raw-mode
+					 twittering-mode weibo-timeline-mode
+					 jabber-roster-mode jabber-chat-mode erc-mode douban-music-mode
+					 ))
+       "Activity"
+       )
+      ((memq major-mode '(eshell-mode term-mode shell-mode))
+       (if (projectile-project-p) (projectile-project-name) "Common")
+       )
+      ((string-equal "*" (substring (buffer-name) 0 1))
+       "Emacs"
+       )
+      ((memq major-mode '(fundamental-mode))
+       "Emacs"
+       )
+      (t
+       (if (projectile-project-p) (projectile-project-name) "Common")
+       )
+      )))
+
+  (defun my-tabbar-buffer-groups-by-all ()
+    (list
+     (cond
+      ((string-equal "*" (substring (buffer-name) 0 1))
+       "Emacs"
+       )
+      (t "All"))))
+
+  (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups-by-project)
+  (tabbar-mode 1))
    #+END_SRC
 ** Indent
    #+BEGIN_SRC emacs-lisp
@@ -622,33 +659,38 @@ narrowed."
 ** Golang
 *** Go path
     #+BEGIN_SRC emacs-lisp
-(setenv "GOPATH" "/home/cescoferraro/go")
+(cond
+   ((string-equal system-type "gnu/linux")(setenv "GOPATH" "/home/cescoferraro/go"))
+   ((string-equal system-type "darwin")(setenv "GOPATH" "/Users/cesco/go")))
 (add-to-list 'exec-path (concat (getenv "GOPATH")  "/bin"))
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
     #+END_SRC
+
+*** Go-company
+
+    #+BEGIN_SRC emacs-lisp
+(use-package company-go
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'company-backends '(company-go :with company-yasnippet))
+    )
+  (setq company-go-show-annotation t)
+  (setq company-go-insert-arguments t))
+    #+END_SRC
 *** Go-mode
     #+BEGIN_SRC emacs-lisp
-
-
 (use-package go-mode
   :ensure t
   :after evil
   :config
-  (use-package company-go
-    :ensure t
-    :config
-    (progn
-      (add-to-list 'company-backends '(company-go :with company-yasnippet))
-      )
-    (setq company-go-show-annotation t)
-    (setq company-go-insert-arguments t))
 
   (use-package golint :ensure t)
   (use-package godoctor :ensure t)
   (evil-leader/set-key-for-mode 'go-mode "j" 'godef-jump)
   (defun my-go-mode-hook ()
-    (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
+    (setq gofmt-command "goimports")
     (setq tab-width 8)
     (if (not (string-match "go" compile-command))
 	(set (make-local-variable 'compile-command)
