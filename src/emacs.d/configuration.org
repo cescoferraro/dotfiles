@@ -322,6 +322,7 @@ narrowed."
 
    #+END_SRC
 ** CSS
+
    #+BEGIN_SRC emacs-lisp
 (use-package css-mode
   :mode (("\\.css\\'" . css-mode)
@@ -329,6 +330,17 @@ narrowed."
   :ensure t)
 
    #+END_SRC
+
+** Rainbox
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+	  :ensure t)
+(use-package rainbow-mode
+  :ensure t
+  :diminish rainbow-mode
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-mode))
+#+END_SRC
 
 ** Openwith
 
@@ -402,19 +414,29 @@ narrowed."
 ** Magit
 
    #+BEGIN_SRC emacs-lisp
-     (use-package magit
-       :demand magit
-       :config (progn     (use-package magit-gitflow
-   			 :commands (turn-on-magit-gitflow)
-   			 :init
-   			 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-   			 )
-   		       (evil-leader/set-key "g" 'magit-status)
-   		       (setq magit-auto-revert-mode nil)))
+(use-package git-gutter-fringe
+  :diminish git-gutter-mode
+  :config
+  (global-git-gutter-mode t)
+  (set-face-foreground 'git-gutter-fr:modified "yellow")
+  (set-face-foreground 'git-gutter-fr:added    "blue")
+  (set-face-foreground 'git-gutter-fr:deleted  "white")
+  (setq git-gutter-fr:side 'left-fringe))
 
-     (use-package evil-magit
-       :after evil
-       :demand evil-magit)
+(use-package magit
+  :demand magit
+  :config (progn     (use-package magit-gitflow
+		       :commands (turn-on-magit-gitflow)
+		       :init
+		       (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+		       )
+		     (evil-leader/set-key "g" 'magit-status)
+		     (setq magit-auto-revert-mode nil)))
+
+
+(use-package evil-magit
+  :after evil
+  :demand evil-magit)
 
    #+END_SRC
 
