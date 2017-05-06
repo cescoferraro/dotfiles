@@ -35,12 +35,15 @@ My emacs configuration! Enjoy
        (interactive)
        (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
    #+END_SRC
-
 ** Osx
    #+BEGIN_SRC emacs-lisp
 (setq mac-option-modifier 'meta)
 (setq mac-command-modifier 'control)
 (setq mac-control-modifier 'super)
+   #+END_SRC
+** REplace region when typing
+   #+BEGIN_SRC emacs-lisp
+(delete-selection-mode +1)
    #+END_SRC
 ** PDF
 
@@ -59,7 +62,7 @@ My emacs configuration! Enjoy
 ** FontSize
 
    #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :height 150)
+(set-face-attribute 'default nil :height 115)
    #+END_SRC
 
 ** Shift+ Enter
@@ -332,7 +335,7 @@ narrowed."
    #+END_SRC
 
 ** Rainbox
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
 	  :ensure t)
 (use-package rainbow-mode
@@ -340,7 +343,7 @@ narrowed."
   :diminish rainbow-mode
   :config
   (add-hook 'prog-mode-hook 'rainbow-mode))
-#+END_SRC
+   #+END_SRC
 
 ** Openwith
 
@@ -677,7 +680,15 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
      (setq timonier-k8s-proxy "http://127.0.0.1:8001")
    #+END_SRC
+** Nyan Mode
+   #+begin_src emacs-lisp :tangle yes
+(use-package nyan-mode
+  :config
+  (nyan-mode 1))
+   #+end_src
 * Languages
+
+
 ** Golang
 *** Go path
     #+BEGIN_SRC emacs-lisp
@@ -748,25 +759,25 @@ narrowed."
     #+BEGIN_SRC emacs-lisp
 
 (use-package eclim
-:ensure t
-:if (string-match-p (regexp-quote "cesco") user-login-name)
-:config (progn
-(setq eclimd-autostart t)
+  :ensure t
+  :if (string-match-p (regexp-quote "cesco") user-login-name)
+  :config (progn
+	    ;; (setq eclimd-autostart t)
 
-(cond
-   ((string-equal system-type "gnu/linux")
-        ;; window size
+	    (cond
+	     ((string-equal system-type "gnu/linux")
+	      ;; window size
 
-(setq eclim-executable "/opt/eclipse/eclim")
-        )
-   ((string-equal system-type "darwin")
-    ;; window size
-(setq eclim-executable "~/eclipse/Eclipse.app/Contents/Eclipse/eclim")
-    )
-)
-(define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
-(global-eclim-mode)
-				 ))
+	      (setq eclim-executable "/opt/eclipse/eclim")
+	      )
+	     ((string-equal system-type "darwin")
+	      ;; window size
+	      (setq eclim-executable "~/eclipse/Eclipse.app/Contents/Eclipse/eclim")
+	      )
+	     )
+	    (define-key eclim-mode-map (kbd "C-c C-c") 'eclim-problems-correct)
+	    (global-eclim-mode)
+	    ))
 
 
     #+END_SRC
@@ -811,6 +822,13 @@ narrowed."
   )
     #+END_SRC
 
+** Javascript
+
+   #+BEGIN_SRC emacs-lisp
+	(use-package js2-mode
+	  :commands (js2-mode)
+	  :mode (("\\.js\\'" . js2-mode)))
+   #+END_SRC
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp

@@ -1,0 +1,6 @@
+
+
+
+
+** TODO Sql Plus docker container
+** TODO emacs sql environk
