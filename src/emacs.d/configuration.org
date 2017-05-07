@@ -314,6 +314,17 @@ narrowed."
 
   #+END_SRC
 * Packages
+** Emojis
+#+begin_src emacs-lisp :tangle yes
+(use-package emoji-cheat-sheet-plus
+    :defer t
+    :init
+    (progn
+      ;; enabled emoji in buffer
+      (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
+      ;; insert emoji with helm
+      (global-set-key (kbd "C-x C-e") 'emoji-cheat-sheet-plus-insert)))
+#+end_src
 ** Helm
 
    #+BEGIN_SRC emacs-lisp
@@ -680,12 +691,7 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
      (setq timonier-k8s-proxy "http://127.0.0.1:8001")
    #+END_SRC
-** Nyan Mode
-   #+begin_src emacs-lisp :tangle yes
-(use-package nyan-mode
-  :config
-  (nyan-mode 1))
-   #+end_src
+
 * Languages
 
 
