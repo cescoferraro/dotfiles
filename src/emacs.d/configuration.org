@@ -1057,6 +1057,3 @@ narrowed."
    #+BEGIN_SRC emacs-list :tangle yes
 
    #+END_SRC
-
-
-only
