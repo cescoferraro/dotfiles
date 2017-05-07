@@ -51,6 +51,10 @@ My emacs configuration! Enjoy
 (setq doc-view-continuous t)
    #+END_SRC
 
+** Hide Scroll Bar
+   #+begin_src emacs-lisp
+(scroll-bar-mode -1)
+   #+end_src
 ** Errors
 
    #+BEGIN_SRC emacs-lisp
@@ -276,50 +280,51 @@ narrowed."
    #+END_SRC
 * Org
   #+BEGIN_SRC emacs-lisp
-    (use-package org :ensure t
-      :config
+(use-package org :ensure t
+  :config
 
-      (require 'ox-latex)
-      (use-package org-bullets
-        :ensure t
-        :config
-
-
-        (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
-        )
-
-      (use-package ox-reveal
-        :ensure ox-reveal)
-
-      (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-      (setq org-reveal-mathjax t)
-
-      (use-package htmlize
-        :ensure t)
+  (require 'ox-latex)
+  (use-package org-bullets
+    :ensure t
+    :config
 
 
-      (add-hook 'org-mode-hook #'visual-line-mode)
-      (setq org-src-fontify-natively t)
-      (setq org-src-preserve-indentation t)
-      (setq org-confirm-babel-evaluate nil)
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((emacs-lisp . t)
-         (python . t)
-         (go . t)
-         (java . t)
-         (lisp . t)))
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+    )
 
-      )
+  (use-package ox-reveal
+    :ensure ox-reveal)
+
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+  (setq org-reveal-mathjax t)
+
+  (use-package htmlize
+    :ensure t)
+
+
+  (add-hook 'org-mode-hook #'visual-line-mode)
+  (diminish 'visual-line-mode)
+  (setq org-src-fontify-natively t)
+  (setq org-src-preserve-indentation t)
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (go . t)
+     (java . t)
+     (lisp . t)))
+
+  )
 
   #+END_SRC
 * Packages
 ** Nyan Mode
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
 (use-package nyan-mode :ensure t :config (nyan-mode))
-#+end_src
+   #+end_src
 ** Emojis
-#+begin_src emacs-lisp
+   #+begin_src emacs-lisp
 (use-package emojify
   :ensure t
   :config (progn
@@ -330,7 +335,7 @@ narrowed."
   (progn
     ;; insert emoji with helm
     (global-set-key (kbd "C-c M-e") 'emoji-cheat-sheet-plus-insert)))
-#+end_src
+   #+end_src
 ** Helm
 
    #+BEGIN_SRC emacs-lisp
@@ -397,6 +402,7 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
      (use-package emmet-mode
        :ensure t
+       :diminish emmet-mode
        :init
        (add-hook 'html-mode-hook 'emmet-mode)
        (add-hook 'web-mode-hook 'emmet-mode))
@@ -421,7 +427,7 @@ narrowed."
 
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
-       :diminish global-flycheck-mode
+       :diminish flycheck-mode
        :config
        (global-flycheck-mode)
        (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
@@ -577,45 +583,81 @@ narrowed."
 (setq beacon-push-mark 35)
 (setq beacon-color "#666600")))
    #+END_SRC
+** Eldoc
+
+   #+begin_src emacs-lisp
+(use-package eldoc :ensure t :diminish eldoc-mode)
+   #+end_src
+
+
 ** ModeLine
    #+BEGIN_SRC emacs-lisp
-(use-package      smart-mode-line-powerline-theme
-    :ensure smart-mode-line-powerline-theme)
-  (use-package smart-mode-line
-    :ensure smart-mode-line
-    :init
-    (progn
-    (setq sml/no-confirm-load-theme t)
-    (sml/setup)
-    (sml/apply-theme 'powerline))
-)
-(use-package spaceline
-:ensure t
-:init (progn
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
-)
-(require 'diminish)
-(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
-(eval-after-load "undo-tree" '(diminish 'undo-tree-mode))
-(eval-after-load "guide-key" '(diminish 'guide-key-mode))
-(eval-after-load "smartparens" '(diminish 'smartparens-mode))
-(eval-after-load "guide-key" '(diminish 'guide-key-mode))
-(eval-after-load "eldoc" '(diminish 'eldoc-mode))
-(diminish 'visual-line-mode))
+(use-package spaceline :ensure t
+  :config
+
+  (setq-default
+   powerline-height 24
+   powerline-default-separator 'wave
+   spaceline-flycheck-bullet "❖ %s"
+   spaceline-separator-dir-left '(right . right)
+   spaceline-separator-dir-right '(left . left))
+  (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
+  (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
+  (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
+  (set-face-attribute 'spaceline-evil-normal nil :background "#a6e22e")
+  (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
+  (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
+  (set-face-attribute 'mode-line-buffer-id nil :background "#8b0000")
+  (set-face-attribute 'mode-line-p  nil :background "#8b0000")
+  (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main))))
+  (setq-default spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+  )
+(defface scml-normal-2
+	  `((t (:background "chartreuse4"
+	        :foreground "#3E3D31"
+	        :inerit 'mode-line)))
+(use-package spaceline-config
+  :ensure spaceline
+  :config
+  (spaceline-install
+   'main
+   '(
+     (evil-state :face highlight-face :when t)
+(projectile-root  :separator "  ")
+     ((remote-host buffer-id) :face mode-line-buffer-id )
+(nyan-cat)
+   (process :when active))
+   '((selection-info :face region :when mark-active)
+     ((flycheck-error flycheck-warning flycheck-info) :when active)
+     (which-function)
+
+     (major-mode)
+     (version-control )
+     (global :when active)
+))
+  )
+
+
+
    #+END_SRC
 ** Yasnippet
 
    #+BEGIN_SRC emacs-lisp
    (use-package yasnippet
+   :diminish yas-minor-mode
    :config
 	  (yas-global-mode 1))
    #+END_SRC
-
+   #+begin_src emacs-lisp
+(use-package undo-tree
+	  :diminish undo-tree-mode
+	  :init (global-undo-tree-mode))
+   #+end_src
 ** Company
    #+BEGIN_SRC emacs-lisp
      (use-package company
        :ensure t
+       :diminish company-mode
        :config
        (progn
 (add-to-list 'company-backends '(company-elisp  :with company-yasnippet))
@@ -651,6 +693,7 @@ narrowed."
 
      (use-package smartparens
        :ensure smartparens
+       :diminish smartparens-mode
        :config
        (progn
          (require 'smartparens-config)
@@ -756,6 +799,7 @@ narrowed."
 
 (use-package gradle-mode
 	  :ensure gradle-mode
+	  :diminish gradle-mode
 	  :config
 	  (progn
 	(add-hook 'groovy-mode 'gradle-mode)
@@ -847,6 +891,7 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
 (use-package tide
   :ensure t
+  :diminish tide-mode
   :after evil-leader
   :config
   (progn
@@ -900,40 +945,47 @@ narrowed."
 * Evil
 ** Evil Paraphernalia
    #+BEGIN_SRC emacs-lisp
-     (use-package evil-nerd-commenter
-       :ensure t
-       :config (progn
-                 (evilnc-default-hotkeys)))
+(use-package evil-nerd-commenter
+  :ensure t
+  :config (progn
+	    (evilnc-default-hotkeys)))
 
-     (use-package
-       evil-smartparens
-       :diminish evil-smartparens-mode
-       :ensure t
-       :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
-     (use-package evil-org :ensure t)
-     (use-package evil-surround
-       :ensure t
-       :config
-       (global-evil-surround-mode))
+(use-package
+  evil-smartparens
+  :diminish evil-smartparens-mode
+  :ensure t
+  :init (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode))
+(use-package evil-org
+  :diminish evil-org-mode
+  :ensure t)
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode))
 
    #+END_SRC
 ** Evil-Leader
    #+BEGIN_SRC emacs-lisp
 (use-package evil-leader
-  :ensure t
+  :ensure helm
   :config
   (evil-leader/set-leader ",")
   (evil-leader/set-key
     "m"  (lambda () (interactive)
 	   (if (string-equal " *NeoTree*" (buffer-name))
 	       (progn
-		 (delete-window)
+		 (kill-buffer " *NeoTree*")
 		 (message "have just deleted neotree window"))
 	     (progn
-	       (if (projectile-project-p) ;; detect if current buffer is in a project
-		   (neotree-projectile-action)
-		 (neotree-toggle))
-	       (message "have just popped neotree"))))
+	       (if (get-buffer " *NeoTree*")
+		   (progn
+		     (message "neotree buffer was opened")
+		     (kill-buffer " *NeoTree*"))
+		 (progn
+		   (if (projectile-project-p)
+		       (neotree-projectile-action)
+		     (neotree-toggle))
+		   (message "have just popped neotree"))))))
     "/" 'evilnc-comment-or-uncomment-lines
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -962,6 +1014,8 @@ narrowed."
 
 
   (global-evil-leader-mode)
+  )
+(defun cesco ()
   )
    #+END_SRC
 
