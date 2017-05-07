@@ -314,16 +314,22 @@ narrowed."
 
   #+END_SRC
 * Packages
+** Nyan Mode
+#+begin_src emacs-lisp
+(use-package nyan-mode :ensure t :config (nyan-mode))
+#+end_src
 ** Emojis
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
+(use-package emojify
+  :ensure t
+  :config (progn
+  (add-hook 'after-init-hook #'global-emojify-mode)))
 (use-package emoji-cheat-sheet-plus
-    :defer t
-    :init
-    (progn
-      ;; enabled emoji in buffer
-      (add-hook 'org-mode-hook 'emoji-cheat-sheet-plus-display-mode)
-      ;; insert emoji with helm
-      (global-set-key (kbd "C-x C-e") 'emoji-cheat-sheet-plus-insert)))
+  :defer t
+  :init
+  (progn
+    ;; insert emoji with helm
+    (global-set-key (kbd "C-c M-e") 'emoji-cheat-sheet-plus-insert)))
 #+end_src
 ** Helm
 
@@ -383,6 +389,7 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
 (use-package projectile
 	  :config
+  (setq projectile-completion-system 'helm)
 	  (projectile-global-mode))
    #+END_SRC
 
