@@ -608,14 +608,10 @@ narrowed."
   (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
   (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
   (set-face-attribute 'mode-line-buffer-id nil :background "#8b0000")
-  (set-face-attribute 'mode-line-p  nil :background "#8b0000")
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main))))
   (setq-default spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   )
-(defface scml-normal-2
-	  `((t (:background "chartreuse4"
-	        :foreground "#3E3D31"
-	        :inerit 'mode-line)))
+
 (use-package spaceline-config
   :ensure spaceline
   :config
@@ -974,6 +970,7 @@ narrowed."
     "m"  (lambda () (interactive)
 	   (if (string-equal " *NeoTree*" (buffer-name))
 	       (progn
+		 (delete-window)
 		 (kill-buffer " *NeoTree*")
 		 (message "have just deleted neotree window"))
 	     (progn
@@ -1014,8 +1011,6 @@ narrowed."
 
 
   (global-evil-leader-mode)
-  )
-(defun cesco ()
   )
    #+END_SRC
 
