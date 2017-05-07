@@ -13,6 +13,19 @@ My emacs configuration! Enjoy
 
   #+END_SRC
 * Setup
+
+** Insert SemiColon
+   #+begin_src emacs-lisp
+
+(defun cesco/insert-semicolon ()
+  (interactive)
+  (evil-append-line "1")
+  (insert ";")
+  (normal-mode)
+  (goto-last-change)
+  )
+   #+end_src
+
 ** Set personal information
    I am a gopher!
    #+BEGIN_SRC emacs-lisp
@@ -319,6 +332,18 @@ narrowed."
 
   #+END_SRC
 * Packages
+
+** Move-text
+   #+begin_src emacs-lisp
+(use-package move-text
+  :ensure t
+  :config (progn
+	    (global-set-key [(control shift j)] 'move-text-down)
+	    (global-set-key [(control shift k)] 'move-text-up)
+	    )
+  )
+   #+end_src
+
 ** Nyan Mode
    #+begin_src emacs-lisp
 (use-package nyan-mode :ensure t :config (nyan-mode))
@@ -594,7 +619,6 @@ narrowed."
    #+BEGIN_SRC emacs-lisp
 (use-package spaceline :ensure t
   :config
-
   (setq-default
    powerline-height 24
    powerline-default-separator 'wave
@@ -604,10 +628,11 @@ narrowed."
   (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
   (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
   (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
-  (set-face-attribute 'spaceline-evil-normal nil :background "#a6e22e")
+  (set-face-attribute 'spaceline-evil-normal nil :background "#FF5722")
   (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
   (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
-  (set-face-attribute 'mode-line-buffer-id nil :background "#8b0000")
+  (set-face-attribute 'mode-line-buffer-id nil :foreground "black" :background "#E1BEE7")
+  (set-face-attribute 'mode-line-emphasis  nil :foreground "black" :background "#7B1FA2")
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main))))
   (setq-default spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   )
@@ -619,18 +644,17 @@ narrowed."
    'main
    '(
      (evil-state :face highlight-face :when t)
-(projectile-root  :separator "  ")
-     ((remote-host buffer-id) :face mode-line-buffer-id )
-(nyan-cat)
-   (process :when active))
+     (projectile-root  :face mode-line-emphasis)
+     ((remote-host buffer-id version-control) :separator "  " :face mode-line-buffer-id )
+ mode-line-emphasis    (nyan-cat)
+     (process :when active))
    '((selection-info :face region :when mark-active)
      ((flycheck-error flycheck-warning flycheck-info) :when active)
      (which-function)
 
-     (major-mode)
-     (version-control )
+     (major-mode  :face mode-line-emphasis)
      (global :when active)
-))
+     ))
   )
 
 
