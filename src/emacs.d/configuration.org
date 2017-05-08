@@ -24,7 +24,7 @@ My emacs configuration! Enjoy
     (magit-git-push
      current-branch
      (concat "origin/" current-branch)
-     (list "--dry-run"))))
+     )))
 
    #+end_src
 
