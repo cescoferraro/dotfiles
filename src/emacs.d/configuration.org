@@ -14,6 +14,20 @@ My emacs configuration! Enjoy
   #+END_SRC
 * Setup
 
+** StrightPush
+   #+begin_src emacs-lisp
+ (defun timestamp ()
+   (interactive)
+   (insert (format-time-string "%Y-%m-%dT%H:%M:%S")))
+
+
+(defun cesco/push ()
+(interactive)
+(magit-stage-modified)
+(magit-commit (concat "-m \"" (format-time-string "%Y-%m-%dT%H:%M:%S")  "\""))
+  )
+   #+end_src
+
 ** Insert SemiColon
    #+begin_src emacs-lisp
 
@@ -631,7 +645,7 @@ narrowed."
   (set-face-attribute 'spaceline-evil-normal nil :background "#FF5722")
   (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
   (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
-  (set-face-attribute 'mode-line-buffer-id nil :foreground "black" :background "#E1BEE7")
+  (set-face-attribute 'mode-line-buffer-id nil :foreground "#E1BEE7" :background "black")
   (set-face-attribute 'mode-line-emphasis  nil :foreground "black" :background "#7B1FA2")
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main))))
   (setq-default spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
@@ -646,7 +660,7 @@ narrowed."
      (evil-state :face highlight-face :when t)
      (projectile-root  :face mode-line-emphasis)
      ((remote-host buffer-id version-control) :separator "  " :face mode-line-buffer-id )
- mode-line-emphasis    (nyan-cat)
+     mode-line-emphasis    (nyan-cat)
      (process :when active))
    '((selection-info :face region :when mark-active)
      ((flycheck-error flycheck-warning flycheck-info) :when active)
