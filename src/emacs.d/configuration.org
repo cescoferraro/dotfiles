@@ -36,7 +36,7 @@ My emacs configuration! Enjoy
   (evil-append-line "1")
   (insert ";")
   (normal-mode)
-  (goto-last-change)
+(pop-global-mark)
   )
    #+end_src
 
@@ -494,6 +494,7 @@ narrowed."
   :config (progn
 	    (use-package magit-gitflow
 	      :init
+  (setq magit-repository-directories `("~/go/src/github.com/cescoferraro", user-emacs-directory))
 	      (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
 	    (setq magit-auto-revert-mode nil)
 	    (evil-leader/set-key "g" 'magit-status)
@@ -640,10 +641,10 @@ narrowed."
    spaceline-flycheck-bullet "❖ %s"
    spaceline-separator-dir-left '(left . left)
    spaceline-separator-dir-right '(right . right))
-  (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
-  (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
-  (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
-  (set-face-attribute 'spaceline-evil-normal nil :background "#FF5722")
+  (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff"  )
+  (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff" :foreground "black")
+  (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff ")
+  (set-face-attribute 'spaceline-evil-normal nil :background "#FF5722" :foreground "white")
   (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
   (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
   (set-face-attribute 'mode-line-buffer-id nil :foreground "#E1BEE7" :background "black")
@@ -1077,5 +1078,3 @@ narrowed."
    #+BEGIN_SRC emacs-list :tangle yes
 
    #+END_SRC
-sdfsdfsdf
-sdfkjsdnjfksdf
