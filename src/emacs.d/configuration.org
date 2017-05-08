@@ -621,10 +621,10 @@ narrowed."
   :config
   (setq-default
    powerline-height 24
-   powerline-default-separator 'wave
+   powerline-default-separator 'arrow
    spaceline-flycheck-bullet "❖ %s"
-   spaceline-separator-dir-left '(right . right)
-   spaceline-separator-dir-right '(left . left))
+   spaceline-separator-dir-left '(left . left)
+   spaceline-separator-dir-right '(right . right))
   (set-face-attribute 'spaceline-evil-emacs nil :background "#be84ff")
   (set-face-attribute 'spaceline-evil-insert nil :background "#5fd7ff")
   (set-face-attribute 'spaceline-evil-motion nil :background "#ae81ff")
@@ -915,12 +915,10 @@ narrowed."
   :after evil-leader
   :config
   (progn
+
+
     (evil-leader/set-key-for-mode 'web-mode
       "j"  (lambda ()
-	     (interactive)
-	     (tide-jump-to-implementation )
-	     )
-      "g"  (lambda ()
 	     (interactive)
 	     (tide-jump-to-definition )
 	     )
