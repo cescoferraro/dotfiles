@@ -917,9 +917,16 @@ narrowed."
 ** Javascript
 
    #+BEGIN_SRC emacs-lisp
-	(use-package js2-mode
-	  :commands (js2-mode)
-	  :mode (("\\.js\\'" . js2-mode)))
+(use-package js2-mode
+  :commands (js2-mode)
+  :config
+  (progn (evil-leader/set-key-for-mode 'js2-mode
+	   "j"  (lambda ()
+		  (interactive)
+		  (js2-jump-to-definition )
+		  )
+	   ) )
+  :mode (("\\.js\\'" . js2-mode)))
    #+END_SRC
 ** Typescript
 
