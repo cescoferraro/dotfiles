@@ -24,7 +24,7 @@ My emacs configuration! Enjoy
     (message "PUSHING!!!!")
     (magit-git-push current-branch
                     (concat "origin/" current-branch)
-           )
+           nil )
     ))
    #+end_src
 
