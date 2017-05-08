@@ -26,6 +26,7 @@ My emacs configuration! Enjoy
                     (concat "origin/" current-branch)
                     )
     ))
+
    #+end_src
 
 ** Insert SemiColon
