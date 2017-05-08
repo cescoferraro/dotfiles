@@ -489,20 +489,17 @@ narrowed."
   (set-face-foreground 'git-gutter-fr:deleted  "white")
   (setq git-gutter-fr:side 'left-fringe))
 
+
 (use-package magit
-  :demand magit
   :config (progn
 	    (use-package magit-gitflow
-	      :commands (turn-on-magit-gitflow)
 	      :init
-	      (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-	      )
+	      (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+	    (setq magit-auto-revert-mode nil)
 	    (evil-leader/set-key "g" 'magit-status)
 	    (add-hook 'magit-mode-hook
 		      (lambda() (local-set-key (kbd "C-c r") 'cesco/automatic-push)))
-	    (setq magit-auto-revert-mode nil)))
-
-
+	    ))
 (use-package evil-magit
   :after evil
   :demand evil-magit)
