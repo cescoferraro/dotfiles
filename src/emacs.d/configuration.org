@@ -19,14 +19,11 @@ My emacs configuration! Enjoy
 (defun cesco/automatic-push ()
   (interactive)
   (magit-run-git "commit" "--all"
-         (format-time-string "--message=%F %R"))
+		 (format-time-string "--message=%F %R"))
   (let ((current-branch (magit-get-current-branch)))
-  (message (<kbd>$<kbd>))
-(message "PUSHING!!!!")
-    (magit-push
-     current-branch
-     (concat "origin/" current-branch)
-     )))
+    (message "PUSHING!!!!")
+
+    ))
    #+end_src
 
 ** Insert SemiColon
