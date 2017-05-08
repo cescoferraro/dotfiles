@@ -27,6 +27,7 @@ My emacs configuration! Enjoy
 (magit-commit (concat "-m \"" (format-time-string "%Y-%m-%dT%H:%M:%S")  "\""))
 (magit-push)
   )
+
    #+end_src
 
 ** Insert SemiColon
