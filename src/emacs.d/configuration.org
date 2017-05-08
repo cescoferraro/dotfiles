@@ -477,7 +477,7 @@ narrowed."
    	   ("M-p" . flycheck-previous-error))
        )
    #+END_SRC
-** Magit
+** GIT
 
    #+BEGIN_SRC emacs-lisp
 (use-package git-gutter-fringe
@@ -500,6 +500,7 @@ narrowed."
 	    (add-hook 'magit-mode-hook
 		      (lambda() (local-set-key (kbd "C-c r") 'cesco/automatic-push)))
 	    ))
+
 (use-package evil-magit
   :after evil
   :demand evil-magit)
