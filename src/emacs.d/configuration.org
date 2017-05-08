@@ -16,13 +16,15 @@ My emacs configuration! Enjoy
 
 ** StrightPush
    #+begin_src emacs-lisp
-
-(defun cesco/push ()
+(defun cesco/automatic-push ()
   (interactive)
-  (magit-stage-modified)
-  (magit-commit (concat "-m \"" (format-time-string "%Y-%m-%dT%H:%M:%S")  "\""))
-  (magit-push)
-  )
+  (magit-run-git "commit" "--all"
+         (format-time-string "--message=%F %R"))
+  (let ((current-branch (magit-get-current-branch)))
+    (magit-git-push
+     current-branch
+     (concat "origin/" current-branch)
+     (list "--dry-run"))))
 
    #+end_src
 
