@@ -647,7 +647,7 @@ narrowed."
   (set-face-attribute 'spaceline-evil-replace nil :background "#f92672")
   (set-face-attribute 'spaceline-evil-visual nil :background "#fd971f")
   (set-face-attribute 'mode-line-buffer-id nil :foreground "#E1BEE7" :background "black")
-  (set-face-attribute 'mode-line-emphasis  nil :foreground "black" :background "#7B1FA2")
+  (set-face-attribute 'mode-line-emphasis  nil :foreground "white" :background "#7B1FA2")
   (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main))))
   (setq-default spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
   )
