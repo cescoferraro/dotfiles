@@ -21,6 +21,7 @@ My emacs configuration! Enjoy
   (magit-run-git "commit" "--all"
 		 (format-time-string "--message=%F %R"))
   (let ((current-branch (magit-get-current-branch)))
+(<kbd>$<kbd>)
     (message "PUSHING!!!!")
 
     ))
