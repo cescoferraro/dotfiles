@@ -21,9 +21,10 @@ My emacs configuration! Enjoy
   (magit-run-git "commit" "--all"
 		 (format-time-string "--message=%F %R"))
   (let ((current-branch (magit-get-current-branch)))
-($)
     (message "PUSHING!!!!")
-
+    (magit-git-push current-branch
+                    (concat "origin/" current-branch)
+                    (list "--dry-run"))
     ))
    #+end_src
 
