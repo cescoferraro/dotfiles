@@ -19,14 +19,18 @@ My emacs configuration! Enjoy
 (use-package hideshow
   :diminish hs-minor-mode
   :config
-(add-hook 'js2-mode-hook 'hs-minor-mode )
-(add-hook 'web-mode-hook 'hs-minor-mode )
-(add-hook 'go-mode-hook 'hs-minor-mode )
-(add-hook 'java-mode-hook 'hs-minor-mode )
-(add-hook 'scheme-mode-hook 'hs-minor-mode )
-(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode )
-(add-hook 'lisp-mode-hook 'hs-minor-mode )
-(add-hook 'python-mode-hook 'hs-minor-mode )
+  (defun hs-hide-stuff ()
+    (hs-minor-mode)
+    (hs-hide-level 2))
+  (add-hook 'emacs-lisp-mode-hook #'hs-hide-stuff)
+  (add-hook 'js2-mode-hook #'hs-hide-stuff )
+  (add-hook 'web-mode-hook 'hs-minor-mode )
+  (add-hook 'go-mode-hook #'hs-hide-stuff )
+  (add-hook 'java-mode-hook #'hs-hide-stuff )
+  (add-hook 'scheme-mode-hook #'hs-hide-stuff )
+  (add-hook 'emacs-lisp-mode-hook #'hs-hide-stuff )
+  (add-hook 'lisp-mode-hook #'hs-hide-stuff )
+  (add-hook 'python-mode-hook #'hs-hide-stuff )
   )
    #+end_src
 
@@ -888,7 +892,10 @@ narrowed."
     #+END_SRC
 *** Eclim
     #+BEGIN_SRC emacs-lisp
-
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 4
+                                  tab-width 4
+                                  indent-tabs-mode t)))
 (use-package eclim
   :ensure t
   :if (string-match-p (regexp-quote "cesco") user-login-name)
