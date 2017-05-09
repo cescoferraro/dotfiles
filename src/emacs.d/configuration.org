@@ -594,7 +594,12 @@ narrowed."
 	      (define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
 	      (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
 	      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
-	      (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
+	      (define-key evil-normal-state-local-map (kbd "n") 'neotree-create-node)
+	      (define-key evil-normal-state-local-map (kbd "c") 'neotree-copy-node)
+	      (define-key evil-normal-state-local-map (kbd "C") (lambda ()
+(neotree-copy-filepath-to-yank-ring)
+(message "Path copied to the kill ring!")
+								  ))
 	      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
 
 	      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
@@ -1116,7 +1121,7 @@ narrowed."
 (defhydra cesco/hydra ()
   "cesco"
   (";" cesco/insert-semicolon  "insert semicolon" :color blue)
-("p" cesco/automatic-push "fast git push staged file" :color blue )
-  ("d" cesco/kill-other-buffers "kill all buffer"))
+  ("p" cesco/automatic-push "fast git push staged file" :color blue )
+  ("d" cesco/kill-other-buffers "kill all buffer" :color blue))
 (global-set-key[(shift control d)] 'cesco/hydra/body)
    #+end_src
