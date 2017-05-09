@@ -34,6 +34,7 @@
 (depends-on "evil-org")
 (depends-on "evil-smartparens")
 (depends-on "evil-surround")
+(depends-on "evil-vimish-fold")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-line")
 (depends-on "expand-region")

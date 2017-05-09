@@ -110,3 +110,4 @@ yarn --no-progress dev
 yarn dev
 yarn dll
 yarn dev
+yarn add react-async-component

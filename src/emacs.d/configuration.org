@@ -586,6 +586,11 @@ narrowed."
   (setq neo-theme (if window-system 'icons 'nerd)) ; 'classic, 'nerd, 'ascii, 'arrow
   (setq neo-show-hidden-files t)
   (setq neo-force-change-root t)
+
+  (defun cesco/neotree-copy ()
+    (neotree-copy-filepath-to-yank-ring)
+    (message "Path copied to the kill ring!")
+    )
   (add-hook 'neotree-mode-hook
 	    (lambda ()
 	      (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
@@ -596,10 +601,7 @@ narrowed."
 	      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
 	      (define-key evil-normal-state-local-map (kbd "n") 'neotree-create-node)
 	      (define-key evil-normal-state-local-map (kbd "c") 'neotree-copy-node)
-	      (define-key evil-normal-state-local-map (kbd "C") (lambda ()
-(neotree-copy-filepath-to-yank-ring)
-(message "Path copied to the kill ring!")
-								  ))
+	      (define-key evil-normal-state-local-map (kbd "C") 'cesco/neotree-copy)
 	      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
 
 	      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
