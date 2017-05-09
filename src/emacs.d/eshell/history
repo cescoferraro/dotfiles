@@ -100,3 +100,7 @@ yarn
 yarn start
 git pull
 git status
+gradle
+docker
+echo $PATH
+gradle
