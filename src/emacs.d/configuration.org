@@ -557,50 +557,51 @@ narrowed."
 ** Neotree
    #+BEGIN_SRC emacs-lisp
 
-     (use-package find-file-in-project :ensure t)
+(use-package find-file-in-project :ensure t)
 
 
-     (use-package neotree
-       :after evil
-       :bind ([f2] . neotree-projectile-action)
-       :config
-       (use-package all-the-icons :ensure t
-         :config
+(use-package neotree
+  :after evil
+  :bind ([f2] . neotree-projectile-action)
+  :config
+  (use-package all-the-icons :ensure t
+    :config
+    (add-to-list 'all-the-icons-icon-alist
+		 '("^dobi.yaml"
+		   all-the-icons-alltheicon "terminal"
+		   :height 1.0
+		   :face all-the-icons-pink))
+    (add-to-list 'all-the-icons-icon-alist
+		 '("\\.pcss"
+		   all-the-icons-alltheicon "css3"
+		   :height 1.0
+		   :face all-the-icons-red))
+    (add-to-list 'all-the-icons-icon-alist
+		 '("\\.tsx$"
+		   all-the-icons-alltheicon "react"
+		   :height 1.0
+		   :face all-the-icons-blue))
+    )
+  :init
+  (setq neo-theme (if window-system 'icons 'nerd)) ; 'classic, 'nerd, 'ascii, 'arrow
+  (setq neo-show-hidden-files t)
+  (setq neo-force-change-root t)
+  (add-hook 'neotree-mode-hook
+	    (lambda ()
+	      (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+	      (define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
+	      (define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
+	      (define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
+	      (define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
+	      (define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
+	      (define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
+	      (define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
 
-         (add-to-list 'all-the-icons-icon-alist
-   		   '("^dobi.yaml"
-   		     all-the-icons-alltheicon "terminal"
-   		     :height 1.0
-   		     :face all-the-icons-pink))
-         (add-to-list 'all-the-icons-icon-alist
-   		   '("\\.pcss"
-   		     all-the-icons-alltheicon "css3"
-   		     :height 1.0
-   		     :face all-the-icons-red))
-         (add-to-list 'all-the-icons-icon-alist
-   		   '("\\.tsx$"
-   		     all-the-icons-alltheicon "react"
-   		     :height 1.0
-   		     :face all-the-icons-blue))
-         )
-       :init
-       (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-       (add-hook 'neotree-mode-hook
-   	      (lambda ()
-   		(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-   		(define-key evil-normal-state-local-map (kbd "I") 'neotree-hidden-file-toggle)
-   		(define-key evil-normal-state-local-map (kbd "z") 'neotree-stretch-toggle)
-   		(define-key evil-normal-state-local-map (kbd "1") 'neotree-change-root)
-   		(define-key evil-normal-state-local-map (kbd "R") 'neotree-refresh)
-   		(define-key evil-normal-state-local-map (kbd "m") 'neotree-rename-node)
-   		(define-key evil-normal-state-local-map (kbd "c") 'neotree-create-node)
-   		(define-key evil-normal-state-local-map (kbd "d") 'neotree-delete-node)
+	      (define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
+	      (define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
 
-   		(define-key evil-normal-state-local-map (kbd "s") 'neotree-enter-vertical-split)
-   		(define-key evil-normal-state-local-map (kbd "S") 'neotree-enter-horizontal-split)
-
-   		(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
-   		(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter))))
+	      (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)
+	      (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter))))
    #+END_SRC
 
    #+RESULTS:
@@ -1115,6 +1116,7 @@ narrowed."
 (defhydra cesco/hydra ()
   "cesco"
   (";" cesco/insert-semicolon  "insert semicolon" :color blue)
+("p" cesco/automatic-push "fast git push staged file" :color blue )
   ("d" cesco/kill-other-buffers "kill all buffer"))
 (global-set-key[(shift control d)] 'cesco/hydra/body)
    #+end_src

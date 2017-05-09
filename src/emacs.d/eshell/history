@@ -104,3 +104,9 @@ gradle
 docker
 echo $PATH
 gradle
+yarn
+yarn --no-progress
+yarn --no-progress dev
+yarn dev
+yarn dll
+yarn dev
