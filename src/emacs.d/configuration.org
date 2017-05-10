@@ -20,13 +20,12 @@ My emacs configuration! Enjoy
   :diminish hs-minor-mode
   :config
   (defun hs-hide-stuff ()
-    (hs-minor-mode)
+    (hs-minor-mode 1)
     (hs-hide-level 2))
   (add-hook 'js2-mode-hook #'hs-hide-stuff )
   (add-hook 'web-mode-hook 'hs-minor-mode )
   (add-hook 'go-mode-hook #'hs-hide-stuff )
   (add-hook 'java-mode-hook #'hs-hide-stuff )
-  (add-hook 'scheme-mode-hook #'hs-hide-stuff )
   (add-hook 'emacs-lisp-mode-hook #'hs-hide-stuff )
   (add-hook 'lisp-mode-hook #'hs-hide-stuff )
   (add-hook 'python-mode-hook #'hs-hide-stuff )
@@ -515,27 +514,33 @@ narrowed."
   (set-face-foreground 'git-gutter-fr:deleted  "white")
   (setq git-gutter-fr:side 'left-fringe))
 
+(defun cesco/magit ()
+  (local-set-key (kbd "C-M")  'magit-repolist-status)
+  (message "dsjfsdkf")
+  )
 
 (use-package magit
   :after evil-leader
   :config
   (use-package magit-gitflow :init (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+
+  (add-hook 'magit-repolist-mode-hook 'cesco/magit)
   (setq magit-repository-directories `("~/go/src/github.com/cescoferraro", user-emacs-directory))
   (setq magit-auto-revert-mode nil)
   (evil-leader/set-key "g" 'magit-status)
+(evil-define-key (list 'normal 'insert 'visual 'motion)  magit-repolist-mode-map (kbd "RET") 'magit-repolist-status)
   (add-hook 'magit-mode-hook (lambda() (local-set-key (kbd "C-c r") 'cesco/automatic-push)))
 
   )
 
 (use-package evil-magit
   :after evil
-  :demand evil-magit)
+  :ensure t )
 
    #+END_SRC
 
 ** Hl-line+
    #+BEGIN_SRC emacs-lisp
-(use-package hl-line+ :ensure t :config (global-hl-line-mode))
    #+END_SRC
 ** Which-Keys
    #+BEGIN_SRC emacs-lisp
@@ -823,6 +828,47 @@ narrowed."
 (add-to-list 'exec-path (concat (getenv "GOPATH")  "/bin"))
 (add-to-list 'load-path (concat (getenv "GOPATH")  "/src/github.com/golang/lint/misc/emacs"))
     #+END_SRC
+*** Go-mode
+    #+BEGIN_SRC emacs-lisp
+(use-package go-mode
+  :ensure t
+  :if (executable-find "go")
+  :bind (:map go-mode-map
+              ("M-." . godef-jump)
+              ("C-c C-a" . go-import-add)
+              ("C-c C-r" . go-remove-unused-imports)
+              ("C-c C-i" . go-goto-imports)
+              ("C-c C-c" . compile))
+  :after evil
+  :init
+    (setq gofmt-command "goimports")
+  :config
+
+  (evil-leader/set-key-for-mode 'go-mode "j" 'godef-jump)
+  (defun my-go-mode-hook ()
+    (setq tab-width 8)
+    (if (not (string-match "go" compile-command))
+	(set (make-local-variable 'compile-command) "go build -v && go test -v && go vet"))
+    (load-file "$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el")
+    )
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-hook 'go-mode-hook 'my-go-mode-hook)
+    (add-hook 'before-save-hook 'gofmt-before-save)
+  )
+    #+END_SRC
+
+*** GoLint
+    #+begin_src emacs-lisp
+  (use-package golint :ensure t)
+    #+end_src
+
+*** Go ElDoc
+    #+begin_src emacs-lisp
+(use-package go-eldoc
+  :after (go-mode hydra)
+  :config
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
+    #+end_src
 
 *** Go-company
 
@@ -830,36 +876,71 @@ narrowed."
 (use-package company-go
   :ensure t
   :config
-  (progn
-    (add-to-list 'company-backends '(company-go :with company-yasnippet))
-    )
+  (defun cesco/g-yas ()
+    (add-to-list (make-local-variable 'company-backends) '(company-go :with company-yasnippet)))
+  (add-hook 'go-mode-hook 'cesco/g-yas)
   (setq company-go-show-annotation t)
   (setq company-go-insert-arguments t))
     #+END_SRC
-*** Go-mode
-    #+BEGIN_SRC emacs-lisp
-(use-package go-mode
-  :ensure t
-  :after evil
+
+*** GoSnippets
+    #+begin_src emacs-lisp
+(use-package go-snippets
+  :after (go-mode hydra))
+    #+end_src
+
+*** GoDoctor
+    #+begin_src emacs-lisp
+(use-package godoctor
+  :after (go-mode hydra)
+  :if (executable-find "godoctor")
+  :bind (:map go-mode-map ("C-M-z" . hydra-godoctor/body))
   :config
+  (defhydra hydra-godoctor (:hint nil :color blue :column 4)
+  "
+     ^Up^            ^Down^        ^Other^
+----------------------------------------------
+[_a_]   Next     [_d_] Unmark    [_f_] Unmark
+[_s_]   Skip
+^ ^
+"
+    ("a" godoctor-rename :exit t)
+    ("s" godoctor-extract )
+    ("d" godoctor-toggle )
+    ("f" godoctor-godoc )))
 
-  (use-package golint :ensure t)
-  (use-package godoctor :ensure t)
-  (evil-leader/set-key-for-mode 'go-mode "j" 'godef-jump)
-  (defun my-go-mode-hook ()
-    (add-hook 'before-save-hook 'gofmt-before-save)
-    (setq gofmt-command "goimports")
-    (setq tab-width 8)
-    (if (not (string-match "go" compile-command))
-	(set (make-local-variable 'compile-command)
-	     "go build -v && go test -v && go vet"))
-    (load-file "$GOPATH/src/github.com/dominikh/go-mode.el/go-guru.el")
-    )
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
-  (add-hook 'go-mode-hook 'my-go-mode-hook)
+    #+end_src
 
-  )
-    #+END_SRC
+*** GoGuru
+    #+begin_src emacs-lisp
+(use-package go-guru
+  :after (go-mode hydra)
+  :if (executable-find "guru")
+  :demand t
+  :init
+  (defun shackra/go-mode-set-scope ()
+    (when (eq major-mode 'go-mode)
+      (set (make-local-variable 'go-guru-scope)
+           (concat (projectile-project-root) "..."))))
+  :bind (:map go-mode-map
+              ("M-." . go-guru-definition)
+              ("C-M-g" . hydra-go-guru/body))
+  :config
+  (defhydra hydra-go-guru (:color blue :columns 2)
+    "Contesta preguntas sobre código fuente escrito en Go"
+    ("a" go-guru-callees "Receptores de llamada, función bajo punto actual")
+    ("s" go-guru-callers "Llamadores, función bajo punto actual")
+    ("d" go-guru-callstack "Muestra grafo de llamadas desde una raíz, función bajo punto actual")
+    ("f" go-guru-describe "Describe la sintaxis seleccionada, su tipo y métodos")
+    ("g" go-guru-freevars "Enumera las variables libres, marca actual")
+    ("h" go-guru-referrers "Enumera referencias al objeto, identificador marcado")
+    ("j" go-guru-peers "Enumera un set de remitentes/destinatarios para las operaciones enviar/recibir de este canal")
+    ("k" go-guru-pointsto "Muestra lo que apunta, expresión marcada")
+    ("l" go-guru-implements "Describe la relación de implementación para tipos en un paquete conteniendo el cursor")
+    ("ñ" go-guru-whicherrs "Muestra globales, constantes y tipos, expresión marcada (de tipo 'error')"))
+  (add-hook 'go-mode-hook #'go-guru-hl-identifier-mode)
+  (add-hook 'projectile-mode-hook #'shackra/go-mode-set-scope))
+    #+end_src
 
 ** Java
 *** Gradle
@@ -1046,27 +1127,29 @@ narrowed."
    #+END_SRC
 ** Evil-Leader
    #+BEGIN_SRC emacs-lisp
-(use-package evil-leader
-  :ensure helm
-  :config
+(defun cesco/neotree ()
+  (interactive)
+  (if (string-equal " *NeoTree*" (buffer-name))
+      (progn
+	(delete-window)
+	(kill-buffer " *NeoTree*")
+	(message "have just deleted neotree window"))
+    (progn
+      (if (get-buffer " *NeoTree*")
+	  (progn
+	    (message "neotree buffer was opened")
+	    (kill-buffer " *NeoTree*"))
+	(progn
+	  (if (projectile-project-p)
+	      (neotree-projectile-action)
+	    (neotree-toggle))
+	  (message "have just popped neotree")))))
+  )
+
+(defun cesco/config-evil-leader ()
   (evil-leader/set-leader ",")
   (evil-leader/set-key
-    "m"  (lambda () (interactive)
-	   (if (string-equal " *NeoTree*" (buffer-name))
-	       (progn
-		 (delete-window)
-		 (kill-buffer " *NeoTree*")
-		 (message "have just deleted neotree window"))
-	     (progn
-	       (if (get-buffer " *NeoTree*")
-		   (progn
-		     (message "neotree buffer was opened")
-		     (kill-buffer " *NeoTree*"))
-		 (progn
-		   (if (projectile-project-p)
-		       (neotree-projectile-action)
-		     (neotree-toggle))
-		   (message "have just popped neotree"))))))
+    "m" 'cesco/neotree
     "/" 'evilnc-comment-or-uncomment-lines
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
@@ -1078,7 +1161,7 @@ narrowed."
     "\\" 'evilnc-comment-operator
     "z" 'zoom-window-zoom
     "f" 'helm-projectile
-    "b" 'helm-buffers-list
+    "k" 'helm-buffers-list
     "s" 'save-buffer
     "q" 'kill-emacs
     "G" 'magit-status
@@ -1092,39 +1175,141 @@ narrowed."
     "p" 'projectile-switch-project
     (kbd ".") (lambda () (interactive)(golden-ratio)(ace-window ""))
     (kbd "o") (lambda () (interactive) (find-file "~/.emacs.d/configuration.org")))
-
-
   (global-evil-leader-mode)
   )
-   #+END_SRC
 
-   #+RESULTS:
-   : t
+(use-package evil-leader
+  :ensure helm
+  :ensure neotree
+  :config (cesco/config-evil-leader))
+   #+END_SRC
 
 ** Evil itself
    #+BEGIN_SRC emacs-lisp
-     (use-package evil
-       :ensure t
-       :after evil-leader
-       :config
-
-       (define-key evil-normal-state-map "L" 'tabbar-forward-tab)
-       (define-key evil-normal-state-map "H" 'tabbar-backward-tab)
-       (evil-mode)
-       (set-default 'evil-symbol-word-search t)
-       )
-   #+END_SRC
-   #+BEGIN_SRC emacs-list :tangle yes
-
+(use-package evil
+  :after evil-leader
+  :ensure t
+  :config
+  (set-default 'evil-symbol-word-search t)
+  (define-key evil-normal-state-map "L" 'tabbar-forward-tab)
+  (define-key evil-normal-state-map "H" 'tabbar-backward-tab)
+  (evil-mode)
+  )
    #+END_SRC
 
 * Hydras
+
+** Hydra Itself!
+   #+begin_src emacs-lisp
+
+
+   (use-package hydra
+  :preface
+  (require 'hydra-examples)
+  (use-package windmove
+    :ensure nil)
+  (use-package winner
+    :ensure nil
+    :config
+    (winner-mode 1))
+  (use-package windresize)
+  (use-package ace-window
+    :bind ("M-o" . shackra/other-window)
+    :init
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0)))))
+    (defun --count-frames ()
+      "Retorna el numero de frames visibles"
+      (let* ((frames (if (daemonp) (butlast (visible-frame-list) 1) (visible-frame-list))))
+        (length frames)))
+    (defun shackra/other-window ()
+      "cambia la ventana en que el cursor esta"
+      (interactive)
+      (ace-window 0)
+      (when golden-ratio-mode
+        (golden-ratio)))
+    :config
+    (setf aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  :config
+  (defhydra hydra-zoom (global-map "<f2>")
+    "Acercamiento"
+    ("f" text-scale-increase "in")
+    ("j" text-scale-decrease "out"))
+  (defhydra hydra-avy (:color blue :columns 2)
+    "avy jump"
+    ("z" avy-goto-line "Ir a la linea...")
+    ("x" avy-goto-word-1 "Ir a la palabra...")
+    ("c" avy-goto-char-in-line "Ir a la letra en la linea actual...")
+    ("v" avy-goto-char "Ir a la palabra (2)..."))
+  (bind-key "C-z" 'hydra-avy/body)
+  ;; Hydra nos permite hacer magia con la administración de ventanas dentro de
+  ;; un marco de Emacs. Varios paquetes estan especificados en el `:preface'
+  ;; del macro para hydra
+  (defhydra hydra-win (:columns 4 :color amaranth :pre (progn (golden-ratio-mode -1) (balance-windows)) :post (progn (golden-ratio-mode 1) (golden-ratio-adjust golden-ratio-adjust-factor)))
+    "Manejo de ventanas"
+    ("<up>" windmove-up "Cursor ↑")
+    ("<left>" windmove-left "Cursor ←")
+    ("<down>" windmove-down "Cursor ↓")
+    ("<right>" windmove-right "Cursor →")
+    ("C-<up>" hydra-move-splitter-up "Astilla ↑")
+    ("C-<left>" hydra-move-splitter-left "Astilla ←")
+    ("C-<down>" hydra-move-splitter-down "Astilla ↓")
+    ("C-<right>" hydra-move-splitter-right "Astilla →")
+    ("b" shackra/switch-buffer "Cambiar buffer")
+    ("f" shackra/find-file "Visitar/Crear archivo")
+    ("z" (lambda () (interactive) (ace-window 1) (add-hook 'ace-window-end-once-hook 'hydra-win/body)) "Mover cursor a otra ventana")
+    ("2" (lambda () (interactive) (split-window-right) (windmove-right)) "Dividir |")
+    ("3" (lambda () (interactive) (split-window-below) (windmove-down)) "Dividir -")
+    ("c" (lambda () (interactive) (ace-window 4) (add-hook 'ace-window-end-once-hook 'hydra-win/body)) "Intercambiar buffer de ventana")
+    ("s" save-buffer "Guardar buffer")
+    ("x" delete-window "Borrar ventana")
+    ("X" (lambda () (interactive) (ace-window 16) (add-hook 'ace-window-end-once-hook 'hydra-win/body)) "Borrar esta/otra ventana")
+    ("1" ace-maximize-window "Maximizar esta ventana")
+    ("," (progn (winner-undo) (setf this-command 'winner-undo)) "Deshacer ultimo cambio")
+    ("." winner-redo "Rehacer ultimo cambio")
+    ("SPC" nil "Salir"))
+  (bind-key "M-1" #'hydra-win/body))
+   #+end_src
+
+
+
+
+
 ** Personal Hydra!
    #+begin_src emacs-lisp
 (defhydra cesco/hydra ()
   "cesco"
   (";" cesco/insert-semicolon  "insert semicolon" :color blue)
   ("p" cesco/automatic-push "fast git push staged file" :color blue )
+  ("j" magit-repolist-status "fast git push staged file" :color blue )
   ("d" cesco/kill-other-buffers "kill all buffer" :color blue))
 (global-set-key[(shift control d)] 'cesco/hydra/body)
+
+   #+end_src
+
+
+
+** Multiple Cursor
+   #+begin_src emacs-lisp
+(defhydra multiple-cursors-hydra (:hint nil)
+  "
+     ^Up^            ^Down^        ^Other^
+----------------------------------------------
+[_p_]   Next    [_n_]   Next    [_l_] Edit lines
+[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+[_M-p_] Unmark  [_M-n_] Unmark  [_r_] Mark by regexp
+^ ^             ^ ^             [_q_] Quit
+"
+  ("l" mc/edit-lines :exit t)
+  ("a" mc/mark-all-like-this :exit t)
+  ("n" mc/mark-next-like-this)
+  ("N" mc/skip-to-next-like-this)
+  ("M-n" mc/unmark-next-like-this)
+  ("p" mc/mark-previous-like-this)
+  ("P" mc/skip-to-previous-like-this)
+  ("M-p" mc/unmark-previous-like-this)
+  ("r" mc/mark-all-in-region-regexp :exit t)
+  ("q" nil))
+(global-set-key[(shift control s)] 'multiple-cursors-hydra/body)
    #+end_src

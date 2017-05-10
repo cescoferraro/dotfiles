@@ -3,9 +3,29 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	evil-force-normal-state
+	evil-goto-line
+	evil-insert
+	evil-insert-line
+	evil-next-line
+	evil-normal-state
+	evil-previous-line
 	helm-M-x
+	indent-for-tab-command
+	magit-status
+	multiple-cursors-hydra/body
+	multiple-cursors-hydra/mc/edit-lines-and-exit
+	multiple-cursors-hydra/mc/mark-previous-like-this
+	multiple-cursors-hydra/mc/unmark-next-like-this
+	multiple-cursors-hydra/mc/unmark-previous-like-this
+	org-self-insert-command
+	sp-backward-delete-char
+	undefined
 	))
 
 (setq mc/cmds-to-run-once
       '(
+	evil-search-next
+	multiple-cursors-hydra/mc/mark-next-like-this
+	multiple-cursors-hydra/mc/skip-to-next-like-this
 	))
