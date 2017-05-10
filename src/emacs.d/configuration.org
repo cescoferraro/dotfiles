@@ -22,7 +22,6 @@ My emacs configuration! Enjoy
   (defun hs-hide-stuff ()
     (hs-minor-mode)
     (hs-hide-level 2))
-  (add-hook 'emacs-lisp-mode-hook #'hs-hide-stuff)
   (add-hook 'js2-mode-hook #'hs-hide-stuff )
   (add-hook 'web-mode-hook 'hs-minor-mode )
   (add-hook 'go-mode-hook #'hs-hide-stuff )
@@ -111,7 +110,14 @@ My emacs configuration! Enjoy
 ** FontSize
 
    #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :height 150)
+
+(cond
+ ((string-equal system-type "gnu/linux")
+  (set-face-attribute 'default nil :height 115))
+ ((string-equal system-type "darwin")
+  (set-face-attribute 'default nil :height 150))
+ )
+
    #+END_SRC
 
 ** Shift+ Enter
