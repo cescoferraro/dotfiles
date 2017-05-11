@@ -514,27 +514,40 @@ narrowed."
   (set-face-foreground 'git-gutter-fr:deleted  "white")
   (setq git-gutter-fr:side 'left-fringe))
 
-(defun cesco/magit ()
-  (local-set-key (kbd "C-M")  'magit-repolist-status)
-  (message "dsjfsdkf")
+(defun cesco/magit-repolist-hook ()
+  (local-set-key (kbd "C-M-g")  'magit-repolist-status)
+  (evil-define-key
+    (list 'normal 'insert 'visual 'motion)
+    magit-repolist-mode-map
+    (kbd "TAB") 'magit-repolist-status
+    (kbd "q") 'kill-buffer
+    (kbd "RET") 'magit-repolist-status)
+  (message "cesco/magit-repolist-hook")
   )
 
 (use-package magit
   :after evil-leader
+  :bind ("C-c r" . cesco/automatic-push)
   :config
-  (use-package magit-gitflow :init (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
-
-  (add-hook 'magit-repolist-mode-hook 'cesco/magit)
-  (setq magit-repository-directories `("~/go/src/github.com/cescoferraro", user-emacs-directory))
   (setq magit-auto-revert-mode nil)
+  (setq magit-repository-directories
+	`(("~/go/src/github.com/cescoferraro" . 1)
+	  (,user-emacs-directory              . 1)))
+  ;; Evil Keybinding
   (evil-leader/set-key "g" 'magit-status)
-(evil-define-key (list 'normal 'insert 'visual 'motion)  magit-repolist-mode-map (kbd "RET") 'magit-repolist-status)
-  (add-hook 'magit-mode-hook (lambda() (local-set-key (kbd "C-c r") 'cesco/automatic-push)))
-
+  (add-hook 'magit-repolist-mode-hook 'cesco/magit-repolist-hook)
   )
 
+(use-package magit-gitflow
+  :after (magit)
+  :config
+  (evil-define-key
+    'normal magit-mode-map (kbd ">") 'magit-gitflow-popup)
+  :init
+  (add-hook 'magit-mode-hook 'turn-on-magit-gitflow))
+
 (use-package evil-magit
-  :after evil
+  :after magit
   :ensure t )
 
    #+END_SRC
@@ -1164,7 +1177,6 @@ narrowed."
     "k" 'helm-buffers-list
     "s" 'save-buffer
     "q" 'kill-emacs
-    "G" 'magit-status
     "w" 'delete-window
     "e" 'kill-this-buffer
     "," 'previous-buffer
@@ -1281,8 +1293,8 @@ narrowed."
 (defhydra cesco/hydra ()
   "cesco"
   (";" cesco/insert-semicolon  "insert semicolon" :color blue)
-  ("p" cesco/automatic-push "fast git push staged file" :color blue )
-  ("j" magit-repolist-status "fast git push staged file" :color blue )
+  ("g" magit-list-repositories "Magit-List-Repos" :color blue)
+  ("p" cesco/automatic-push "Automatic push" :color blue )
   ("d" cesco/kill-other-buffers "kill all buffer" :color blue))
 (global-set-key[(shift control d)] 'cesco/hydra/body)
 
