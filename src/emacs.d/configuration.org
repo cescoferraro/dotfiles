@@ -514,6 +514,13 @@ narrowed."
   (set-face-foreground 'git-gutter-fr:deleted  "white")
   (setq git-gutter-fr:side 'left-fringe))
 
+
+(defun cesco/refresh ()
+(interactive)
+  (kill-this-buffer)
+  (magit-list-repositories)
+  )
+
 (defun cesco/magit-repolist-hook ()
   (local-set-key (kbd "C-M-g")  'magit-repolist-status)
   (evil-define-key
@@ -521,6 +528,7 @@ narrowed."
     magit-repolist-mode-map
     (kbd "TAB") 'magit-repolist-status
     (kbd "q") 'kill-this-buffer
+    (kbd "r") 'cesco/refresh
     (kbd "RET") 'magit-repolist-status)
   (message "cesco/magit-repolist-hook")
   )
@@ -839,8 +847,6 @@ narrowed."
    #+END_SRC
 
 * Languages
-
-
 ** Golang
 *** Go path
     #+BEGIN_SRC emacs-lisp
