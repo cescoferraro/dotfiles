@@ -536,10 +536,10 @@ narrowed."
 
   (setq magit-repolist-columns
 	'(("Name"    25 magit-repolist-column-ident                  ())
-	  ("Version" 25 magit-repolist-column-version                ())
 	  ("D"        1 magit-repolist-column-dirty                  ())
 	  ("Behind "    5  magit-repolist-column-unpulled-from-upstream ((:right-align t)))
 	  ("Ahead "    5  magit-repolist-column-unpushed-to-upstream   ((:right-align t)))
+	  ("Version" 25 magit-repolist-column-version                ())
 	  ))
 
   ;; Evil Keybinding
