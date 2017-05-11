@@ -21,7 +21,7 @@ My emacs configuration! Enjoy
   :config
   (defun hs-hide-stuff ()
     (hs-minor-mode 1)
-    (hs-hide-level 2))
+    (hs-hide-level 3))
   (add-hook 'js2-mode-hook #'hs-hide-stuff )
   (add-hook 'web-mode-hook 'hs-minor-mode )
   (add-hook 'go-mode-hook #'hs-hide-stuff )
@@ -520,7 +520,7 @@ narrowed."
     (list 'normal 'insert 'visual 'motion)
     magit-repolist-mode-map
     (kbd "TAB") 'magit-repolist-status
-    (kbd "q") 'kill-buffer
+    (kbd "q") 'kill-this-buffer
     (kbd "RET") 'magit-repolist-status)
   (message "cesco/magit-repolist-hook")
   )
@@ -533,6 +533,15 @@ narrowed."
   (setq magit-repository-directories
 	`(("~/go/src/github.com/cescoferraro" . 1)
 	  (,user-emacs-directory              . 1)))
+
+  (setq magit-repolist-columns
+	'(("Name"    25 magit-repolist-column-ident                  ())
+	  ("Version" 25 magit-repolist-column-version                ())
+	  ("D"        1 magit-repolist-column-dirty                  ())
+	  ("Behind "    5  magit-repolist-column-unpulled-from-upstream ((:right-align t)))
+	  ("Ahead "    5  magit-repolist-column-unpushed-to-upstream   ((:right-align t)))
+	  ))
+
   ;; Evil Keybinding
   (evil-leader/set-key "g" 'magit-status)
   (add-hook 'magit-repolist-mode-hook 'cesco/magit-repolist-hook)
