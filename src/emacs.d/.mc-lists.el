@@ -3,12 +3,15 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	evil-backward-char
 	evil-force-normal-state
+	evil-forward-char
 	evil-goto-line
 	evil-insert
 	evil-insert-line
 	evil-next-line
 	evil-normal-state
+	evil-paste-pop-next
 	evil-previous-line
 	helm-M-x
 	indent-for-tab-command
@@ -18,6 +21,7 @@
 	multiple-cursors-hydra/mc/mark-previous-like-this
 	multiple-cursors-hydra/mc/unmark-next-like-this
 	multiple-cursors-hydra/mc/unmark-previous-like-this
+	org-delete-char
 	org-self-insert-command
 	sp-backward-delete-char
 	undefined
