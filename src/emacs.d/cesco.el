@@ -1,7 +1,7 @@
 (defun cesco/django ()
     (if (projectile-project-p)
         (if (file-exists-p (concat (projectile-project-root) "manage.py"))
-            (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
+            (web-mode-set-engine "django")
             (message "do not exists")
             )
         )
