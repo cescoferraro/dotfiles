@@ -1,5 +1,3 @@
-cd ../craigs/
-ll
 ls
 yarn start
 yarn start
@@ -119,4 +117,12 @@ yarn dev
 yarn dll
 yarn dev
 yarn dev
+yarn dev
+yarn dev
+lsof -i :4000
+kill -9 2146
+kill -9 2146146
+lsof -i :4000
+kill -9 2146
+yarn dev6
 yarn dev
