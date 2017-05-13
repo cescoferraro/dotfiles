@@ -14,6 +14,19 @@ My emacs configuration! Enjoy
   #+END_SRC
 * Setup
 
+** SLQ ORACLE
+   #+begin_src emacs-lisp
+(setq sql-oracle-login-params
+      '((user     :default "system")
+        (password :default (password-read "Password:" "oracle"))
+        (database :default "localhost:49161/xe")))
+   #+end_src
+
+** DEBUG
+   #+begin_src emacs-lisp
+(setq debug-on-error t)
+   #+end_src
+
 ** HideShow Folding
    #+begin_src emacs-lisp
 (use-package hideshow
@@ -330,7 +343,8 @@ narrowed."
    #+END_SRC
 * Org
   #+BEGIN_SRC emacs-lisp
-(use-package org :ensure t
+(use-package org
+  :ensure t
   :config
 
   (require 'ox-latex)
@@ -352,9 +366,11 @@ narrowed."
     :ensure t)
 
 
+
   (add-hook 'org-mode-hook #'visual-line-mode)
   (diminish 'visual-line-mode)
   (setq org-src-fontify-natively t)
+  ;; (setq org-support-shift-select t)
   (setq org-src-preserve-indentation t)
   (setq org-confirm-babel-evaluate nil)
   (org-babel-do-load-languages
@@ -516,10 +532,22 @@ narrowed."
 
 
 (defun cesco/refresh ()
-(interactive)
+  (interactive)
   (kill-this-buffer)
   (magit-list-repositories)
   )
+
+(defun cesco/magit-repolist-delete (&optional _button)
+  "Show the status for the repository at point."
+  (interactive)
+  (--if-let (tabulated-list-get-id)
+      (if (yes-or-no-p "Remove Repo? ")
+	  (progn
+	    (delete-directory (expand-file-name it) t t)
+	    (cesco/refresh)
+	    )
+	)
+    (user-error "There is no repository at point")))
 
 (defun cesco/magit-repolist-hook ()
   (local-set-key (kbd "C-M-g")  'magit-repolist-status)
@@ -528,6 +556,7 @@ narrowed."
     magit-repolist-mode-map
     (kbd "TAB") 'magit-repolist-status
     (kbd "q") 'kill-this-buffer
+    (kbd "d") 'cesco/magit-repolist-delete
     (kbd "r") 'cesco/refresh
     (kbd "RET") 'magit-repolist-status)
   (message "cesco/magit-repolist-hook")
@@ -1220,6 +1249,10 @@ narrowed."
   (set-default 'evil-symbol-word-search t)
   (define-key evil-normal-state-map "L" 'tabbar-forward-tab)
   (define-key evil-normal-state-map "H" 'tabbar-backward-tab)
+
+(evil-define-key 'normal evil-org-mode-map
+  "H" 'tabbar-backward-tab
+  "L" 'tabbar-forward-tab)
   (evil-mode)
   )
    #+END_SRC

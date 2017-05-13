@@ -1,0 +1,37 @@
+#+TITLE: Java Playground
+#+OPTIONS: toc:nil f:nil 
+
+* Resposta
+  #+HEADERS: :classname HelloWorld 
+  #+begin_src java  :results output :exports both
+      public class HelloWorld {
+          public static void main(String[] args) {
+     for(int i=1; i<11; i++){
+              System.out.println("Count is: " + i);
+         }
+	  }
+      }
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  Count is: 1
+  Count is: 2
+  Count is: 3
+  Count is: 4
+  Count is: 5
+  Count is: 6
+  Count is: 7
+  Count is: 8
+  Count is: 9
+  Count is: 10
+#+end_example
+
+
+
+
+
+
+
+
+
