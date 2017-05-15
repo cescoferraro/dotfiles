@@ -1,5 +1,3 @@
-source ~/.bashrc 
-yarn list
 yarn list | grep firebase
 yarn add react-redux-firebase@1.4.0
 yarn list react-redux-firebase
@@ -126,3 +124,5 @@ yarn start
 yarn start
 yarn start
 yarn start
+jest --watch
+bash
