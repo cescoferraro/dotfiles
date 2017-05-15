@@ -86,6 +86,7 @@
 (depends-on "org-bullets")
 (depends-on "org-pdfview")
 (depends-on "org-plus-contrib")
+(depends-on "org-present")
 (depends-on "origami")
 (depends-on "ox-reveal")
 (depends-on "pallet")

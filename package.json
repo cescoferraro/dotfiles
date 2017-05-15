@@ -1,25 +1,25 @@
 {
-  "name": "dotfiles",
-  "version": "1.0.0",
-  "description": "[![Build Status](https://travis-ci.org/cescoferraro/dotfiles.svg?branch=master)](https://travis-ci.org/cescoferraro/dotfiles)",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cescoferraro/dotfiles.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cescoferraro/dotfiles/issues"
-  },
-  "homepage": "https://github.com/cescoferraro/dotfiles#readme",
-  "devDependencies": {
-    "react": "^15.4.2"
-  }
+    "name": "dotfiles",
+    "version": "1.0.0",
+    "description": "[![Build Status](https://travis-ci.org/cescoferraro/dotfiles.svg?branch=master)](https://travis-ci.org/cescoferraro/dotfiles)",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/cescoferraro/dotfiles.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/cescoferraro/dotfiles/issues"
+    },
+    "homepage": "https://github.com/cescoferraro/dotfiles#readme",
+    "devDependencies": {
+        "react": "^15.4.2"
+    }
 }

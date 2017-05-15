@@ -1,16 +1,3 @@
-..
-yarn start
-ll
-ls
-yarn start
-..
-..
-..
-yarn start
-yarn start
-yarn start
-gh
-source
 source ~/.bashrc 
 yarn list
 yarn list | grep firebase
@@ -126,3 +113,16 @@ cd app/components/
 ls
 touch Product.tsx
 ls
+yarn add react-addons-test-utils
+yarn add react-test-renderer
+yarn outdated
+yarn start
+yarn start
+yarn production
+yarn production
+yarn run production
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
