@@ -13,6 +13,7 @@
 	evil-normal-state
 	evil-paste-pop-next
 	evil-previous-line
+	evil-sp-delete-line
 	helm-M-x
 	indent-for-tab-command
 	magit-status
@@ -30,6 +31,7 @@
 (setq mc/cmds-to-run-once
       '(
 	evil-search-next
+	flycheck-next-error
 	multiple-cursors-hydra/mc/mark-next-like-this
 	multiple-cursors-hydra/mc/skip-to-next-like-this
 	))
