@@ -1,7 +1,4 @@
 yarn
-npm
-npm i -g yarn
-yarn
 ..
 ..
 ..
@@ -95,6 +92,9 @@ yarn start
 yarn start
 jest --watch
 bash
+yarn start
+yarn start
+yarn start
 yarn start
 yarn start
 yarn start

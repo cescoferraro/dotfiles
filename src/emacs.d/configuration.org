@@ -509,18 +509,14 @@ narrowed."
 
 (use-package flycheck
   :diminish flycheck-mode
+  :bind (("M-n" . flycheck-next-error) ("M-p" . flycheck-previous-error))
   :config
   (global-flycheck-mode)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq flycheck-display-errors-delay 0)
   (set-face-attribute 'flycheck-error nil :background "#8c5353")
   (set-face-attribute 'flycheck-warning nil :background "#535399")
-
-
-
-
-  :bind (("M-n" . flycheck-next-error)
-	 ("M-p" . flycheck-previous-error))
   )
    #+END_SRC
 ** GIT
@@ -809,29 +805,29 @@ narrowed."
    #+end_src
 ** Company
    #+BEGIN_SRC emacs-lisp
-     (use-package company
-       :ensure t
-       :diminish company-mode
-       :config
-       (progn
-(add-to-list 'company-backends '(company-elisp  :with company-yasnippet))
-         (define-key company-active-map (kbd "M-n") nil)
-         (define-key company-active-map (kbd "M-p") nil)
-         (define-key company-active-map (kbd "C-n") #'company-select-next)
-         (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  (require 'company-emacs-eclim)
-  (company-emacs-eclim-setup)
-         (global-company-mode +1))
-       :init
-       (progn
-         (setq company-dabbrev-downcase 0)
-         (setq company-idle-delay 0)
-         (setq company-dabbrev-code-everywhere t)
-         (setq company-minimum-prefix-length 1)
-         (setq-default company-idle-delay 0)
-         (setq-default company-tooltip-align-annotations t)
-         )
-       )
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :config
+  (progn
+    (add-to-list 'company-backends '(company-elisp  :with company-yasnippet))
+    (define-key company-active-map (kbd "M-n") nil)
+    (define-key company-active-map (kbd "M-p") nil)
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous)
+    (require 'company-emacs-eclim)
+    (company-emacs-eclim-setup)
+    (global-company-mode +1))
+  :init
+  (progn
+    (setq company-dabbrev-downcase 0)
+    (setq company-idle-delay 0)
+    (setq company-dabbrev-code-everywhere t)
+    (setq company-minimum-prefix-length 1)
+    (setq-default company-idle-delay 0)
+    (setq-default company-tooltip-align-annotations t)
+    )
+  )
    #+END_SRC
 ** Startup Screen
    #+BEGIN_SRC emacs-lisp
@@ -1136,6 +1132,8 @@ narrowed."
       nil typescript-tslint-cesco
     "The path of tsconfig.json ."
     :type '(choice (const :tag "No custom tsconfig file" nil)
+
+
 		   (directory :tag "Custom tsconfig.json"))
     :safe #'stringp
     :package-version '(flycheck . "27"))
@@ -1152,29 +1150,36 @@ narrowed."
     :modes (typescript-mode web-mode))
   )
 
-(defun cesco/custom-tslint ()
-  (if (projectile-project-p)
-      (progn
-	(setq flycheck-tslint-args . ("--type-check"))
-	(setq flycheck-typescript-tsconfig . ( (concat projectile-project-root "tsconfig.json" )))
-	(flycheck-select-checker 'typescript-tslint-cesco))))
-
 (defun cesco/tslint ()
   (setq flycheck-tslint-args . (nil))
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-select-checker 'typescript-tslint)
   )
 
+(defun cesco/custom-tslint ()
+  (if (projectile-project-p)
+      (if (file-exists-p (concat ( projectile-project-root ) "tsconfig.json"))
+	  (progn
+	    (setq flycheck-tslint-args . ("--type-check"))
+	    (setq flycheck-typescript-tsconfig . ( (concat projectile-project-root "tsconfig.json" )))
+	    (flycheck-select-checker 'typescript-tslint-cesco))
+        (cesco/tslint)
+	)))
+
+
 (defun cesco/tide-mode ()
   (interactive)
+  (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
+  (setq tide-tsserver-executable "node_modules/typescript/bin/tsserver")
   (tide-setup)
   (cesco/custom-tslint)
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (add-hook 'before-save-hook 'tide-format-before-save)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (add-to-list 'company-backends '(company-tide :with company-yasnippet))
-  )
+  (company-mode +1)
+;; (add-to-list 'company-backends '(company-tide :with company-yasnippet))
+  (set (make-local-variable 'company-backends)
+       '((company-tide company-files company-yasnippet))))
 
 (defun cesco/tide-evil ()
   (evil-leader/set-key-for-mode 'web-mode
