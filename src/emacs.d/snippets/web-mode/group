@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: group
+# key: group
+# --
+,
+{
+	name: "$4",
+	code: "$3",
+	children: [
+		  {name: "$1", code: "$0"}
+	]
+}

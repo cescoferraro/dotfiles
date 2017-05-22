@@ -1,33 +1,3 @@
-yarn add react-redux-firebase@1.4.0
-yarn list react-redux-firebase
-yarn add react-redux-firebase@1.4.0-rc.1
-..
-..
-cp ~/.kube/ src/
-cp -r ~/.kube/ src/
-cd src/
-ll
-ls
-cp -r ~/.kube/ src/kube
-cp -pr ~/.kube/ src/kube
-ls
-mkdir kube
-cp -r ~/.kube/ kube/
-ls
-cd kube/
-ll
-ls
-cp -r /home/cescoferraro/.kube/* ./
-ls
-rm -rf /home/admin/.emacs.d/.cask/25.1/elpa/org-plus-contrib-20170210/*.elc 
-..
-..
-yarn
-yarn
-yarn
-yarn
-yarn
-yarn
 yarn
 npm
 npm i -g yarn
@@ -125,4 +95,34 @@ yarn start
 yarn start
 jest --watch
 bash
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
+yarn start
 yarn start

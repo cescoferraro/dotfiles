@@ -506,17 +506,22 @@ narrowed."
 ** Flycheck
 
    #+BEGIN_SRC emacs-lisp
-     (use-package flycheck
-       :diminish flycheck-mode
-       :config
-       (global-flycheck-mode)
-       (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-       (setq flycheck-display-errors-delay 0)
-       (set-face-attribute 'flycheck-error nil :background "#8c5353")
-       (set-face-attribute 'flycheck-warning nil :background "#535399")
-       :bind (("M-n" . flycheck-next-error)
-   	   ("M-p" . flycheck-previous-error))
-       )
+
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  (setq flycheck-display-errors-delay 0)
+  (set-face-attribute 'flycheck-error nil :background "#8c5353")
+  (set-face-attribute 'flycheck-warning nil :background "#535399")
+
+
+
+
+  :bind (("M-n" . flycheck-next-error)
+	 ("M-p" . flycheck-previous-error))
+  )
    #+END_SRC
 ** GIT
 
@@ -1125,56 +1130,83 @@ narrowed."
 ** Typescript
 
    #+BEGIN_SRC emacs-lisp
-(use-package tide
-  :ensure t
-  :diminish tide-mode
-  :after evil-leader
-  :config
-  (progn
+(defun cesco/tide-checker ()
 
+  (flycheck-def-option-var flycheck-typescript-tsconfig
+      nil typescript-tslint-cesco
+    "The path of tsconfig.json ."
+    :type '(choice (const :tag "No custom tsconfig file" nil)
+		   (directory :tag "Custom tsconfig.json"))
+    :safe #'stringp
+    :package-version '(flycheck . "27"))
 
-    (evil-leader/set-key-for-mode 'web-mode
-      "j"  (lambda ()
-	     (interactive)
-	     (tide-jump-to-definition )
-	     )
-      )
+  (flycheck-define-checker typescript-tslint-cesco
+    "TypeScript style checker using TSLint."
+    :command ("tslint" "--format" "json"
+	      (config-file "--config" flycheck-typescript-tslint-config)
+	      (config-file "--project" flycheck-typescript-tsconfig)
+	      (option "--rules-dir" flycheck-typescript-tslint-rulesdir)
+	      (eval flycheck-tslint-args)
+	      source-inplace)
+    :error-parser flycheck-parse-tslint
+    :modes (typescript-mode web-mode))
+  )
 
-    (defun setup-tide-mode ()
-      (interactive)
-      (tide-setup)
-      (flycheck-mode +1)
-      (setq flycheck-check-syntax-automatically '(save mode-enabled))
-      (eldoc-mode +1)
-      (tide-hl-identifier-mode +1)
-      (add-to-list 'company-backends '(company-tide :with company-yasnippet))
-      )
+(defun cesco/custom-tslint ()
+  (if (projectile-project-p)
+      (progn
+	(setq flycheck-tslint-args . ("--type-check"))
+	(setq flycheck-typescript-tsconfig . ( (concat projectile-project-root "tsconfig.json" )))
+	(flycheck-select-checker 'typescript-tslint-cesco))))
 
-    ;; formats the buffer before saving
-    (add-hook 'before-save-hook 'tide-format-before-save)
+(defun cesco/tslint ()
+  (setq flycheck-tslint-args . (nil))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (flycheck-select-checker 'typescript-tslint)
+  )
 
-    (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(defun cesco/tide-mode ()
+  (interactive)
+  (tide-setup)
+  (cesco/custom-tslint)
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (add-to-list 'company-backends '(company-tide :with company-yasnippet))
+  )
 
-    (use-package web-mode :ensure t
-      :config
-
-      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-      (add-hook 'web-mode-hook
-		(lambda ()
-		  (when (string-equal "tsx" (file-name-extension buffer-file-name))
-		    (setup-tide-mode))))
-
-      (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-      (add-hook 'web-mode-hook
-		(lambda ()
-		  (when (string-equal "jsx" (file-name-extension buffer-file-name))
-		    (setup-tide-mode))))
-
-      )
+(defun cesco/tide-evil ()
+  (evil-leader/set-key-for-mode 'web-mode
+    "j" (lambda () (interactive)(tide-jump-to-definition))
     )
   )
 
 
+(use-package tide
+  :diminish tide-mode
+  :after (flycheck evil-leader)
+  :config
+  (cesco/tide-evil)
+  (cesco/tide-checker)
+  (add-hook 'typescript-mode-hook #'cesco/tide-mode) )
+
+(use-package web-mode :ensure t
+  :ensure tide
+  :mode (("\\.tsx$" . web-mode)
+         ("\\.jsx$" . web-mode))
+  :config
+  (add-hook 'web-mode-hook
+	    (lambda ()
+	      (when (string-equal "tsx" (file-name-extension buffer-file-name))
+		(cesco/tide-mode))))
+
+  (add-hook 'web-mode-hook
+	    (lambda ()
+	      (when (string-equal "jsx" (file-name-extension buffer-file-name))
+		(cesco/tide-mode))))
+
+  )
    #+END_SRC
 * Evil
 ** Evil Paraphernalia
