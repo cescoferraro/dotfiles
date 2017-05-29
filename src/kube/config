@@ -1,83 +1,18 @@
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority: /home/cescoferraro/code/go/src/github.com/cescoferraro/cluster/ssl/kubernetes/ca.crt
-    server: https://138.197.193.172:6443
-  name: CLUSTER
-- cluster:
-    certificate-authority: machine/machines/aws/ca.pem
-    server: https://52.67.247.204:6443
-  name: aws
-- cluster:
-    certificate-authority: machine/machines/aws-test/ca.pem
-    server: https://52.67.249.90:6443
-  name: aws-test
-- cluster:
-    certificate-authority: machine/machines/awscesco/ca.pem
-    server: https://52.67.235.24:6443
-  name: awscesco
-- cluster:
-    certificate-authority: machine/machines/cescoferraro/ca.pem
-    server: https://52.67.124.157:6443
-  name: cescoferraro
-- cluster:
     certificate-authority: machine/machines/cescoferraro.xyz/ca.pem
     server: https://54.207.24.221:6443
   name: cescoferraro.xyz
-- cluster:
-    insecure-skip-tls-verify: true
-    server: http://127.0.0.1:8080
-  name: local
 contexts:
-- context:
-    cluster: aws
-    user: aws
-  name: aws
-- context:
-    cluster: aws-test
-    user: aws-test
-  name: aws-test
-- context:
-    cluster: awscesco
-    user: awscesco
-  name: awscesco
-- context:
-    cluster: cescoferraro
-    user: cescoferraro
-  name: cescoferraro
 - context:
     cluster: cescoferraro.xyz
     user: cescoferraro.xyz
   name: cescoferraro.xyz
-- context:
-    cluster: local
-    user: ""
-  name: local
-- context:
-    cluster: CLUSTER
-    user: admin
-  name: production
 current-context: cescoferraro.xyz
 kind: Config
 preferences: {}
 users:
-- name: admin
-  user:
-    client-certificate: /home/cescoferraro/code/go/src/github.com/cescoferraro/cluster/ssl/kubernetes/server.cert
-    client-key: /home/cescoferraro/code/go/src/github.com/cescoferraro/cluster/ssl/kubernetes/server.key
-    token: BaEYVxVfJnZ879YtEz2hNQcQ0m50laGu
-- name: aws
-  user:
-    token: hGNcyXxWolfTTmSWoBwcKMbvZe0vansy
-- name: aws-test
-  user:
-    token: 2hjaJYnOq1J2g4nMPoPS6QAASKOwkcIP
-- name: awscesco
-  user:
-    token: jxMrv5jHkNXlYNxIbJUu5n3oiYjI9l3G
-- name: cescoferraro
-  user:
-    token: TNDGdjhoyDUjn1AbV3enmHyeCX3UkTtR
 - name: cescoferraro.xyz
   user:
     token: DVUK0jx2Ki3y6rSrqdvEcuRUpgTA8k1c

@@ -1,10 +1,3 @@
-yarn
-..
-..
-..
-yarn start
-..
-..
 ..
 ..
 yarn start
@@ -125,4 +118,11 @@ yarn start
 yarn start
 yarn start
 yarn start
+yarn start
+yarn start
+yarn start
+kubectl
+kubectl get pods
+yarn start
+14: 0x221e7251452e
 yarn start
