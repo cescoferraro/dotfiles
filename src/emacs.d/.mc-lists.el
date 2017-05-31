@@ -24,14 +24,18 @@
 	multiple-cursors-hydra/mc/unmark-previous-like-this
 	org-delete-char
 	org-self-insert-command
+	org-shiftright
 	sp-backward-delete-char
 	undefined
 	))
 
 (setq mc/cmds-to-run-once
       '(
+	evil-delete
 	evil-search-next
 	flycheck-next-error
+	flycheck-previous-error
 	multiple-cursors-hydra/mc/mark-next-like-this
 	multiple-cursors-hydra/mc/skip-to-next-like-this
+	swiper
 	))
