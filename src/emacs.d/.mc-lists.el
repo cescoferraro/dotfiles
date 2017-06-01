@@ -14,6 +14,8 @@
 	evil-paste-pop-next
 	evil-previous-line
 	evil-sp-delete-line
+	evil-visual-char
+	evil-yank
 	helm-M-x
 	indent-for-tab-command
 	magit-status
