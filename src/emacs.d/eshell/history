@@ -1,5 +1,4 @@
 ..
-..
 yarn start
 ..
 ..
@@ -126,3 +125,4 @@ kubectl get pods
 yarn start
 14: 0x221e7251452e
 yarn start
+ping 8.8.8.8
