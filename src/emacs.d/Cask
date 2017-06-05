@@ -20,6 +20,7 @@
 (depends-on "cljr-helm")
 (depends-on "color-theme")
 (depends-on "company-emacs-eclim")
+(depends-on "company-emoji")
 (depends-on "company-go")
 (depends-on "counsel")
 (depends-on "darcula-theme")

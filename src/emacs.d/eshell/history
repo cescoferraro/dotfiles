@@ -1,8 +1,4 @@
 ..
-yarn start
-..
-..
-..
 ..
 yarn start
 ls -lasF
@@ -126,3 +122,7 @@ yarn start
 14: 0x221e7251452e
 yarn start
 ping 8.8.8.8
+yarn start
+yarn start
+yarn start
+yarn start
