@@ -7,15 +7,30 @@ clusters:
     certificate-authority: machine/machines/cescoferraro.xyz/ca.pem
     server: https://52.67.120.180:6443
   name: cescoferraro.xyz
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURERENDQWZTZ0F3SUJBZ0lSQUlmUEMyeUpsTHd0Nm1QdUNJYm1INjR3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa09UZGxNREEwTVdFdE1EZzBaaTAwWlRFekxUbGhPV1V0TnpZMFptVmtOemhoTkdNMgpNQjRYRFRFM01EWXdOakEwTVRnMU5sb1hEVEl5TURZd05UQTBNVGcxTmxvd0x6RXRNQ3NHQTFVRUF4TWtPVGRsCk1EQTBNV0V0TURnMFppMDBaVEV6TFRsaE9XVXROelkwWm1Wa056aGhOR00yTUlJQklqQU5CZ2txaGtpRzl3MEIKQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBMURtTTFBcDY2RHF2SisxR1VDSytsVnZZRWtmeUpDays2RndvL211eAppWnBSQ3NQOXFINllNWERoeUtsdlhiZXRzZXM4amRJUWdWNWk0VFFZWGd2RFd5NGxIeUo3RGpXVjROdHYweCtHCnlTazhTYUhWY2xzdlJVSGppOVlQU01hdjhzZGlvVHlLVmRFK0xNOHczSlAxUFh6TTNiaHBUN2V2S2tvNDBFTTkKRjczOE1XU3MvQnpVVFgySXZ4SkZSYzI3bi9NWCtqbXpudTNlaU9nUE5EQTNRekxSOUhlMWpBcUp3Wm9IZStFUQpyeVQzd1VteFVDRFdqYUhLRzJQd01iQytVVVZVb0NIakUzUElmUW00cFNDZHdwOWtDcWdjeUQzNi9RZStJbmpuCm83VkJxRnpxeHRiZmZtYUltRjNYbW5mcno4dm56UVpXSWxJTkxtR0FnQlJ3eVFJREFRQUJveU13SVRBT0JnTlYKSFE4QkFmOEVCQU1DQWdRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQQpIWDNqT25zaXh2RHNGWGJFLys5UzEwWEJXdWd3WDFiZTBwYWllSEpaMkNWNHI3d2k5UHMwbWhrUUVFWVNaL1R0CnMxYWkydGNmMXZjU2ZqNUNZOHZoSWxjL0pzaTM2TFlIbmk2MHdYQmc5bFFKTzFUYzBzZHF4b05tZkZwT2VjWnoKRkhpWHZvTE9MajRiZlFGMEJFclJyK2hsRStWZXpWeHFhazd6emY5aVVFMUlYemtzNDArYjlOcDVXcEhONXJXTwpmaHJGYWZpUG84STdTb2U1WGpicWdkR1ZoVmd6d0tEWUtsME9jazVhTStzSm5KOE9lcEVWdzRLWlkyUzZjc1ZyCkl2V0Y1NWxDWVFERVZoV2lJa2ZTaWJNR0VQOEM2cGI3cWowbElJVEZqZExRYXFEY1p5SVd0K1JNNlhEbjhnSUcKby8xOUZvMGNDMXlpWlErTUluV25KZz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://104.198.10.64
+  name: gke_achars-82daf_us-west1-a_cescoferraro
 contexts:
 - context:
     cluster: cescoferraro.xyz
     user: cescoferraro.xyz
   name: cescoferraro.xyz
-current-context: cescoferraro.xyz
+- context:
+    cluster: gke_achars-82daf_us-west1-a_cescoferraro
+    user: gke_achars-82daf_us-west1-a_cescoferraro
+  name: gke_achars-82daf_us-west1-a_cescoferraro
+current-context: gke_achars-82daf_us-west1-a_cescoferraro
 kind: Config
 preferences: {}
 users:
 - name: cescoferraro.xyz
   user:
     token: 9TsfpTeCLGnm5ebMaOGHAb2pAg4ERhXm
+- name: gke_achars-82daf_us-west1-a_cescoferraro
+  user:
+    auth-provider:
+      config:
+        access-token: ya29.GlthBBGtGx-Wo9uatMAeglkXwf6Rq-ZlJrJuQ1mSsws0GOe0N7N8HMwkHkb39pgx-tRQ5F7xaQBM1LGiYIem7U1Nvj8oU1rms178XDhnNZ7tYgAS3FIwACGWXRmB
+        expiry: 2017-06-06T02:23:40.54614381-03:00
+      name: gcp

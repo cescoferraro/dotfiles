@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	c-electric-colon
+	c-electric-semi&comma
 	evil-backward-char
 	evil-force-normal-state
 	evil-forward-char
@@ -33,6 +35,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+	evil-append-line
 	evil-delete
 	evil-search-next
 	flycheck-next-error
