@@ -31,6 +31,6 @@ users:
   user:
     auth-provider:
       config:
-        access-token: ya29.GlthBEv5lsTIe12EeixJw8sZjdKpjRaGCe-lv0uQ2AphDRkYznlsQdPo5AVC2hzks01_a-urUvff1-y_5ZEkNgp_8gXOGS0agyw8Xe7wLY9MbFdfa-e8QxDZTlk9
-        expiry: 2017-06-06T03:25:38.346609462-03:00
+        access-token: ya29.GlxjBLH_ouW7QkdhvC1ToR1paq38X1NmXvsw8SVFCjbr5xNgbUVv7WZr1LTj9CPg69nTRroo13NU9_fmtDt1XIvBPlaOXBm1IBgzJFxsXneKKXRNjo4gUPQc8AO6_A
+        expiry: 2017-06-08T17:08:37.105988057-03:00
       name: gcp

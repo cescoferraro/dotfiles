@@ -1,8 +1,3 @@
-ls -lasF
-rm -rf node_modules/
-rm -rf node_modules/
-yarn
-ls
 yarn start
 yarn start
 yarn start
@@ -126,3 +121,8 @@ yarn start
 ls
 ls
 ls
+ls
+pwd
+echo 32
+hey
+hugo
