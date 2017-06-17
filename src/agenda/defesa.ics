@@ -1,0 +1,8 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+X-WR-CALNAME:defesa
+PRODID:-//Francesco Antonello Ferraro//Emacs with Org mode//EN
+X-WR-TIMEZONE:-03
+X-WR-CALDESC:Defesa Prefeitura Porto Alegre
+CALSCALE:GREGORIAN
+END:VCALENDAR

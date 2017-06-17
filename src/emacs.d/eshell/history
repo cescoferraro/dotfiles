@@ -1,6 +1,3 @@
-yarn start
-yarn start
-yarn start
 ,;
 ,;
 yarn start
@@ -126,3 +123,6 @@ pwd
 echo 32
 hey
 hugo
+../achars/
+yarn start
+yarn start
