@@ -1,0 +1,10 @@
+#+TODO: TODO IN-PROGRESS | DONE
+
+* DONE Entregar Defesa Prefeitura
+  DEADLINE: <2017-07-06 Thu>
+* TODO Arrumar Trabalho Intro
+  DEADLINE: <2017-06-28 Thu>
+* TODO Fix manifest.json
+* To Do
+* TODO Sacar R$1000
+ [2017-06-30 Fri]

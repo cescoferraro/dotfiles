@@ -37,5 +37,6 @@ alias emacs="emacs -nw"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Load OS specific aliases.
-
-. "aliases/$OS/bash_aliases"
+if [[ `uname` == 'Linux' ]]; then
+        export LINUX=
+fi

@@ -1,6 +1,28 @@
+* Cesco Gcal acess
+  :PROPERTIES:
+  :LINK: [[https://www.google.com/calendar/event?eid=N2lsM2N1MDBtbW5jNzAyZDhvaHVrZ2tjMHMgZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]
+  :ID: 7il3cu00mmnc702d8ohukgkc0s
+  :END:
 
+  <2017-06-20 Tue 12:30-13:30>
 
+  uma baita passo para a organizao minha como desenvolvedor de software.
+* A  que mora o perigo
+  :PROPERTIES:
+  :LOCATION: UFRGS - Universidade Federal do Rio Grande do Sul
+  :LINK: [[https://www.google.com/calendar/event?eid=MTQ5Nzk2NjI0NDk0OSBmcmFuY2VzY29hZmVycmFyb0Bt][Go to gcal web page]]
+  :ID: 1497966244949
+  :END:
 
+  <2017-06-22 Thu>
 
-** TODO Sql Plus docker container
-** TODO emacs sql environk
+Baita evento!
+* Intro Software P2
+  :PROPERTIES:
+  :LINK: [[https://www.google.com/calendar/event?eid=NWlnYmw1amFtYWxwc21rczA0azZlY2xrMzggZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]
+  :ID: 5igbl5jamalpsmks04k6eclk38
+  :END:
+
+  <2017-07-06 Thu>
+
+  This is a important grade a need to get!

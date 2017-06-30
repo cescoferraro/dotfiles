@@ -1,5 +1,52 @@
 #+TITLE: Defesa Prefeitura Porto Alegre
+#+AUTHOR: Francesco Ferraro
+#+DATE: Porto Alegre 17/06/2017
+#+EMAIL: cassano.adm@gmail.com
+#+LANGUAGE:   'pt_BR'
 #+OPTIONS: toc:nil f:nil
 
-* Questão 1
-Casco negro juizinho.
+Venho por meio desta, apresentar a defesa referente aos seguintes
+autos de infração, que chagaram até meu conhecimento em data
+diferente e de modos diferentes.
+
+|  Número | Endereço                      | Data Emissão |
+|---------+-------------------------------+--------------|
+| 1007706 | Av. Carlos Barbosa 998        | 19/04        |
+| 1007704 | Av. Carlos Barbosa 1000       | 19/04        |
+| 1007704 | Av. Carlos Barbosa 1002 Sala2 | 19/04        |
+| 1007704 | Av. Carlos Barbosa 1004       | 19/04        |
+| 1007704 | Av. Carlos Barbosa 1006       | 19/04        |
+
+
+* Defesa
+
+  Meu nome é *Francesco Ferraro*, CPF *135.311.900-91*, proprietário de
+  *toda* a edificação localizada na esquina da Av. Carlos Barbosa com a
+  Rua Oscar Schineider. E esse é o primeiro argumento com que baseio a
+  minha defesa. O prédio possui carta de habitação e planta, anexados
+  nesse protocolo, aprovadas pela Prefeitura de Porto Alegre que
+  subdividem a edificação em quatro lojas e dois
+  apartamentos. Entretanto, o proprietário de todas as unidades são a
+  mesma pessoa, no caso, eu.  Por isso, antes de apresentar minha
+  defesa, peço a unificação das infrações recebidas em uma única
+  multa.  Foram aplicadas multa até nos aparatamentos que ficam
+  localizados no segunda andar. Pelo princípio do "non bis in idem",
+  garantido pela nossa constituição, que diz que ninguém pode ser
+  condenado pelo mesmo infração duas vezes, peço mais uma vez que
+  todas essas infrações sejas analisadas e conjugadas.
+  \newpage
+
+  Segue anexo também cópia da planta aprovada por essa mesma prefeitura
+  aprovando o rebaixo no meio. É um documento válido que comprova a
+  regularidade do meio fio. Vale ressaltar também que o local se
+  encontra em condições iguais às representadas em planta. Abaixo segue
+  foto da planta em que consta o rebaixo do meio fio aprovado.
+
+
+#+CAPTION: Planta Aprovada pela PMPA
+#+NAME: fig.super
+[[file:unnamed.jpg]]
+
+
+
+  #  LocalWords: Av Schineider PMPA

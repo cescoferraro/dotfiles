@@ -1,0 +1,6 @@
+(:token
+ (:access_token "ya29.Glx5BJMMArVecGr3egW2kMSOvSd-maJB2ghKznwb2Upz90di5rIUtmeGphIDidS5KxKe67Ra8S9kUZbQWacktMZU1R_FO4UmHxQIHwaIljFfAWHAJ_schrrXyzuK0A" :token_type "Bearer" :expires_in 3600 :refresh_token "1/-FT_XEVz5H6zY_3RNsfoThPXroj3YuZqLlxykVU0Y4w")
+ :elem nil :francescoaferraro@gmail\.com
+ (("7il3cu00mmnc702d8ohukgkc0s" . "* Cesco Gcal acess\n  :PROPERTIES:\n  :LINK: [[https://www.google.com/calendar/event?eid=N2lsM2N1MDBtbW5jNzAyZDhvaHVrZ2tjMHMgZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]\n  :ID: 7il3cu00mmnc702d8ohukgkc0s\n  :END:\n\n  <2017-06-20 Tue 12:30-13:30>\n\n  uma baita passo para a organizao minha como desenvolvedor de software.\n")
+  ("1497966244949" . "* A  que mora o perigo\n  :PROPERTIES:\n  :LOCATION: UFRGS - Universidade Federal do Rio Grande do Sul\n  :LINK: [[https://www.google.com/calendar/event?eid=MTQ5Nzk2NjI0NDk0OSBmcmFuY2VzY29hZmVycmFyb0Bt][Go to gcal web page]]\n  :ID: 1497966244949\n  :END:\n\n  <2017-06-22 Thu>\n\nBaita evento!\n")
+  ("5igbl5jamalpsmks04k6eclk38" . "* Intro Software P2\n  :PROPERTIES:\n  :LINK: [[https://www.google.com/calendar/event?eid=NWlnYmw1amFtYWxwc21rczA0azZlY2xrMzggZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]\n  :ID: 5igbl5jamalpsmks04k6eclk38\n  :END:\n\n  <2017-07-06 Thu>\n\n  This is a important grade a need to get!\n")))

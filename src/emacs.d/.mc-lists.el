@@ -6,6 +6,7 @@
 	c-electric-colon
 	c-electric-semi&comma
 	evil-backward-char
+	evil-end-of-line
 	evil-force-normal-state
 	evil-forward-char
 	evil-goto-line
@@ -40,6 +41,7 @@
 	evil-search-next
 	flycheck-next-error
 	flycheck-previous-error
+	mac-mwheel-scroll
 	multiple-cursors-hydra/mc/mark-next-like-this
 	multiple-cursors-hydra/mc/skip-to-next-like-this
 	swiper
