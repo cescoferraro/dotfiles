@@ -1,4 +1,48 @@
+[submodule "src/vim/vim/plugins/Vundle.vim"]
+	path = src/vim/vim/plugins/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
 
-[submodule "src/vim/vim/plugins/vim-crosshairs"]
-	path = src/vim/vim/plugins/vim-crosshairs
-	url = https://github.com/bronson/vim-crosshairs.git
+[submodule "src/vim/vim/plugins/YouCompleteMe"]
+	path = src/vim/vim/plugins/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+
+[submodule "src/vim/vim/plugins/nerdtree"]
+	path = src/vim/vim/plugins/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+
+[submodule "src/vim/vim/plugins/nerdtree-git-plugin"]
+	path = src/vim/vim/plugins/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+
+[submodule "src/vim/vim/plugins/tern_for_vim"]
+	path = src/vim/vim/plugins/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim
+
+[submodule "src/vim/vim/plugins/vim-airline"]
+	path = src/vim/vim/plugins/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+
+[submodule "src/vim/vim/plugins/vim-airline-themes"]
+	path = src/vim/vim/plugins/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+
+[submodule "src/vim/vim/plugins/vim-devicons"]
+	path = src/vim/vim/plugins/vim-devicons
+	url = https://github.com/vim-airline/vim-devicons
+
+[submodule "src/vim/vim/plugins/vim-go"]
+	path = src/vim/vim/plugins/vim-go
+	url = https://github.com/fatih/vim-go
+
+[submodule "src/vim/vim/plugins/vim-nerdtree-syntax-highlight"]
+	path = src/vim/vim/plugins/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+
+
+[submodule "src/zsh/oh-my-zsh"]
+	path = src/zsh/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
+
+[submodule "src/vim/vim/plugins/vim-nerdtree-tabs"]
+	path = src/vim/vim/plugins/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs
