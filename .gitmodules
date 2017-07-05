@@ -28,7 +28,7 @@
 
 [submodule "src/vim/vim/plugins/vim-devicons"]
 	path = src/vim/vim/plugins/vim-devicons
-	url = https://github.com/vim-airline/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons
 
 [submodule "src/vim/vim/plugins/vim-go"]
 	path = src/vim/vim/plugins/vim-go
