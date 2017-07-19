@@ -71,7 +71,7 @@ alias o="open"
 
 # Evaluates the docker-machine environment
 
-alias d="eval $(docker-machine env)"
+alias d='eval $(docker-machine env)'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
