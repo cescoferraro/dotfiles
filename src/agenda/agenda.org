@@ -1,22 +1,3 @@
-* Cesco Gcal acess
-  :PROPERTIES:
-  :LINK: [[https://www.google.com/calendar/event?eid=N2lsM2N1MDBtbW5jNzAyZDhvaHVrZ2tjMHMgZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]
-  :ID: 7il3cu00mmnc702d8ohukgkc0s
-  :END:
-
-  <2017-06-20 Tue 12:30-13:30>
-
-  uma baita passo para a organizao minha como desenvolvedor de software.
-* A  que mora o perigo
-  :PROPERTIES:
-  :LOCATION: UFRGS - Universidade Federal do Rio Grande do Sul
-  :LINK: [[https://www.google.com/calendar/event?eid=MTQ5Nzk2NjI0NDk0OSBmcmFuY2VzY29hZmVycmFyb0Bt][Go to gcal web page]]
-  :ID: 1497966244949
-  :END:
-
-  <2017-06-22 Thu>
-
-Baita evento!
 * Intro Software P2
   :PROPERTIES:
   :LINK: [[https://www.google.com/calendar/event?eid=NWlnYmw1amFtYWxwc21rczA0azZlY2xrMzggZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]
@@ -26,3 +7,17 @@ Baita evento!
   <2017-07-06 Thu>
 
   This is a important grade a need to get!
+* Storage with Kubernetes on AWS
+  :PROPERTIES:
+  :LOCATION: BrightTALK
+  :LINK: [[https://www.google.com/calendar/event?eid=N2gyY3E2ZWNwdWs1cTJtZm5iZzRncWhlbGcgZnJhbmNlc2NvYWZlcnJhcm9AbQ][Go to gcal web page]]
+  :ID: 7h2cq6ecpuk5q2mfnbg4gqhelg
+  :END:
+
+  <2017-07-11 Tue 14:00-15:00>
+
+Click here to attend: http://www.brighttalk.com/webcast/14601/267015?utm_campaign=google-calendar&utm_source=brighttalk-portal&utm_medium=calendar
+
+Containers may be great for running stateless applications, but what about stateful applications? Kubernetes, the open-source platform for managing containers at scale, contains various technologies to provide persistent storage for stateful applications. This allows users to manage their stateful applications and gain all of the benefits of a containerized infrastructure.
+
+Join us as we discuss storage technologies in Kubernetes. We will cover PersistentVolumes, PersistentVolumeClaims, dynamic provisioning, StorageClasses, StatefulSets, and other technologies which help users deploy their stateful applications on Kubernetes running on Amazon Web Services. We will also demonstrate how to run CockroachDB, Wordpress/MySQL, and GlusterFS deployed as containers using Kubernetes on AWS.

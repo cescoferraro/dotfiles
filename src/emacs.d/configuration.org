@@ -515,6 +515,8 @@ narrowed."
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (setq flycheck-display-errors-delay 0)
+  (setq flycheck-shellcheck-follow-sources nil)
+
   (set-face-attribute 'flycheck-error nil :background "#8c5353")
   (set-face-attribute 'flycheck-warning nil :background "#535399")
   )
