@@ -94,6 +94,7 @@
 (depends-on "interleave")
 (depends-on "ivy")
 (depends-on "javadoc-lookup")
+(depends-on "js-doc")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "js3-mode")
