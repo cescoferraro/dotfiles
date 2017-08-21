@@ -8,6 +8,7 @@
 	c-electric-semi&comma
 	evil-backward-char
 	evil-backward-word-begin
+	evil-complete-next
 	evil-end-of-line
 	evil-force-normal-state
 	evil-forward-char
@@ -26,6 +27,7 @@
 	evil-yank
 	helm-M-x
 	helm-buffers-list
+	iedit-mode
 	indent-for-tab-command
 	magit-status
 	magit-unstage

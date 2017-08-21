@@ -27,6 +27,7 @@ alias docker-format="docker images --quiet --filter=dangling=true | xargs --no-r
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias di="docker run -t -i -P"
 alias dd="docker run -d -P"
+alias dm="docker-machine"
 alias dl='docker ps --format "table {{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dc="docker ps -aq | xargs --no-run-if-empty docker rm -f"
 alias jj="docker run -t -i -P openjdk:8 java"
