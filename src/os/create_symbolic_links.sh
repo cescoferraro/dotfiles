@@ -30,6 +30,7 @@ create_symlinks() {
         "vim/vim"
         "vim/vimrc"
         "kube"
+        "docker"
 	    "emacs.d"
         "agenda"
     )
