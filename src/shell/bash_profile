@@ -56,3 +56,5 @@ unset -f source_bash_files
 # and time of the last login, the message of the day, etc.).
 
 clear
+
+[ -s "/home/cescoferraro/.jabba/jabba.sh" ] && source "/home/cescoferraro/.jabba/jabba.sh"
