@@ -23,6 +23,7 @@ alias k="kubectl"
 alias d="docker"
 alias gh='cd $HOME/go/src/github.com/cescoferraro'
 alias bb='cd $HOME/go/src/bitbucket.org/cescoferraro'
+alias onni='cd $HOME/go/src/bitbucket.org/onnidev'
 alias docker-format="docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f"
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
 alias di="docker run -t -i -P"
