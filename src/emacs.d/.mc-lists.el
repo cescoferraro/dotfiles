@@ -3,57 +3,21 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-	ac-pcmp/self-insert-command-with-ac-start
-	c-electric-colon
-	c-electric-semi&comma
 	evil-backward-char
-	evil-backward-word-begin
-	evil-complete-next
-	evil-end-of-line
-	evil-force-normal-state
-	evil-forward-char
-	evil-forward-word-begin
-	evil-forward-word-end
-	evil-goto-line
+	evil-complete-previous
+	evil-delete-char
 	evil-insert
-	evil-insert-line
 	evil-next-line
 	evil-normal-state
-	evil-paste-after
-	evil-paste-pop-next
-	evil-previous-line
-	evil-sp-delete-line
-	evil-visual-char
-	evil-yank
-	helm-M-x
-	helm-buffers-list
-	iedit-mode
-	indent-for-tab-command
-	magit-status
-	magit-unstage
 	multiple-cursors-hydra/body
-	multiple-cursors-hydra/mc/edit-lines-and-exit
+	multiple-cursors-hydra/mc/mark-next-like-this
 	multiple-cursors-hydra/mc/mark-previous-like-this
 	multiple-cursors-hydra/mc/unmark-next-like-this
 	multiple-cursors-hydra/mc/unmark-previous-like-this
-	org-delete-char
-	org-end-of-line
-	org-force-self-insert
-	org-self-insert-command
-	org-shiftright
-	sp-backward-delete-char
-	undefined
 	))
 
 (setq mc/cmds-to-run-once
       '(
-	evil-append-line
-	evil-delete
-	evil-search-next
-	flycheck-next-error
-	flycheck-previous-error
-	mac-mwheel-scroll
-	multiple-cursors-hydra/mc/mark-next-like-this
-	multiple-cursors-hydra/mc/skip-to-next-like-this
-	swiper
+	iedit-switch-to-mc-mode
+	yaml-electric-backspace
 	))
