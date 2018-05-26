@@ -1,6 +1,6 @@
 HTTP/2.0 200 OK
 Content-Length: 292
 Content-Type: application/json
-Date: Tue, 22 May 2018 18:09:33 GMT
+Date: Fri, 25 May 2018 22:39:20 GMT
 
 {"kind":"APIResourceList","apiVersion":"v1","groupVersion":"networking.k8s.io/v1","resources":[{"name":"networkpolicies","singularName":"","namespaced":true,"kind":"NetworkPolicy","verbs":["create","delete","deletecollection","get","list","patch","update","watch"],"shortNames":["netpol"]}]}

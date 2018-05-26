@@ -1,6 +1,6 @@
 HTTP/2.0 200 OK
 Content-Length: 382
 Content-Type: application/json
-Date: Tue, 22 May 2018 18:09:33 GMT
+Date: Fri, 25 May 2018 22:39:20 GMT
 
 {"kind":"APIResourceList","apiVersion":"v1","groupVersion":"batch/v1beta1","resources":[{"name":"cronjobs","singularName":"","namespaced":true,"kind":"CronJob","verbs":["create","delete","deletecollection","get","list","patch","update","watch"],"categories":["all"]},{"name":"cronjobs/status","singularName":"","namespaced":true,"kind":"CronJob","verbs":["get","patch","update"]}]}
