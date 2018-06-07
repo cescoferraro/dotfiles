@@ -1,1 +1,0 @@
-{"kind":"APIResourceList","apiVersion":"v1","groupVersion":"policy/v1beta1","resources":[{"name":"poddisruptionbudgets","namespaced":true,"kind":"PodDisruptionBudget"},{"name":"poddisruptionbudgets/status","namespaced":true,"kind":"PodDisruptionBudget"}]}

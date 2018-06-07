@@ -1,8 +1,0 @@
-HTTP/2.0 401 Unauthorized
-Content-Length: 13
-Content-Type: text/plain; charset=utf-8
-Date: Thu, 12 Apr 2018 21:25:05 GMT
-Www-Authenticate: Basic realm="kubernetes-master"
-X-Content-Type-Options: nosniff
-
-Unauthorized
