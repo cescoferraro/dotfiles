@@ -125,7 +125,7 @@ My emacs configuration! Enjoy
 
 (cond
  ((string-equal system-type "gnu/linux")
-  (set-face-attribute 'default nil :height 115))
+  (set-face-attribute 'default nil :height 145))
  ((string-equal system-type "darwin")
   (set-face-attribute 'default nil :height 150))
  )
