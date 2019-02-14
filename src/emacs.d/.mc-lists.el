@@ -18,6 +18,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+	evil-previous-line
 	iedit-switch-to-mc-mode
 	yaml-electric-backspace
 	))
