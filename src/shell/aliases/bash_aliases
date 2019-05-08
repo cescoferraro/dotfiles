@@ -25,8 +25,10 @@ alias kk="kubectl --context=gke_onni-app-ec292_southamerica-east1-b_frontend"
 alias kkk="kubectl --context=kops.onni.link"
 alias d="docker"
 alias gh='cd $HOME/go/src/github.com/cescoferraro'
+alias cesco='cd $HOME/go/src/github.com/cescoferraro'
 alias bb='cd $HOME/go/src/bitbucket.org/cescoferraro'
 alias onni='cd $HOME/go/src/github.com/onnidev'
+alias b2b='cd $HOME/go/src/github.com/b2breservas'
 alias soft='cd $HOME/go/src/bitbucket.org/onnidev'
 alias docker-format="docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f"
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
