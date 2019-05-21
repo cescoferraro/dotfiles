@@ -5,6 +5,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 ;; Configuration
+(org-babel-load-file "~/.emacs.d/basic.org")
 (org-babel-load-file "~/.emacs.d/configuration.org")
 (put 'upcase-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
