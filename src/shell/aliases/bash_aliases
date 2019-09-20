@@ -29,15 +29,16 @@ alias cesco='cd $HOME/go/src/github.com/cescoferraro'
 alias bb='cd $HOME/go/src/bitbucket.org/cescoferraro'
 alias onni='cd $HOME/go/src/github.com/onnidev'
 alias b2b='cd $HOME/go/src/github.com/b2breservas'
+alias d3='cd $HOME/go/src/github.com/d3'
 alias soft='cd $HOME/go/src/bitbucket.org/onnidev'
 alias docker-format="docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi -f"
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-alias di="docker run -t -i -P"
-alias dd="docker run -d -P"
+alias di="docker run -t -i --net=host"
+alias dd="docker run -d  --net=host"
 alias dm="docker-machine"
 alias dc="docker-compose"
 alias dl='docker ps --format "table {{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
-alias dc="docker ps -aq | xargs --no-run-if-empty docker rm -f"
+alias dcc="docker ps -aq | xargs --no-run-if-empty docker rm -f"
 alias jj="docker run -t -i -P openjdk:8 java"
 alias gg="docker run -t -i -P golang:1.8 go"
 alias emacs="open -a /usr/local/Cellar/emacs-mac/emacs-25.2-z-mac-6.3/Emacs.app/Contents/MacOS/Emacs"
